@@ -1,0 +1,306 @@
+openapi: 3.1.0
+info:
+  title: Api
+  version: 0.1.0
+  description: كوني أنيقة - متجر الفساتين الراقية
+servers:
+  - url: /api
+    description: Base API path
+tags:
+  - name: health
+    description: Health operations
+  - name: dresses
+    description: Dress catalog
+  - name: reviews
+    description: Customer reviews
+  - name: contact
+    description: Contact form
+  - name: orders
+    description: Orders
+
+paths:
+  /healthz:
+    get:
+      operationId: healthCheck
+      tags: [health]
+      summary: Health check
+      responses:
+        "200":
+          description: Healthy
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HealthStatus"
+
+  /dresses:
+    get:
+      operationId: listDresses
+      tags: [dresses]
+      summary: List all dresses
+      parameters:
+        - name: category
+          in: query
+          schema:
+            type: string
+            enum: [evening, soft]
+      responses:
+        "200":
+          description: List of dresses
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Dress"
+
+  /dresses/featured:
+    get:
+      operationId: getFeaturedDresses
+      tags: [dresses]
+      summary: Get featured/new dresses
+      responses:
+        "200":
+          description: Featured dresses
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Dress"
+
+  /dresses/{id}:
+    get:
+      operationId: getDress
+      tags: [dresses]
+      summary: Get a single dress by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Dress detail
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Dress"
+
+  /reviews:
+    get:
+      operationId: listReviews
+      tags: [reviews]
+      summary: List customer reviews
+      responses:
+        "200":
+          description: Reviews list
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Review"
+    post:
+      operationId: createReview
+      tags: [reviews]
+      summary: Submit a new review
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ReviewInput"
+      responses:
+        "201":
+          description: Review created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Review"
+
+  /contact:
+    post:
+      operationId: submitContact
+      tags: [contact]
+      summary: Submit contact form
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ContactInput"
+      responses:
+        "200":
+          description: Message received
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ContactResponse"
+
+  /orders:
+    post:
+      operationId: createOrder
+      tags: [orders]
+      summary: Create a new order (checkout)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/OrderInput"
+      responses:
+        "201":
+          description: Order placed
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Order"
+
+components:
+  schemas:
+    HealthStatus:
+      type: object
+      properties:
+        status:
+          type: string
+      required:
+        - status
+
+    Dress:
+      type: object
+      required: [id, name, nameAr, price, category, imageUrl, sizes, colors, description, isNew]
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        nameAr:
+          type: string
+        price:
+          type: number
+        category:
+          type: string
+          enum: [evening, soft]
+        imageUrl:
+          type: string
+        sizes:
+          type: array
+          items:
+            type: string
+        colors:
+          type: array
+          items:
+            type: string
+        description:
+          type: string
+        isNew:
+          type: boolean
+        rating:
+          type: ["number", "null"]
+        reviewCount:
+          type: ["integer", "null"]
+
+    Review:
+      type: object
+      required: [id, customerName, rating, comment, createdAt]
+      properties:
+        id:
+          type: integer
+        customerName:
+          type: string
+        rating:
+          type: integer
+        comment:
+          type: string
+        dressId:
+          type: ["integer", "null"]
+        createdAt:
+          type: string
+
+    ReviewInput:
+      type: object
+      required: [customerName, rating, comment]
+      properties:
+        customerName:
+          type: string
+        rating:
+          type: integer
+        comment:
+          type: string
+        dressId:
+          type: ["integer", "null"]
+
+    ContactInput:
+      type: object
+      required: [name, message]
+      properties:
+        name:
+          type: string
+        message:
+          type: string
+        email:
+          type: ["string", "null"]
+        phone:
+          type: ["string", "null"]
+
+    ContactResponse:
+      type: object
+      required: [success, message]
+      properties:
+        success:
+          type: boolean
+        message:
+          type: string
+
+    OrderItem:
+      type: object
+      required: [dressId, size, color, quantity, price]
+      properties:
+        dressId:
+          type: integer
+        size:
+          type: string
+        color:
+          type: string
+        quantity:
+          type: integer
+        price:
+          type: number
+
+    OrderInput:
+      type: object
+      required: [items, customerName, phone, paymentMethod, totalAmount]
+      properties:
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/OrderItem"
+        customerName:
+          type: string
+        phone:
+          type: string
+        address:
+          type: ["string", "null"]
+        paymentMethod:
+          type: string
+          enum: [mada, visa]
+        totalAmount:
+          type: number
+
+    Order:
+      type: object
+      required: [id, customerName, totalAmount, status, createdAt]
+      properties:
+        id:
+          type: integer
+        customerName:
+          type: string
+        totalAmount:
+          type: number
+        status:
+          type: string
+        paymentMethod:
+          type: string
+        createdAt:
+          type: string
