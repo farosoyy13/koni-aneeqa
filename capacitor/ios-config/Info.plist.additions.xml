@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  أضيفي هذه المحتويات داخل ملف ios/App/App/Info.plist
+  ضعيها داخل <dict> الرئيسي
+-->
+<plist>
+  <dict>
+
+    <!-- اسم التطبيق بالعربية -->
+    <key>CFBundleDisplayName</key>
+    <string>كوني أنيقة</string>
+
+    <key>CFBundleName</key>
+    <string>KoniAneeqa</string>
+
+    <!-- معرف الحزمة - يجب أن يطابق Apple Developer -->
+    <key>CFBundleIdentifier</key>
+    <string>com.konianeeqa.store</string>
+
+    <key>CFBundleVersion</key>
+    <string>1</string>
+
+    <key>CFBundleShortVersionString</key>
+    <string>1.0.0</string>
+
+    <!-- دعم الاتجاهات -->
+    <key>UISupportedInterfaceOrientations</key>
+    <array>
+      <string>UIInterfaceOrientationPortrait</string>
+      <string>UIInterfaceOrientationPortraitUpsideDown</string>
+    </array>
+
+    <key>UISupportedInterfaceOrientations~ipad</key>
+    <array>
+      <string>UIInterfaceOrientationPortrait</string>
+      <string>UIInterfaceOrientationPortraitUpsideDown</string>
+      <string>UIInterfaceOrientationLandscapeLeft</string>
+      <string>UIInterfaceOrientationLandscapeRight</string>
+    </array>
+
+    <!-- لون شريط الحالة -->
+    <key>UIStatusBarStyle</key>
+    <string>UIStatusBarStyleDarkContent</string>
+
+    <key>UIViewControllerBasedStatusBarAppearance</key>
+    <true/>
+
+    <!-- السماح بشبكة HTTP (للتطوير) -->
+    <key>NSAppTransportSecurity</key>
+    <dict>
+      <key>NSAllowsArbitraryLoads</key>
+      <true/>
+    </dict>
+
+    <!-- اتجاه RTL العربي -->
+    <key>NSPrincipalClass</key>
+    <string>NSApplication</string>
+
+  </dict>
+</plist>
