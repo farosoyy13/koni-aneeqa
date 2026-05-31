@@ -4,14 +4,12 @@
     "frontend": {
       "root": "frontend",
       "routePrefix": "/",
-      "framework": "vite",
-      "installCommand": "pnpm install"
+      "framework": "vite"
     },
     "backend": {
       "root": "backend",
       "routePrefix": "/_backend",
-      "framework": "node",
-      "installCommand": "pnpm install"
+      "framework": "node"
     }
   }
 }
