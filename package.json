@@ -3,5 +3,12 @@
   "packageManager": "pnpm@9.15.0",
   "engines": {
     "node": "20.x"
+  },
+  "pnpm": {
+    "catalogs": {
+      "default": {
+        "@zeolft/vite-plugin-cartographer": "latest"
+      }
+    }
   }
 }
