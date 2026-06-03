@@ -1,105 +1,112 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>كوني أنيقة | المنصة التفاعلية الكبرى</title>
-    <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        body { background-color: #fcf8f5; color: #333; overflow-x: hidden; }
-        
-        /* شاشة قفل الأمان والترحيب بالآيات الكريمات والبسملة */
-        .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, #2c1a1d, #1a0f11); display: flex; justify-content: center; align-items: center; z-index: 9999; overflow-y: auto; padding: 20px; }
-        .auth-card { background: #fff; padding: 35px 30px; width: 100%; max-width: 460px; border-radius: 20px; text-align: center; box-shadow: 0 15px 35px rgba(0,0,0,0.6); border: 1px solid rgba(197,160,89,0.2); }
-        
-        .bismillah { font-size: 1.4rem; color: #4a2c31; font-weight: bold; margin-bottom: 10px; font-family: 'Traditional Arabic', serif; }
-        .official-welcome { font-size: 0.95rem; color: #5a4b41; background: #fffbf7; padding: 15px; border-radius: 12px; border: 1px solid #ebd9c8; line-height: 1.6; margin-bottom: 20px; text-align: justify; }
-        .quran-verse { font-size: 1.25rem; color: #c5a059; font-weight: bold; margin-bottom: 8px; }
-        .baraka-advice { font-size: 0.85rem; color: #666; font-style: italic; margin-bottom: 20px; display: block; }
-        
-        .auth-card input, .auth-card select, .ad-form input, .ad-form textarea, .comment-form input, .comment-form textarea { width: 100%; padding: 14px; margin: 10px 0; border: 1px solid #ddd; border-radius: 10px; font-size: 1rem; text-align: center; transition: 0.3s; background: #fdfcfb; }
-        .auth-card input:focus, .ad-form input:focus, .comment-form input:focus { border-color: #c5a059; outline: none; box-shadow: 0 0 8px rgba(197,160,89,0.2); }
-        
-        .btn-gold { width: 100%; padding: 14px; background-color: #c5a059; color: white; border: none; border-radius: 10px; font-size: 1.1rem; cursor: pointer; font-weight: bold; margin-top: 12px; transition: 0.3s ease; box-shadow: 0 4px 10px rgba(197,160,89,0.2); }
-        .btn-gold:hover { background-color: #a48243; transform: translateY(-2px); }
-        .btn-visitor { background-color: #4a2c31; margin-top: 8px; }
-        .btn-visitor:hover { background-color: #351f22; }
-        
-        /* الهيكل المتداخل والصفحات الداخلية */
-        .main-content { display: none; position: relative; }
-        header { background-color: #4a2c31; color: #fff; padding: 20px; text-align: center; font-size: 1.8rem; font-weight: bold; position: relative; }
-        
-        /* زر تسجيل الخروج الفخم */
-        .logout-btn { position: absolute; left: 20px; top: 50%; transform: translateY(-50%); background: #c5a059; color: #fff; border: none; padding: 8px 15px; border-radius: 20px; font-size: 0.9rem; font-weight: bold; cursor: pointer; transition: 0.3s; }
-        .logout-btn:hover { background: #a48243; }
-
-        /* بنر العودة الكبرى التفاعلي الفخم الذي يرمش */
-        .comeback-banner { background: linear-gradient(135deg, #4a2c31, #2c1a1d); color: #fff; border: 2px solid #c5a059; border-radius: 15px; padding: 20px; text-align: center; margin: 20px auto; max-width: 1160px; box-shadow: 0 10px 25px rgba(74,44,49,0.2); animation: pulseBlink 2.5s infinite; }
-        .comeback-banner h2 { color: #c5a059; font-size: 1.6rem; margin-bottom: 8px; font-weight: bold; }
-        .comeback-banner p { font-size: 1.1rem; font-weight: 500; }
-        @keyframes pulseBlink {
-            0% { box-shadow: 0 0 15px rgba(197,160,89,0.4); border-color: #c5a059; }
-            50% { box-shadow: 0 0 30px rgba(197,160,89,0.8); border-color: #fff; transform: scale(1.01); }
-            100% { box-shadow: 0 0 15px rgba(197,160,89,0.4); border-color: #c5a059; }
-        }
-
-        /* نظام القوائم والأقسام */
-        .layout-container { display: flex; max-width: 1200px; margin: 20px auto; padding: 0 15px; gap: 25px; }
-        .sidebar-menu { width: 280px; background: #fff; border: 1px solid #eedfd3; border-radius: 16px; padding: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.02); height: fit-content; }
-        .sidebar-menu h4 { color: #4a2c31; font-size: 1.2rem; margin-bottom: 15px; border-bottom: 2px solid #c5a059; padding-bottom: 8px; font-weight: bold; }
-        .menu-list { list-style: none; }
-        .menu-item { padding: 12px; margin-bottom: 8px; background: #fdfbf9; border: 1px solid #f3ebe3; border-radius: 8px; cursor: pointer; font-weight: bold; color: #4a2c31; transition: 0.3s; text-align: right; }
-        .menu-item:hover, .menu-item.active { background: #c5a059; color: #fff; border-color: #c5a059; padding-right: 20px; }
-        
-        .content-area { flex: 1; }
-        .page-section { display: none; animation: fadeIn 0.4s ease; }
-        .page-section.active { display: block; }
-
-        /* نظام تقييم النجوم والأرقام المليونية الفخمة للثقة */
-        .trust-badge-box { background: #fff; border: 1px solid #eedfd3; border-radius: 15px; padding: 20px; text-align: center; margin-bottom: 25px; box-shadow: 0 4px 12px rgba(0,0,0,0.02); }
-        .stars-display { font-size: 1.8rem; color: #ffc107; margin-bottom: 5px; }
-        .trust-counter-text { font-size: 1rem; color: #4a2c31; font-weight: bold; }
-        .trust-counter-text span { color: #27ae60; font-size: 1.2rem; }
-
-        /* الأشرطة التفاعلية الحية والمتحركة */
-        .marquee-container { background: #4a2c31; color: white; padding: 10px 0; font-size: 0.95rem; font-weight: bold; box-shadow: inset 0 2px 5px rgba(0,0,0,0.2); }
-        .second-marquee { background: #c5a059; color: #2c1a1d; margin-top: 2px; }
-
-        /* مربع الزينة للمعلنين المتميزين */
-        .creative-ad-box { background: linear-gradient(145deg, #ffffff, #faf4ee); border: 2px dashed #c5a059; border-radius: 18px; padding: 25px; text-align: center; box-shadow: 0 10px 25px rgba(197,160,89,0.11); margin-bottom: 25px; }
-        .creative-ad-box h3 { color: #4a2c31; margin-bottom: 8px; font-size: 1.4rem; font-weight: bold; }
-        .creative-ad-box .stats { display: flex; justify-content: center; flex-wrap: wrap; gap: 15px; margin-top: 15px; font-size: 0.85rem; font-weight: bold; }
-        .stats span { background: #fff; padding: 6px 12px; border-radius: 20px; border: 1px solid #eddcd0; }
-
-        /* بطاقات عرض السلع والمستعمل والجديد */
-        .ads-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; margin-top: 20px; }
-        .ad-card { background: #fff; border-radius: 14px; border: 1px solid #eee; padding: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.03); transition: 0.3s ease; display: flex; flex-direction: column; justify-content: space-between; position: relative; }
-        .ad-card:hover { transform: translateY(-4px); box-shadow: 0 8px 25px rgba(0,0,0,0.06); }
-        .ad-card img { width: 100%; height: 220px; object-fit: cover; border-radius: 10px; margin-bottom: 12px; }
-        .ad-card h4 { color: #4a2c31; margin-bottom: 6px; font-size: 1.25rem; font-weight: bold; }
-        .ad-info { font-size: 0.9rem; color: #555; margin-bottom: 5px; }
-        .ad-badge { position: absolute; top: 10px; right: 10px; background: #27ae60; color: #fff; padding: 4px 10px; border-radius: 12px; font-size: 0.75rem; font-weight: bold; }
-        .btn-report { background: #e74c3c; color: white; border: none; padding: 6px 12px; border-radius: 6px; font-size: 0.8rem; font-weight: bold; cursor: pointer; margin-top: 10px; transition: 0.3s; width: fit-content; align-self: center; }
-        .btn-report:hover { background: #c0392b; }
-
-        /* الحسابات البنكية وأزرار النسخ السريع الذكية */
-        .bank-card { background: #fff; border: 1px solid #eddcd0; border-radius: 12px; padding: 15px; margin-bottom: 15px; position: relative; }
-        .bank-title { font-weight: bold; color: #4a2c31; margin-bottom: 5px; font-size: 1.1rem; }
-        .btn-copy { background: #4a2c31; color: white; border: none; padding: 4px 10px; border-radius: 6px; font-size: 0.8rem; cursor: pointer; position: absolute; left: 15px; top: 15px; font-weight: bold; }
-        
-        /* رادار المالك وسجل مراقبة المشرفين الصارم */
-        .admin-dashboard { background: #fff; padding: 25px; border-radius: 16px; border: 1px solid #eedfd3; box-shadow: 0 4px 15px rgba(0,0,0,0.02); }
-        .audit-table { width: 100%; border-collapse: collapse; margin-top: 15px; font-size: 0.9rem; text-align: center; }
-        .audit-table th { background: #4a2c31; color: white; padding: 10px; font-weight: bold; }
-        .audit-table td { padding: 10px; border-bottom: 1px solid #eee; }
-        .alert-row { background: #fff5f5; color: #c0392b; font-weight: bold; animation: alertBlink 1.5s infinite; }
-        @keyframes alertBlink { 0%, 100% { background: #fff5f5; } 50% { background: #ffdada; } }
-
-        /* التعليقات والمراجعات الحقيقية */
-        .comments-section { background: #fff; padding: 25px; border-radius: 16px; border: 1px solid #eedfd3; margin-top: 30px; }
-        .comment-item { background: #fdfcfb; border: 1px solid #f3ebe3; padding: 15px; border-radius: 10px; margin-bottom: 12px; }
-        .comment-header { display: flex; justify-content: space-between; font-weight: bold; color: #4a2c31; margin-bottom: 5px; font-size: 0.95rem; }
-        .comment-text { font-size: 0.9rem; color: #555; line-height: 1.5; }
-
-        .pledge-box { background: #fff5f5; border: 1px solid #ffa3a3; padding: 15px; border-radius: 10px; margin-top: 20px; }
-        .pledge-text { font-size: 0.95rem; color: #962222; font-weight: bold; line-height: 1.6; margin-bottom: 10px; border-right: 4px solid #d9534f; padding-right: 10px; text-align: justify; }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>كوني أنيقة | بوابة الأناقة الملكية الفاخرة</title>
+  <link rel="preconnect" href="https://googleapis.com">
+  <link rel="preconnect" href="https://gstatic.com" crossorigin>
+  <link href="https://googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cloudflare.com">
+  
+  <style>
+    :root {
+      --primary: #800020; 
+      --secondary: #D4AF37; 
+      --dark: #1A1A1A;
+      --light: #FDFBF7;
+      --gray: #7F8C8D;
+      --success: #27AE60;
+      --red-alert: #C0392B;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0; padding: 0;
+      font-family: 'Cairo', sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+    body { background-color: var(--light); color: var(--dark); overflow-x: hidden; }
+    
+    /* 1. قفل الأمان الحديدي */
+    #auth-screen { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, var(--dark) 0%, var(--primary) 100%); z-index: 10000; display: flex; justify-content: center; align-items: center; padding: 20px; }
+    .auth-card { background: white; padding: 35px 25px; border-radius: 20px; box-shadow: 0 15px 35px rgba(0,0,0,0.4); width: 100%; max-width: 440px; text-align: center; border: 2px solid var(--secondary); position: relative; }
+    .bismi-text { font-size: 1.6rem; color: var(--primary); font-weight: 800; margin-bottom: 12px; letter-spacing: 1px; }
+    .welcome-msg { font-size: 0.98rem; color: #444; margin-bottom: 20px; line-height: 1.7; font-weight: 600; }
+    .alert-red-box { background-color: #FFF3F3; border: 1.5px solid var(--red-alert); color: var(--red-alert); padding: 12px; border-radius: 10px; font-size: 0.88rem; font-weight: 700; line-height: 1.5; margin-bottom: 20px; text-align: right; }
+    .role-selector { width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #DDD; border-radius: 10px; font-weight: 700; text-align: center; background-color: #FAFAFA; }
+    .auth-card input { width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #DDD; border-radius: 10px; text-align: center; font-weight: 600; }
+    .captcha-container { background: #F5F5F5; padding: 10px; border-radius: 8px; margin-bottom: 15px; font-weight: 700; color: var(--primary); display: flex; justify-content: center; align-items: center; gap: 10px; }
+    .auth-btn { width: 100%; padding: 14px; background: linear-gradient(45deg, var(--primary), #5a0016); color: white; border: none; border-radius: 10px; font-size: 1.1rem; font-weight: 700; cursor: pointer; box-shadow: 0 4px 10px rgba(128,0,32,0.3); }
+    
+    /* 2. اللافتة الترحيبية بالطلة الجديدة */
+    .new-look-banner { background: linear-gradient(45deg, #4A0012, var(--primary), #4A0012); color: white; text-align: center; padding: 14px 20px; font-weight: 800; font-size: 1.05rem; border-bottom: 3px solid var(--secondary); animation: bannerBlink 3s infinite; line-height: 1.6; }
+    @keyframes bannerBlink { 0%, 100% { opacity: 1; } 50% { opacity: 0.9; } }
+    
+    /* 3. شريط الهيدر والمؤشرات الحية */
+    header { background-color: white; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 15px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 999; }
+    .logo { font-size: 1.6rem; font-weight: 900; color: var(--primary); display: flex; align-items: center; gap: 8px; }
+    .logo span { color: var(--secondary); }
+    .header-actions { display: flex; gap: 10px; align-items: center; }
+    .btn-header { padding: 8px 14px; border-radius: 8px; font-weight: 700; font-size: 0.85rem; border: none; cursor: pointer; }
+    .btn-owner-box { background-color: gold; color: var(--dark); border: 2px solid var(--secondary); box-shadow: 0 0 10px rgba(212,175,55,0.4); }
+    .btn-logout { background-color: #EEE; color: #555; }
+    
+    /* 4. صندوق الإحصائيات المتحركة والتصويت */
+    .live-stats-container { background-color: white; margin: 15px; padding: 15px; border-radius: 15px; box-shadow: 0 4px 12px rgba(0,0,0,0.02); border: 1px solid #F0EAE1; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; text-align: center; }
+    .stat-box { padding: 8px; }
+    .stat-number { font-size: 1.2rem; font-weight: 800; color: var(--primary); }
+    .stat-number.green { color: var(--success); }
+    .stat-label { font-size: 0.8rem; color: var(--gray); font-weight: 700; margin-top: 2px; }
+    .rating-wrapper { background: white; margin: 0 15px 15px 15px; padding: 15px; border-radius: 12px; text-align: center; border: 1px dashed var(--secondary); }
+    .rating-stars { color: var(--secondary); font-size: 1.5rem; margin-bottom: 4px; }
+    .rating-text { font-size: 0.9rem; font-weight: 700; color: var(--dark); }
+    
+    /* 5. معرض الملوك والقادة */
+    .leaders-section { background: white; margin: 15px; padding: 20px 15px; border-radius: 15px; border: 1px solid #F0EAE1; text-align: center; }
+    .leaders-title { font-size: 1.15rem; font-weight: 800; color: var(--primary); margin-bottom: 15px; }
+    .leaders-grid { display: flex; justify-content: center; gap: 15px; margin-bottom: 15px; }
+    .leader-card { flex: 1; max-width: 100px; text-align: center; }
+    .leader-img-placeholder { width: 75px; height: 75px; border-radius: 50%; background-color: #F5F5F5; border: 2px solid var(--secondary); margin: 0 auto 6px auto; display: flex; justify-content: center; align-items: center; font-size: 0.7rem; color: var(--primary); font-weight: 700; box-shadow: 0 4px 8px rgba(0,0,0,0.05); }
+    .leader-name { font-size: 0.72rem; font-weight: 800; color: var(--dark); line-height: 1.3; }
+    .leaders-praise { font-size: 0.88rem; color: #444; line-height: 1.6; font-weight: 600; text-align: justify; padding: 0 5px; }
+    .saudi-people-praise { margin-top: 12px; padding-top: 10px; border-top: 1px dashed #EEE; font-size: 0.9rem; color: var(--primary); font-weight: 800; line-height: 1.5; }
+    
+    /* 6. بانر الزينة والإعلانات الحية */
+    .carousel-live-zone { background-color: #FFFDF9; border: 1px solid #F3EBD3; margin: 15px; padding: 15px; border-radius: 12px; position: relative; }
+    .live-zone-tag { position: absolute; top: -10px; right: 15px; background-color: var(--primary); color: white; padding: 2px 10px; border-radius: 20px; font-size: 0.75rem; font-weight: 700; border: 1px solid var(--secondary); }
+    .carousel-text { font-size: 0.92rem; font-weight: 700; color: #664d03; line-height: 1.6; text-align: center; margin-top: 5px; }
+    
+    /* 7. لافتة دولاب الفساتين السريعة */
+    .closet-invite-box { background: linear-gradient(135deg, #FAF4E8 0%, #F5E6CC 100%); border: 1px solid var(--secondary); margin: 15px; padding: 15px; border-radius: 12px; text-align: center; }
+    .closet-title { font-size: 1.05rem; font-weight: 800; color: var(--primary); margin-bottom: 6px; }
+    .closet-desc { font-size: 0.88rem; color: var(--dark); font-weight: 700; line-height: 1.5; }
+    
+    /* 8. شريط التنقل الهيكلي */
+    .page-navigation-bar { display: flex; justify-content: space-between; padding: 12px 15px; background-color: #F5EFE6; margin: 15px; border-radius: 10px; border: 1px solid #E5DEC9; }
+    .nav-wizard-btn { background-color: var(--primary); color: white; border: none; padding: 10px 18px; border-radius: 8px; font-weight: 700; font-size: 0.9rem; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+    .nav-wizard-btn.btn-back { background-color: #555; }
+    .nav-wizard-btn:disabled { background-color: #CCC; cursor: not-allowed; box-shadow: none; }
+    
+    /* هندسة الصفحات المتداخلة */
+    .app-page { display: none; padding-bottom: 20px; }
+    .app-page.active-page { display: block; }
+    
+    /* تفاصيل الصفحات وعناصرها */
+    .section-container { background: white; margin: 15px; padding: 20px 15px; border-radius: 15px; box-shadow: 0 4px 12px rgba(0,0,0,0.02); border: 1px solid #F0EAE1; }
+    .section-title { font-size: 1.15rem; font-weight: 800; color: var(--primary); margin-bottom: 15px; display: flex; align-items: center; gap: 8px; border-bottom: 2px solid #F9F7F2; padding-bottom: 8px; }
+    
+    .contact-card-list { display: flex; flex-direction: column; gap: 12px; }
+    .contact-direct-btn { display: flex; align-items: center; justify-content: space-between; padding: 15px; border-radius: 10px; text-decoration: none; font-weight: 700; font-size: 0.95rem; color: white; box-shadow: 0 3px 8px rgba(0,0,0,0.05); }
+    .btn-wa-1 { background-color: #2ECC71; }
+    .btn-wa-2 { background-color: #27AE60; }
+    .btn-snap-main { background-color: #FFFC00; color: black; border: 1px solid #E2E000; }
+    
+    /* كروت سوق الفساتين */
+    .filter-cities-row { display: flex; gap: 8px; margin-bottom: 15px; overflow-x: auto; padding-bottom: 5px; }
+    .filter-badge { background-color: #F0FAFF; border: 1px solid #D0E8F5; color: #2980B9; padding: 6px 14px; border-radius: 20px; font-size: 0.82rem; font-weight: 700; white-space: nowrap; }
+    .filter-badge.active-filter { background-color: var(--primary); color: white; border-color: var(--primary); }
+    .ad-card { background: white; border: 1px solid #F0EAE1; border-radius: 12px; padding: 15px; margin-bottom: 15px; border-right: 5px solid var(--primary); position: relative; }
+    .ad-top-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
+    .ad-item-title { font-weight: 800; color: var(--primary); font-size: 1rem; }
+    .ad-item-price { font-weight: 900; color: var(--secondary); background-color: #FFFDF0; padding: 4px 10px; border-radius: 6px; font-size: 1.05rem; }
+    .ad-tag-group { display: flex; gap: 6px; margin-bottom: 10px; flex-wrap: wrap; }
