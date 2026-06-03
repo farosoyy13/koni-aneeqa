@@ -8,82 +8,98 @@
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
         body { background-color: #fcf8f5; color: #333; overflow-x: hidden; }
         
-        /* شاشة قفل الأمان والتحقق بالإيميل */
+        /* شاشة قفل الأمان والترحيب بالآيات الكريمات والبسملة */
         .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, #2c1a1d, #1a0f11); display: flex; justify-content: center; align-items: center; z-index: 9999; overflow-y: auto; padding: 20px; }
-        .auth-card { background: #fff; padding: 30px; width: 100%; max-width: 460px; border-radius: 20px; text-align: center; box-shadow: 0 15px 35px rgba(0,0,0,0.6); border: 1px solid rgba(197,160,89,0.3); }
-        .welcome-msg { font-size: 1.1rem; color: #4a2c31; font-weight: bold; margin-bottom: 15px; border-bottom: 1px dashed #c5a059; padding-bottom: 10px; }
-        .quran-verse { font-size: 1.25rem; color: #c5a059; font-weight: bold; margin-bottom: 6px; }
-        .baraka-advice { font-size: 0.9rem; color: #5a4b41; font-style: italic; margin-bottom: 20px; background: #fffbf7; padding: 10px; border-radius: 8px; border: 1px solid #ebd9c8; line-height: 1.5; }
-        .alert-red { background: #fff5f5; color: #cc0000; font-size: 0.85rem; padding: 8px; border-radius: 6px; border: 1px solid #ffcccc; margin-bottom: 15px; font-weight: bold; }
+        .auth-card { background: #fff; padding: 35px 30px; width: 100%; max-width: 460px; border-radius: 20px; text-align: center; box-shadow: 0 15px 35px rgba(0,0,0,0.6); border: 1px solid rgba(197,160,89,0.2); }
         
-        .auth-card input, .auth-card select, .ad-form input, .ad-form textarea { width: 100%; padding: 12px; margin: 8px 0; border: 1px solid #ddd; border-radius: 8px; font-size: 0.95rem; text-align: center; background: #fdfcfb; }
-        .auth-card input:focus, .ad-form input:focus { border-color: #c5a059; outline: none; }
+        .bismillah { font-size: 1.4rem; color: #4a2c31; font-weight: bold; margin-bottom: 10px; font-family: 'Traditional Arabic', serif; }
+        .official-welcome { font-size: 0.95rem; color: #5a4b41; background: #fffbf7; padding: 15px; border-radius: 12px; border: 1px solid #ebd9c8; line-height: 1.6; margin-bottom: 20px; text-align: justify; }
+        .quran-verse { font-size: 1.25rem; color: #c5a059; font-weight: bold; margin-bottom: 8px; }
+        .baraka-advice { font-size: 0.85rem; color: #666; font-style: italic; margin-bottom: 20px; display: block; }
         
-        .btn-gold { width: 100%; padding: 12px; background-color: #c5a059; color: white; border: none; border-radius: 8px; font-size: 1rem; cursor: pointer; font-weight: bold; margin-top: 8px; transition: 0.3s; }
-        .btn-gold:hover { background-color: #a48243; }
-        .btn-visitor { background-color: #4a2c31; }
-        .btn-admin-panel { background-color: #111; color: #ff0055; border: 1px solid #ff0055; font-size: 0.85rem; margin-top: 15px; }
-
-        /* شاشة التحقق بالإيميل */
-        .verification-zone { display: none; }
-
-        /* الهيكل الرئيسي والمصفوفة الجانبية */
-        .main-content { display: none; display: flex; flex-direction: column; min-height: 100vh; }
-        header { background-color: #4a2c31; color: #fff; padding: 15px; text-align: center; font-size: 1.6rem; font-weight: bold; position: relative; }
+        .auth-card input, .auth-card select, .ad-form input, .ad-form textarea, .comment-form input, .comment-form textarea { width: 100%; padding: 14px; margin: 10px 0; border: 1px solid #ddd; border-radius: 10px; font-size: 1rem; text-align: center; transition: 0.3s; background: #fdfcfb; }
+        .auth-card input:focus, .ad-form input:focus, .comment-form input:focus { border-color: #c5a059; outline: none; box-shadow: 0 0 8px rgba(197,160,89,0.2); }
         
-        .wrapper { display: flex; flex: 1; position: relative; }
+        .btn-gold { width: 100%; padding: 14px; background-color: #c5a059; color: white; border: none; border-radius: 10px; font-size: 1.1rem; cursor: pointer; font-weight: bold; margin-top: 12px; transition: 0.3s ease; box-shadow: 0 4px 10px rgba(197,160,89,0.2); }
+        .btn-gold:hover { background-color: #a48243; transform: translateY(-2px); }
+        .btn-visitor { background-color: #4a2c31; margin-top: 8px; }
+        .btn-visitor:hover { background-color: #351f22; }
         
-        /* القائمة الجانبية العريضة والبارزة */
-        .sidebar { width: 280px; background: #2c1a1d; color: #fff; padding: 20px 10px; display: flex; flex-direction: column; gap: 8px; box-shadow: -4px 0 10px rgba(0,0,0,0.1); }
-        .sidebar-title { color: #c5a059; font-size: 1.1rem; font-weight: bold; text-align: center; margin-bottom: 15px; border-bottom: 2px solid #c5a059; padding-bottom: 8px; }
-        .menu-btn { width: 100%; background: none; border: none; color: #eddcd0; text-align: right; padding: 12px 15px; font-size: 1rem; font-weight: bold; cursor: pointer; border-radius: 8px; transition: 0.3s; display: flex; align-items: center; justify-content: space-between; }
-        .menu-btn:hover, .menu-btn.active { background: #c5a059; color: #fff; }
-        .sub-menu { display: none; background: #1a0f11; padding: 5px 10px; border-radius: 6px; margin-bottom: 5px; }
-        .sub-menu button { width: 100%; background: none; border: none; color: #bbb; text-align: right; padding: 8px; font-size: 0.9rem; cursor: pointer; }
-        .sub-menu button:hover { color: #c5a059; }
+        /* الهيكل المتداخل والصفحات الداخلية */
+        .main-content { display: none; position: relative; }
+        header { background-color: #4a2c31; color: #fff; padding: 20px; text-align: center; font-size: 1.8rem; font-weight: bold; position: relative; }
         
         /* زر تسجيل الخروج الفخم */
-        .logout-btn { background: #7d2631 !important; color: #fff !important; margin-top: auto; }
-        .logout-btn:hover { background: #b83b4b !important; }
+        .logout-btn { position: absolute; left: 20px; top: 50%; transform: translateY(-50%); background: #c5a059; color: #fff; border: none; padding: 8px 15px; border-radius: 20px; font-size: 0.9rem; font-weight: bold; cursor: pointer; transition: 0.3s; }
+        .logout-btn:hover { background: #a48243; }
 
-        /* محتوى الصفحات */
-        .content-area { flex: 1; padding: 25px; background: #fcf8f5; }
-        .page-section { display: none; animation: fadeIn 0.3s ease; }
+        /* بنر العودة الكبرى التفاعلي الفخم الذي يرمش */
+        .comeback-banner { background: linear-gradient(135deg, #4a2c31, #2c1a1d); color: #fff; border: 2px solid #c5a059; border-radius: 15px; padding: 20px; text-align: center; margin: 20px auto; max-width: 1160px; box-shadow: 0 10px 25px rgba(74,44,49,0.2); animation: pulseBlink 2.5s infinite; }
+        .comeback-banner h2 { color: #c5a059; font-size: 1.6rem; margin-bottom: 8px; font-weight: bold; }
+        .comeback-banner p { font-size: 1.1rem; font-weight: 500; }
+        @keyframes pulseBlink {
+            0% { box-shadow: 0 0 15px rgba(197,160,89,0.4); border-color: #c5a059; }
+            50% { box-shadow: 0 0 30px rgba(197,160,89,0.8); border-color: #fff; transform: scale(1.01); }
+            100% { box-shadow: 0 0 15px rgba(197,160,89,0.4); border-color: #c5a059; }
+        }
+
+        /* نظام القوائم والأقسام */
+        .layout-container { display: flex; max-width: 1200px; margin: 20px auto; padding: 0 15px; gap: 25px; }
+        .sidebar-menu { width: 280px; background: #fff; border: 1px solid #eedfd3; border-radius: 16px; padding: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.02); height: fit-content; }
+        .sidebar-menu h4 { color: #4a2c31; font-size: 1.2rem; margin-bottom: 15px; border-bottom: 2px solid #c5a059; padding-bottom: 8px; font-weight: bold; }
+        .menu-list { list-style: none; }
+        .menu-item { padding: 12px; margin-bottom: 8px; background: #fdfbf9; border: 1px solid #f3ebe3; border-radius: 8px; cursor: pointer; font-weight: bold; color: #4a2c31; transition: 0.3s; text-align: right; }
+        .menu-item:hover, .menu-item.active { background: #c5a059; color: #fff; border-color: #c5a059; padding-right: 20px; }
+        
+        .content-area { flex: 1; }
+        .page-section { display: none; animation: fadeIn 0.4s ease; }
         .page-section.active { display: block; }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-        /* الأشرطة المتحركة */
-        .marquee-container { background: #4a2c31; color: #fff; padding: 8px 0; font-size: 0.95rem; font-weight: bold; border-bottom: 2px solid #c5a059; }
-        .marquee-container-2 { background: #c5a059; color: #2c1a1d; padding: 6px 0; font-size: 0.95rem; font-weight: bold; }
+        /* نظام تقييم النجوم والأرقام المليونية الفخمة للثقة */
+        .trust-badge-box { background: #fff; border: 1px solid #eedfd3; border-radius: 15px; padding: 20px; text-align: center; margin-bottom: 25px; box-shadow: 0 4px 12px rgba(0,0,0,0.02); }
+        .stars-display { font-size: 1.8rem; color: #ffc107; margin-bottom: 5px; }
+        .trust-counter-text { font-size: 1rem; color: #4a2c31; font-weight: bold; }
+        .trust-counter-text span { color: #27ae60; font-size: 1.2rem; }
 
-        /* لوحة القادة الحكام الثلاثة */
-        .leaders-section { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-bottom: 30px; margin-top: 15px; }
-        .leader-card { background: #fff; border: 2px solid #c5a059; border-radius: 12px; width: 180px; padding: 10px; text-align: center; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
-        .leader-card img { width: 100%; height: 210px; object-fit: cover; border-radius: 8px; filter: sepia(20%); }
-        .leader-card h5 { margin-top: 8px; color: #4a2c31; font-size: 0.95rem; font-weight: bold; }
-        .leaders-text { background: #fff; border-right: 4px solid #c5a059; padding: 15px; border-radius: 8px; text-align: justify; font-size: 1rem; line-height: 1.6; color: #4a2c31; font-weight: 500; margin-bottom: 35px; box-shadow: 0 4px 15px rgba(0,0,0,0.02); }
+        /* الأشرطة التفاعلية الحية والمتحركة */
+        .marquee-container { background: #4a2c31; color: white; padding: 10px 0; font-size: 0.95rem; font-weight: bold; box-shadow: inset 0 2px 5px rgba(0,0,0,0.2); }
+        .second-marquee { background: #c5a059; color: #2c1a1d; margin-top: 2px; }
 
-        /* مربع الزينة الإبداعي للمعلنين */
-        .creative-ad-box { background: linear-gradient(145deg, #ffffff, #faf4ee); border: 2px dashed #c5a059; border-radius: 15px; padding: 25px; text-align: center; box-shadow: 0 8px 20px rgba(197,160,89,0.12); margin-bottom: 30px; }
-        .creative-ad-box h3 { color: #4a2c31; margin-bottom: 10px; font-size: 1.35rem; }
+        /* مربع الزينة للمعلنين المتميزين */
+        .creative-ad-box { background: linear-gradient(145deg, #ffffff, #faf4ee); border: 2px dashed #c5a059; border-radius: 18px; padding: 25px; text-align: center; box-shadow: 0 10px 25px rgba(197,160,89,0.11); margin-bottom: 25px; }
+        .creative-ad-box h3 { color: #4a2c31; margin-bottom: 8px; font-size: 1.4rem; font-weight: bold; }
         .creative-ad-box .stats { display: flex; justify-content: center; flex-wrap: wrap; gap: 15px; margin-top: 15px; font-size: 0.85rem; font-weight: bold; }
-        .stats span { background: #fff; padding: 5px 12px; border-radius: 15px; border: 1px solid #eddcd0; }
+        .stats span { background: #fff; padding: 6px 12px; border-radius: 20px; border: 1px solid #eddcd0; }
 
-        /* اللوحات الإعلانية المربعة الكبيرة */
-        .promo-banners-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; margin-bottom: 35px; }
-        .promo-banner { background: linear-gradient(135deg, #4a2c31, #2c1a1d); color: #fff; padding: 25px; border-radius: 15px; text-align: center; border: 2px solid #c5a059; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
-        .promo-banner h4 { color: #c5a059; font-size: 1.25rem; margin-bottom: 8px; font-weight: bold; }
-        .promo-banner p { font-size: 0.9rem; color: #eddcd0; line-height: 1.4; }
+        /* بطاقات عرض السلع والمستعمل والجديد */
+        .ads-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; margin-top: 20px; }
+        .ad-card { background: #fff; border-radius: 14px; border: 1px solid #eee; padding: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.03); transition: 0.3s ease; display: flex; flex-direction: column; justify-content: space-between; position: relative; }
+        .ad-card:hover { transform: translateY(-4px); box-shadow: 0 8px 25px rgba(0,0,0,0.06); }
+        .ad-card img { width: 100%; height: 220px; object-fit: cover; border-radius: 10px; margin-bottom: 12px; }
+        .ad-card h4 { color: #4a2c31; margin-bottom: 6px; font-size: 1.25rem; font-weight: bold; }
+        .ad-info { font-size: 0.9rem; color: #555; margin-bottom: 5px; }
+        .ad-badge { position: absolute; top: 10px; right: 10px; background: #27ae60; color: #fff; padding: 4px 10px; border-radius: 12px; font-size: 0.75rem; font-weight: bold; }
+        .btn-report { background: #e74c3c; color: white; border: none; padding: 6px 12px; border-radius: 6px; font-size: 0.8rem; font-weight: bold; cursor: pointer; margin-top: 10px; transition: 0.3s; width: fit-content; align-self: center; }
+        .btn-report:hover { background: #c0392b; }
 
-        /* شبكة عرض السلع والبطاقات */
-        .ads-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
-        .ad-card { background: #fff; border-radius: 12px; border: 1px solid #eee; padding: 15px; box-shadow: 0 4px 12px rgba(0,0,0,0.03); display: flex; flex-direction: column; justify-content: space-between; transition: 0.3s; position: relative; }
-        .ad-card:hover { transform: translateY(-4px); box-shadow: 0 6px 18px rgba(0,0,0,0.07); }
-        .ad-card img { width: 100%; height: 210px; object-fit: cover; border-radius: 8px; margin-bottom: 12px; }
-        .ad-card h4 { color: #4a2c31; margin-bottom: 6px; font-size: 1.15rem; font-weight: bold; }
-        .ad-badge { position: absolute; top: 10px; left: 10px; background: #27ae60; color: #fff; font-size: 0.75rem; padding: 4px 8px; border-radius: 4px; font-weight: bold; }
-        .trust-badge { display: inline-block; font-size: 0.8rem; color: #c5a059; font-weight: bold; margin-bottom: 8px; background: #fff9f0; padding: 3px 8px; border-radius: 4px; border: 1px solid #f6edd9; }
-        .size-matcher-btn { background: #eee; border: 1px solid #ccc; padding: 5px; font-size: 0.8rem; border-radius: 4px; cursor: pointer; margin-bottom: 8px; font-weight: bold; width: 100%; text-align: center; }
+        /* الحسابات البنكية وأزرار النسخ السريع الذكية */
+        .bank-card { background: #fff; border: 1px solid #eddcd0; border-radius: 12px; padding: 15px; margin-bottom: 15px; position: relative; }
+        .bank-title { font-weight: bold; color: #4a2c31; margin-bottom: 5px; font-size: 1.1rem; }
+        .btn-copy { background: #4a2c31; color: white; border: none; padding: 4px 10px; border-radius: 6px; font-size: 0.8rem; cursor: pointer; position: absolute; left: 15px; top: 15px; font-weight: bold; }
+        
+        /* رادار المالك وسجل مراقبة المشرفين الصارم */
+        .admin-dashboard { background: #fff; padding: 25px; border-radius: 16px; border: 1px solid #eedfd3; box-shadow: 0 4px 15px rgba(0,0,0,0.02); }
+        .audit-table { width: 100%; border-collapse: collapse; margin-top: 15px; font-size: 0.9rem; text-align: center; }
+        .audit-table th { background: #4a2c31; color: white; padding: 10px; font-weight: bold; }
+        .audit-table td { padding: 10px; border-bottom: 1px solid #eee; }
+        .alert-row { background: #fff5f5; color: #c0392b; font-weight: bold; animation: alertBlink 1.5s infinite; }
+        @keyframes alertBlink { 0%, 100% { background: #fff5f5; } 50% { background: #ffdada; } }
 
-        /* الأقسام الاستمارية والتعهد */
-        .ad-form { background: #fff; padding: 
+        /* التعليقات والمراجعات الحقيقية */
+        .comments-section { background: #fff; padding: 25px; border-radius: 16px; border: 1px solid #eedfd3; margin-top: 30px; }
+        .comment-item { background: #fdfcfb; border: 1px solid #f3ebe3; padding: 15px; border-radius: 10px; margin-bottom: 12px; }
+        .comment-header { display: flex; justify-content: space-between; font-weight: bold; color: #4a2c31; margin-bottom: 5px; font-size: 0.95rem; }
+        .comment-text { font-size: 0.9rem; color: #555; line-height: 1.5; }
+
+        .pledge-box { background: #fff5f5; border: 1px solid #ffa3a3; padding: 15px; border-radius: 10px; margin-top: 20px; }
+        .pledge-text { font-size: 0.95rem; color: #962222; font-weight: bold; line-height: 1.6; margin-bottom: 10px; border-right: 4px solid #d9534f; padding-right: 10px; text-align: justify; }
