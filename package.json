@@ -1,18 +1,9 @@
 {
-  "name": "koni-aneeqa-frontend",
-  "private": true,
+  "name": "koni-aneeqa",
   "version": "1.0.0",
-  "type": "module",
+  "private": true,
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
-  },
-  "dependencies": {
-    "firebase": "^10.8.0"
-  },
-  "devDependencies": {
-    "@vitejs/plugin-react": "^4.2.1",
-    "vite": "^5.1.4"
+    "install-frontend": "cd frontend && npm install",
+    "build-frontend": "cd frontend && npm run build"
   }
 }
