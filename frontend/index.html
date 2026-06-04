@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>كوني أنيقة VIP - المنصة الملكية الخليجية</title>
+    <title>كوني أنيقة VIP - المنصة الإعلانية الملكية</title>
     <style>
+        /* أنماط الهوية الفاخرة والتأثيرات الحركية الفورية */
         @keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes slideUp { from { opacity: 0; transform: translateY(50px); } to { opacity: 1; transform: translateY(0); } }
         .fade-in { animation: fadeIn 0.5s ease-out forwards; }
@@ -14,10 +15,37 @@
         .tab-btn.active { background: #d4af37; color: #000; border-color: #d4af37; box-shadow: 0 4px 15px rgba(212,175,55,0.3); }
         .promo-box { flex: 1; min-width: 280px; background: #1c1c1c; border: 1px dashed #d4af37; padding: 15px; border-radius: 12px; text-align: right; cursor: pointer; transition: 0.3s; }
         .promo-box:hover { background: #222; transform: translateY(-3px); }
-        .contact-link { display: inline-flex; align-items: center; gap: 8px; color: #fff; text-decoration: none; background: #222; padding: 10px 15px; border-radius: 8px; border: 1px solid #333; transition: 0.3s; margin: 5px; }
-        .contact-link:hover { background: #333; border-color: #d4af37; }
-        .bank-card { background: #161616; border: 1px solid #333; padding: 15px; border-radius: 10px; text-align: right; margin-bottom: 15px; }
+        .bank-card { background: #1c1c1c; border: 1px solid #333; padding: 15px; border-radius: 10px; margin-bottom: 10px; text-align: right; }
+        .contact-link { display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; border-radius: 8px; color: #fff; font-weight: bold; text-decoration: none; margin: 5px; transition: 0.3s; }
+        
+        /* زخرفة إدارية ملكية فخمة وعريضة لوثوقية المالك */
+        .royal-header {
+            background: linear-gradient(135deg, #1e1b10 0%, #0f0e08 100%);
+            border: 2px solid #d4af37;
+            padding: 30px;
+            border-radius: 16px;
+            margin-bottom: 35px;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(212,175,55,0.15);
+            position: relative;
+            overflow: hidden;
+        }
+        .royal-title {
+            color: #d4af37;
+            font-size: 26px;
+            font-weight: 900;
+            margin: 0 0 10px 0;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+            letter-spacing: 1px;
+        }
+        .royal-divider {
+            height: 2px;
+            background: linear-gradient(to right, transparent, #d4af37, transparent);
+            width: 80%;
+            margin: 15px auto;
+        }
     </style>
+    <!-- حظر كليك يمين لحماية المحتوى من النسخ والسرقة -->
     <script>
         document.addEventListener('contextmenu', event => event.preventDefault());
         document.addEventListener('keydown', e => { if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && e.key === 'I')) e.preventDefault(); });
@@ -25,7 +53,7 @@
 </head>
 <body style="margin:0; background:#0b0b0b; font-family:sans-serif; color:#fff; user-select:none;" onselectstart="return false;">
 
-<!-- 1️⃣ شاشة القفل الأساسية لجميع الزوار -->
+<!-- 1️⃣ شاشة القفل الفخمة الأساسية للزوار -->
 <div id="auth-overlay" style="position:fixed; top:0; left:0; width:100%; height:100%; background:#0b0b0b; z-index:99999; display:flex; justify-content:center; align-items:center; padding:20px; box-sizing:border-box;">
   <div class="fade-in" style="background:#161616; padding:40px; border-radius:16px; width:100%; max-width:400px; box-shadow:0 10px 30px rgba(0,0,0,0.5); text-align:center; border:1px solid #262626;">
     <h2 style="margin-bottom:10px; font-weight:600; color:#d4af37;">كوني أنيقة VIP</h2>
@@ -38,35 +66,36 @@
   </div>
 </div>
 
-<!-- 2️⃣ شاشة القفل الإجبارية بعد النشر للتفاهم حول مدة العرض -->
+<!-- 2️⃣ شاشة القفل الإجبارية بعد النشر لتحديد مدة العرض -->
 <div id="whatsapp-redirect-overlay" style="position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(11,11,11,0.98); z-index:100000; display:none; justify-content:center; align-items:center; padding:20px; box-sizing:border-box;">
   <div style="background:#161616; padding:40px; border-radius:16px; width:100%; max-width:440px; text-align:center; border:2px solid #25d366; box-shadow:0 10px 30px rgba(37,211,102,0.15);">
     <div style="font-size:40px; margin-bottom:15px;">⏱️</div>
     <h3 style="color:#25d366; margin:0 0 10px 0; font-size:22px;">تم رفع طلب الإعلان بنجاح!</h3>
-    <p style="color:#bbb; font-size:14px; line-height:1.6; margin-bottom:25px;">تنبيه إلزامي: لتأكيد مدة عرض بضاعتكِ واعتمادها حية على الموقع، يرجى الضغط على الزر بالأسفل للمراسلة الفورية والتفاهم مع صاحب الموقع مباشرة عبر الواتساب.</p>
-    <button onclick="redirectToOwnerWhatsapp('00966536667222')" style="width:100%; padding:15px; background:#25d366; border:none; border-radius:8px; color:#fff; font-size:16px; font-weight:bold; cursor:pointer; display:flex; justify-content:center; align-items:center; gap:10px; box-shadow:0 4px 15px rgba(37,211,102,0.3); margin-bottom:10px;">
-      💬 مراسلة الرقم الأول بالواتساب
-    </button>
-    <button onclick="redirectToOwnerWhatsapp('00966507882771')" style="width:100%; padding:15px; background:#128c7e; border:none; border-radius:8px; color:#fff; font-size:16px; font-weight:bold; cursor:pointer; display:flex; justify-content:center; align-items:center; gap:10px; box-shadow:0 4px 15px rgba(18,140,126,0.3);">
-      💬 مراسلة الرقم الثاني بالواتساب
+    <p style="color:#bbb; font-size:14px; line-height:1.6; margin-bottom:25px;">تنبيه إلزامي وموجه: لتأكيد مدة عرض بضاعتكِ واعتمادها حية على الموقع، يرجى الضغط على الزر بالأسفل للمراسلة الفورية والتفاهم مع صاحب الموقع مباشرة عبر الواتساب.</p>
+    <button onclick="redirectToOwnerWhatsapp()" style="width:100%; padding:15px; background:#25d366; border:none; border-radius:8px; color:#fff; font-size:16px; font-weight:bold; cursor:pointer; display:flex; justify-content:center; align-items:center; gap:10px; box-shadow:0 4px 15px rgba(37,211,102,0.3);">
+      💬 اضغطي هنا للمراسلة الفورية بالواتساب
     </button>
   </div>
 </div>
 
-<!-- 3️⃣ المتجر الرئيسي ولوحة المالك السرية المدمجة -->
+<!-- 3️⃣ المنصة والمحتوى بعد الدخول الناجح -->
 <div id="main-store" style="display:none; padding:20px;">
   <div id="announcement-banner" style="background:#d4af37; color:#000; padding:12px; text-align:center; font-weight:bold; border-radius:8px; margin-bottom:20px;">
     ✨ منصة كوني أنيقة VIP الحصرية | 🔥 متصل الآن: <span id="user-count-badge">278</span> زائر حقيقي ✨
   </div>
 
-  <!-- لوحة تحكم فهد الملكية الحقيقية مع رادار كاشف الرسائل والمشرفين -->
-  <div id="admin-dashboard" class="fade-in" style="display:none; background:#161616; border:2px dashed #d4af37; padding:25px; border-radius:12px; margin-bottom:30px;">
-    <h3 style="color:#d4af37; margin:0 0 10px 0;">👑 رادار التحكم المطلق وكاشف الرسائل لأبو فهد</h3>
-    <p style="font-size:13px; color:#aaa; margin-bottom:15px;">🕵️ البريد المعتمد للمالك: kal6667222@gmail.com | رادار المراقبة نشط لمتابعة وتأكيد مدة عرض الإعلانات وقراءة الرسائل المتبادلة.</p>
+  <!-- لوحة تحكم صاحب الموقع الفخمة والمزخرفة ملكياً (مخفية وتفتح لإيميلك المعتمد فقط) -->
+  <div id="admin-dashboard" class="fade-in" style="display:none; margin-bottom:40px;">
+    <div class="royal-header">
+      <div class="royal-title">👑 لوحة التحكم المطلقة وإدارة المنصة الإعلانية 👑</div>
+      <div style="font-size:15px; color:#d4af37; font-weight:bold; letter-spacing:3px;">◆ صـاحـب الـمـوقـع ◆</div>
+      <div class="royal-divider"></div>
+      <p style="font-size:13px; color:#ccc; max-width:600px; margin:0 auto; line-height:1.6;">البريد المعتمد للإدارة السحابية: fhoodii882771@gmail.com | رادار المراقبة وحماية المعاملات الخليجية نشط ومستقر الآن بأعلى كفاءة.</p>
+    </div>
     
-    <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
-      <button onclick="alert('لوحة التحكم بطلب مدة العرض والنشاط للأسر المنتجة')" style="padding:12px; background:#222; color:#fff; border:1px solid #333; border-radius:6px; cursor:pointer; text-align:right;">📥 إدارة طلبات مدة العرض المرفوعة</button>
-      <button onclick="let email=prompt('أدخل إيميل الشخص للطرد الفوري:'); if(email) alert('تم حظر وطرد المستخدم وإغلاق جلسته نهائياً')" style="padding:12px; background:#ff4a4a; color:#fff; border:none; border-radius:6px; cursor:pointer; font-weight:bold; text-align:right;">🚫 طرد وحظر فوري لـ مسيء</button>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; max-width:800px; margin:0 auto;">
+      <button onclick="alert('لوحة التحكم بطلبات المدد والنشاط المرفوعة')" style="padding:14px; background:#1c1c1c; color:#fff; border:1px solid #d4af37; border-radius:8px; cursor:pointer; font-weight:bold; text-align:right; transition:0.3s;">📥 إدارة طلبات مدة العرض المرفوعة</button>
+      <button onclick="alert('تم تفعيل نظام الحظر الفوري بنجاح')" style="padding:14px; background:#ff4a4a; color:#fff; border:none; border-radius:8px; cursor:pointer; font-weight:bold; text-align:right; box-shadow:0 4px 15px rgba(255,74,74,0.15);">🚫 طرد وحظر فوري لـ مستخدم مسيء</button>
     </div>
   </div>
 
@@ -78,7 +107,7 @@
     </div>
     <div onclick="switchTab('post')" class="promo-box">
       <h4 style="color:#4caf50; margin:0 0 5px 0; font-size:16px;">🎨 الحرف والعبايات المستخدمة الفاخرة</h4>
-      <p style="margin:0; font-size:13px; color:#ccc; line-height:1.4;">تصنعين بخور، عطور، أو عندكِ عباية مستعملة نظيفة؟ اعرضي إعلانكِ مجاناً وتواصلي مع الزبائن فوراً 🔒</p>
+      <p style="margin:0; font-size:13px; color:#ccc; line-height:1.4;">تصنعين بخور، عطور، أو عندكِ عباية مستعملة نظيفة؟ اعرضي إعلانكِ مجاناً وتواصلي معنا 🔒</p>
     </div>
   </div>
 
@@ -88,19 +117,11 @@
       <button id="tab-new" class="tab-btn active" onclick="switchTab('new')">✨ عبايات جديدة</button>
       <button id="tab-used" class="tab-btn" onclick="switchTab('used')">💎 مستعملة نظيفة</button>
       <button id="tab-food" class="tab-btn" onclick="switchTab('food')">🧁 حلويات وطبخ منزلي</button>
-      <button id="tab-bank" class="tab-btn" onclick="switchTab('bank')" style="border-color:#4caf50; color:#4caf50;">🏦 الحسابات البنكية الرسمية</button>
       <button id="tab-post" class="tab-btn" onclick="switchTab('post')" style="border-color:#d4af37; color:#d4af37;">➕ أعلني عن بضاعتكِ / انضمي لنا</button>
     </div>
 
-    <!-- الأقسام المعروضة للبنات -->
+    <!-- الفروع والأقسام التفاعلية للزبائن مع التقييمات التفاعلية المحدثة -->
     <div id="section-new" class="fade-in" style="display:block;">
       <div style="background:#161616; padding:25px; border-radius:12px; border:1px solid #222; text-align:right;">
         <span style="background:#d4af37; color:#000; padding:4px 10px; border-radius:6px; font-size:12px; font-weight:bold;">🆕 كوليكشن جديد</span>
         <h3 style="color:#fff; margin:15px 0 5px 0;">عباية مخمل ملكي مع تطريز ذهبي خاص</h3>
-        <p style="color:#d4af37; font-weight:bold; font-size:18px;">500 ريال سعودي</p>
-        <p style="font-size:13px; color:#ccc;">💳 أو قسّميها على 4 دفعات بدون أي فوائد مع تمارا أو تابي!</p>
-        <button onclick="alert('تمت إضافة المنتج الفخم لسلة تسوقكِ')" style="width:100%; padding:12px; background:#d4af37; color:#000; border:none; border-radius:6px; font-weight:bold; cursor:pointer;">🛍️ إضافة للسلة والدفع السريع</button>
-      </div>
-    </div>
-
-    <div id="section-used" class="fade-in" style="display:none;">
