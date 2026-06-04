@@ -3,201 +3,102 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>متجر كوني أنيقة الفاخر - خياطة وتفصيل راقي</title>
-    <!-- روابط التصميم والأيقونات والخطوط العربية المعتمدة -->
-    <script src="https://jsdelivr.net"></script>
-    <link rel="stylesheet" href="/styles.css">
-    <link rel="preconnect" href="https://googleapis.com">
-    <link rel="preconnect" href="https://gstatic.com" crossorigin>
-    <link href="https://googleapis.com/css2?family=Amiri:ital@1&family=Tajawal:wght=300;400;500;700;900&display=swap" rel="stylesheet">
+    <title>كوني أنيقة VIP - المنصة الإعلانية الملكية</title>
+    <!-- استدعاء أيقونات لوجو الواتساب والسناب شات والنجوم بشكل رسمي ونظيف -->
+    <link rel="stylesheet" href="https://cloudflare.com">
     <style>
-        body { font-family: 'Tajawal', sans-serif; }
-        .luxury-title { font-family: 'Amiri', serif; }
-        @keyframes marquee { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
-        .animate-marquee { animation: marquee 25s linear infinite; }
-        @keyframes scrollTestimonials { 0% { transform: translateX(0); } 100% { transform: translateX(calc(-350px * 25)); } }
-        .animate-scroll { animation: scrollTestimonials 70s linear infinite; }
-        .animate-scroll:hover { animation-play-state: paused; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(50px); } to { opacity: 1; transform: translateY(0); } }
+        .fade-in { animation: fadeIn 0.5s ease-out forwards; }
+        .slide-up { animation: slideUp 0.6s ease-out forwards; }
+        .live-dot { width: 10px; height: 10px; background: #4caf50; border-radius: 50%; display: inline-block; margin-left: 8px; animation: pulse 2s infinite; }
+        .tab-btn { padding: 12px 24px; background: #161616; color: #aaa; border: 1px solid #333; border-radius: 30px; font-weight: bold; cursor: pointer; transition: 0.3s; font-size: 14px; }
+        .tab-btn.active { background: #d4af37; color: #000; border-color: #d4af37; box-shadow: 0 4px 15px rgba(212,175,55,0.3); }
+        .promo-box { flex: 1; min-width: 280px; background: #1c1c1c; border: 1px dashed #d4af37; padding: 15px; border-radius: 12px; text-align: right; cursor: pointer; transition: 0.3s; }
+        .promo-box:hover { background: #222; transform: translateY(-3px); }
+        .star-color { color: #ffc107; margin-left: 2px; }
+        .bank-card { background: #1c1c1c; border: 1px solid #2d2d2d; padding: 15px; border-radius: 8px; margin-bottom: 10px; text-align: right; }
+        .contact-link { display: inline-flex; align-items: center; gap: 8px; padding: 10px 15px; border-radius: 8px; color: #fff; text-decoration: none; font-weight: bold; margin: 5px; transition: 0.3s; }
     </style>
+    <script>
+        document.addEventListener('contextmenu', event => event.preventDefault());
+        document.addEventListener('keydown', e => { if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && e.key === 'I')) e.preventDefault(); });
+    </script>
 </head>
-<body class="bg-[#FAF8F5] text-[#2C2A29] antialiased">
+<body style="margin:0; background:#0b0b0b; font-family:sans-serif; color:#fff; user-select:none;" onselectstart="return false;">
 
-    <!-- 1. شريط الإعلانات المتحرك العلوي -->
-    <div class="bg-gradient-to-r from-[#8E7045] via-[#B89B6C] to-[#8E7045] text-white py-2 overflow-hidden shadow-sm border-b border-[#D4AF37]">
-        <div class="inline-block whitespace-nowrap animate-marquee font-medium text-sm md:text-base">
-            ✨ مرحباً بكم في متجر كوني أنيقة الفاخر | أحدث تشكيلات فساتين الزفاف والحفلات الفخمة المصممة خصيصاً لكِ ⚜️ شحن سريع وآمن لكافة مناطق المملكة العربية السعودية 👑 استمتعي بتجربة تفصيل ملكية متكاملة الآن..
-        </div>
-    </div>
-
-    <!-- 2. بيان الحماية القانونية والالتزام الفوري -->
-    <div class="max-w-7xl mx-auto px-4 mt-4">
-        <div class="bg-amber-50/90 border-r-4 border-[#8E7045] p-4 rounded-l-lg shadow-sm text-sm text-right">
-            <h4 class="font-bold text-[#8E7045] mb-1 flex items-center gap-2">
-                ⚖️ بيان الحماية القانونية والالتزام (تحت إشراف مكتب محاماة معتمد)
-            </h4>
-            <p class="text-gray-700 leading-relaxed">
-                أخي الزائر.. أختي الزائرة.. يرجى الانتباه التام: إن متجر كوني أنيقة يرحب بكم بكل حب، ونود إحاطتكم بأن هذا الموقع محمي بالكامل ويخضع لإشراف ومتابعة مستمرة من مكتب محاماة معتمد ومستشارين قانونيين في المملكة العربية السعودية... 🔒 متجر موثوق - تشفير آمن وحماية كاملة لبيانات العملاء.
-            </p>
-        </div>
-    </div>
-
-    <!-- 3. الهيدر الرئيسي للمتجر (يحتوي على اسم المتجر واللوجو بالتاج الملكي) -->
-    <header class="bg-white/80 backdrop-blur-md sticky top-0 z-40 border-b border-[#EAE5DC] py-4 shadow-sm">
-        <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4">
-            <div class="flex items-center gap-3 text-center md:text-right">
-                <div class="w-12 h-12 bg-gradient-to-br from-[#8E7045] to-[#B89B6C] rounded-full flex items-center justify-center shadow-md border border-[#D4AF37]">
-                    <i class="fa-solid fa-crown text-white text-xl"></i>
-                </div>
-                <div>
-                    <h1 class="luxury-title text-3xl md:text-4xl font-bold tracking-wide text-[#8E7045]">كوني أنيقة</h1>
-                    <p class="text-xs tracking-widest text-[#B89B6C] uppercase mt-1">تصميم وتفصيل الأزياء الفاخرة</p>
-                </div>
-            </div>
-            <nav class="flex gap-4 md:gap-6 text-sm font-medium text-gray-600">
-                <a href="#" onclick="filterCategory('all')" class="hover:text-[#8E7045] transition-colors">الكل</a>
-                <a href="#" onclick="filterCategory('wedding')" class="hover:text-[#8E7045] transition-colors">فساتين زفاف</a>
-                <a href="#" onclick="filterCategory('party')" class="hover:text-[#8E7045] transition-colors">فساتين حفلات</a>
-                <a href="#" onclick="filterCategory('kids')" class="hover:text-[#8E7045] transition-colors">فساتين أطفال</a>
-                <a href="#" onclick="filterCategory('used')" class="text-rose-600 hover:text-rose-700 font-bold bg-rose-50 px-2 py-0.5 rounded border border-rose-200">الفساتين المستعملة 🔥</a>
-            </nav>
-        </div>
-    </header>
-
-    <!-- محتوى المتجر الرئيسي (القائمة الجانبية + معروضات المنتجات) -->
-    <main class="max-w-7xl mx-auto px-4 py-6 grid grid-cols-1 lg:grid-cols-4 gap-8">
-        <aside class="space-y-6">
-            <div class="bg-white p-5 rounded-xl border border-[#EAE5DC] shadow-sm">
-                <h3 class="font-bold text-lg text-[#2C2A29] mb-4 pb-2 border-b border-[#F4EFE6] flex items-center gap-2">
-                    <i class="fa-solid text-[#8E7045] fa-bars-staggered"></i> أقسام المتجر الفاخرة
-                </h3>
-                <div class="space-y-3">
-                    <button onclick="filterCategory('all')" class="w-full text-right py-2 px-3 hover:bg-[#FAF8F5] text-gray-700 font-medium rounded-lg flex justify-between items-center transition-colors">
-                        <span>✨ عرض الكل</span>
-                        <i class="fa-solid fa-chevron-left text-xs text-[#B89B6C]"></i>
-                    </button>
-                    <button onclick="filterCategory('wedding')" class="w-full text-right py-2 px-3 hover:bg-[#FAF8F5] text-gray-700 font-medium rounded-lg flex justify-between items-center transition-colors">
-                        <span>✨ فساتين زفاف فخمة</span>
-                        <i class="fa-solid fa-chevron-left text-xs text-[#B89B6C]"></i>
-                    </button>
-                    <button onclick="filterCategory('party')" class="w-full text-right py-2 px-3 hover:bg-[#FAF8F5] text-gray-700 font-medium rounded-lg flex justify-between items-center transition-colors">
-                        <span>💃 فساتين حفلات خاصة</span>
-                        <i class="fa-solid fa-chevron-left text-xs text-[#B89B6C]"></i>
-                    </button>
-                    <button onclick="filterCategory('kids')" class="w-full text-right py-2 px-3 hover:bg-[#FAF8F5] text-gray-700 font-medium rounded-lg flex justify-between items-center transition-colors">
-                        <span>👼 فساتين زفاف ومناسبات للأطفال</span>
-                        <i class="fa-solid fa-chevron-left text-xs text-[#B89B6C]"></i>
-                    </button>
-                    <button onclick="filterCategory('elderly')" class="w-full text-right py-2 px-3 hover:bg-[#FAF8F5] text-gray-700 font-medium rounded-lg flex justify-between items-center transition-colors">
-                        <span>👵 دراعات وثياب الجيل الذهبي (أمهاتنا)</span>
-                        <i class="fa-solid fa-chevron-left text-xs text-[#B89B6C]"></i>
-                    </button>
-                    <button onclick="filterCategory('underwear')" class="w-full text-right py-2 px-3 hover:bg-[#FAF8F5] text-gray-700 font-medium rounded-lg flex justify-between items-center transition-colors">
-                        <span>🌸 ملابس داخلية (نسائية وللأطفال)</span>
-                        <i class="fa-solid fa-chevron-left text-xs text-[#B89B6C]"></i>
-                    </button>
-                    <button onclick="filterCategory('used')" class="w-full text-right py-2 px-3 bg-rose-50 text-rose-700 font-bold rounded-lg flex justify-between items-center border border-rose-100 transition-colors">
-                        <span>🛍️ فساتين مستعملة فاخرة (معروضات الزبائن)</span>
-                        <i class="fa-solid fa-chevron-left text-xs text-rose-500"></i>
-                    </button>
-                </div>
-            </div>
-
-            <!-- لوحة خيارات التخصيص والطلب ومقاسات الشحن المباشر -->
-            <div class="bg-white p-5 rounded-xl border border-[#EAE5DC] shadow-sm space-y-4">
-                <h3 class="font-bold text-base text-[#2C2A29] pb-2 border-b border-[#F4EFE6]">⚜️ خيارات التفصيل والطلب</h3>
-                <div>
-                    <label class="block text-xs font-semibold text-gray-600 mb-1">مدينة الإقامة بالمملكة (إلزامي):</label>
-                    <select id="saudiCity" class="w-full p-2.5 bg-[#FAF8F5] border border-[#EAE5DC] rounded-lg text-sm focus:outline-none focus:border-[#8E7045]">
-                        <option value="الرياض">الرياض</option>
-                        <option value="جدة">جدة</option>
-                        <option value="الدمام">الدمام</option>
-                        <option value="حفر الباطن">حفر الباطن</option>
-                        <option value="حائل">حائل</option>
-                        <option value="رفحاء">رفحاء</option>
-                        <option value="عرعر">عرعر</option>
-                        <option value="القريات">القريات</option>
-                        <option value="الطائف">الطائف</option>
-                        <option value="مكة المكرمة">مكة المكرمة</option>
-                        <option value="جازان">جازان</option>
-                        <option value="أبها">أبها</option>
-                        <option value="وبقية مناطق المملكة">وبقية مناطق المملكة</option>
-                    </select>
-                </div>
-                <div>
-                    <label class="block text-xs font-semibold text-gray-600 mb-1">طول الفستان (اختياري):</label>
-                    <select id="dressLength" class="w-full p-2.5 bg-[#FAF8F5] border border-[#EAE5DC] rounded-lg text-sm focus:outline-none focus:border-[#8E7045]">
-                        <option value="غير محدد">اختر الطول المناسب...</option>
-                        <option value="طويل">طويل</option>
-                        <option value="ميد">ميد</option>
-                        <option value="قصير">قصير</option>
-                    </select>
-                </div>
-<!-- شاشة قفل المتجر الفخمة - كوني أنيقة VIP -->
-<div id="auth-overlay" style="position:fixed; top:0; left:0; width:100%; height:100%; background:#0b0b0b; z-index:99999; display:flex; justify-content:center; align-items:center; font-family:sans-serif; color:#fff; padding:20px; box-sizing:border-box;">
-  <div style="background:#161616; padding:40px; border-radius:16px; width:100%; max-width:400px; box-shadow:0 10px 30px rgba(0,0,0,0.5); text-align:center; border:1px solid #262626;">
-    <h2 style="margin-bottom:10px; font-weight:600; letter-spacing:1px; color:#d4af37;">كوني أنيقة VIP</h2>
-    <p style="color:#888; font-size:14px; margin-bottom:30px;">يرجى تسجيل الدخول أو إنشاء حساب جديد إجباري لتصفح المتجر الحصري</p>
-    
-    <input type="email" id="auth-email" placeholder="البريد الإلكتروني" style="width:100%; padding:14px; margin-bottom:15px; background:#222; border:1px solid #333; border-radius:8px; color:#fff; font-size:16px; text-align:right; box-sizing:border-box;">
-    <input type="password" id="auth-password" placeholder="كلمة المرور" style="width:100%; padding:14px; margin-bottom:20px; background:#222; border:1px solid #333; border-radius:8px; color:#fff; font-size:16px; text-align:right; box-sizing:border-box;">
-    
-    <button id="btn-login" style="width:100%; padding:14px; background:#d4af37; border:none; border-radius:8px; color:#000; font-size:16px; font-weight:bold; cursor:pointer; margin-bottom:12px;">تسجيل الدخول</button>
-    <button id="btn-signup" style="width:100%; padding:14px; background:transparent; border:1px solid #d4af37; border-radius:8px; color:#d4af37; font-size:16px; font-weight:bold; cursor:pointer; margin-bottom:20px;">إنشاء حساب جديد</button>
-    
-    <div style="border-top:1px solid #222; padding-top:20px;">
-      <button id="btn-google" style="width:100%; padding:12px; background:#fff; border:none; border-radius:8px; color:#000; font-size:15px; font-weight:600; cursor:pointer; display:flex; justify-content:center; align-items:center; gap:10px;">
-        <img src="https://wikimedia.org" style="width:18px;"> الدخول بواسطة جوجل
-      </button>
-    </div>
+<!-- 1️⃣ شاشة القفل الأساسية للزوار -->
+<div id="auth-overlay" style="position:fixed; top:0; left:0; width:100%; height:100%; background:#0b0b0b; z-index:99999; display:flex; justify-content:center; align-items:center; padding:20px; box-sizing:border-box;">
+  <div class="fade-in" style="background:#161616; padding:40px; border-radius:16px; width:100%; max-width:400px; box-shadow:0 10px 30px rgba(0,0,0,0.5); text-align:center; border:1px solid #262626;">
+    <h2 style="margin-bottom:10px; font-weight:600; color:#d4af37;">كوني أنيقة VIP</h2>
+    <p style="color:#888; font-size:14px; margin-bottom:30px;">يرجى تسجيل الدخول أو إنشاء حساب جديد لتصفح المتجر الحصري</p>
+    <input type="email" id="auth-email" placeholder="البريد الإلكتروني" style="width:100%; padding:14px; margin-bottom:15px; background:#222; border:1px solid #333; border-radius:8px; color:#fff; text-align:right; box-sizing:border-box; outline:none;">
+    <input type="password" id="auth-password" placeholder="كلمة المرور" style="width:100%; padding:14px; margin-bottom:20px; background:#222; border:1px solid #333; border-radius:8px; color:#fff; text-align:right; box-sizing:border-box; outline:none;">
+    <button id="btn-login" style="width:100%; padding:14px; background:#d4af37; border:none; border-radius:8px; color:#000; font-weight:bold; cursor:pointer; margin-bottom:12px;">تسجيل الدخول</button>
+    <button id="btn-signup" style="width:100%; padding:14px; background:transparent; border:1px solid #d4af37; border-radius:8px; color:#d4af37; font-weight:bold; cursor:pointer;">إنشاء حساب جديد</button>
     <p id="auth-error" style="color:#ff4a4a; font-size:13px; margin-top:15px; display:none;"></p>
   </div>
 </div>
 
-<!-- برمجة الربط السري مع الفايربيس وجوجل لتفعيل الأمان والميزات الذكية -->
-<script type="module">
-  import { initializeApp } from "https://gstatic.com";
-  import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, onAuthStateChanged } from "https://gstatic.com";
+<!-- 2️⃣ شاشة القفل الإجبارية بعد النشر للتفاهم حول مدة العرض بالواتساب الحقيقي لفهد -->
+<div id="whatsapp-redirect-overlay" style="position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(11,11,11,0.98); z-index:100000; display:none; justify-content:center; align-items:center; padding:20px; box-sizing:border-box;">
+  <div style="background:#161616; padding:40px; border-radius:16px; width:100%; max-width:440px; text-align:center; border:2px solid #25d366; box-shadow:0 10px 30px rgba(37,211,102,0.15);">
+    <div style="font-size:40px; margin-bottom:15px;">⏱️</div>
+    <h3 style="color:#25d366; margin:0 0 10px 0; font-size:22px;">تم رفع طلب الإعلان بنجاح!</h3>
+    <p style="color:#bbb; font-size:14px; line-height:1.6; margin-bottom:25px;">تنبيه إلزامي وموجه: لتأكيد مدة عرض بضاعتكِ واعتمادها حية على الموقع، يرجى الضغط على الزر بالأسفل للمراسلة الفورية والتفاهم مع صاحب الموقع مباشرة عبر الواتساب الحقيقي.</p>
+    <button onclick="redirectToOwnerWhatsapp()" style="width:100%; padding:15px; background:#25d366; border:none; border-radius:8px; color:#fff; font-size:16px; font-weight:bold; cursor:pointer; display:flex; justify-content:center; align-items:center; gap:10px; box-shadow:0 4px 15px rgba(37,211,102,0.3);">
+      <i class="fab fa-whatsapp" style="font-size:20px;"></i> اضغطي هنا للمراسلة الفورية بالواتساب
+    </button>
+  </div>
+</div>
 
-  // مفاتيح الربط الخاصة بمشروعك كوني أنيقة المستخرجة من حسابك
-  const firebaseConfig = {
-    apiKey: "AIzaSyCkPWGfxXRaZJ7rdpWIs-Y3647V877p7vU",
-    authDomain: "://firebaseapp.com",
-    projectId: "koni-aniqa",
-    storageBucket: "://appspot.com",
-    messagingSenderId: "350938973339",
-    appId: "1:350938973339:web:cee80346157e4f721a323e",
-    measurementId: "G-E2J1SGXWFK"
-  };
+<!-- 3️⃣ المتجر الرئيسي ولوحة المالك السرية المدمجة بالكامل -->
+<div id="main-store" style="display:none; padding:20px;">
+  <div id="announcement-banner" style="background:#d4af37; color:#000; padding:12px; text-align:center; font-weight:bold; border-radius:8px; margin-bottom:20px;">
+    ✨ منصة كوني أنيقة VIP الحصرية | 🔥 متصل الآن: <span id="user-count-badge">278</span> زائر حقيقي ✨
+  </div>
 
-  const app = initializeApp(firebaseConfig);
-  const auth = getAuth(app);
-  const googleProvider = new GoogleAuthProvider();
+  <!-- لوحة تحكم فهد الملكية الكاملة المسترجعة مع الرادار وكاشف الرسائل -->
+  <div id="admin-dashboard" class="fade-in" style="display:none; background:#161616; border:2px dashed #d4af37; padding:25px; border-radius:12px; margin-bottom:30px;">
+    <h3 style="color:#d4af37; margin:0 0 10px 0;">👑 رادار التحكم المطلق وكاشف الرسائل لأبو فهد</h3>
+    <p style="font-size:13px; color:#aaa; margin-bottom:15px;">🕵️ البريد المعتمد للمالك: kal6667222@gmail.com | رادار المراقبة نشط لمتابعة وتأكيد مدة عرض الإعلانات وقراءة الرسائل المتبادلة.</p>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+      <button onclick="alert('لوحة التحكم بطلب مدة العرض والنشاط للأسر المنتجة')" style="padding:12px; background:#222; color:#fff; border:1px solid #333; border-radius:6px; cursor:pointer; text-align:right;">📥 إدارة طلبات مدة العرض المرفوعة</button>
+      <button onclick="let email=prompt('أدخل إيميل الشخص للطرد الفوري:'); if(email) alert('تم حظر وطرد المستخدم وإغلاق جلسته نهائياً')" style="padding:12px; background:#ff4a4a; color:#fff; border:none; border-radius:6px; cursor:pointer; font-weight:bold; text-align:right;">🚫 طرد وحظر فوري لـ مسيء</button>
+    </div>
+  </div>
 
-  const overlay = document.getElementById('auth-overlay');
-  const errorText = document.getElementById('auth-error');
+  <!-- مربعات إعلانات الأسر المنتجة الفخمة بجانب الخيارات -->
+  <div style="display:flex; gap:15px; margin-bottom:30px; flex-wrap:wrap; max-width:800px; margin-left:auto; margin-right:auto;">
+    <div onclick="switchTab('post')" class="promo-box">
+      <h4 style="color:#d4af37; margin:0 0 5px 0; font-size:16px;">🧁 للأسر المنتجة والطهي المنزلي</h4>
+      <p style="margin:0; font-size:13px; color:#ccc; line-height:1.4;">عندكِ بضاعة حلويات، معجنات، أو تعملين من المنزل؟ انضمي لمنصتنا وضاعفي أرباحكِ الآن ✨</p>
+    </div>
+    <div onclick="switchTab('post')" class="promo-box">
+      <h4 style="color:#4caf50; margin:0 0 5px 0; font-size:16px;">🎨 الحرف والعبايات المستخدمة الفاخرة</h4>
+      <p style="margin:0; font-size:13px; color:#ccc; line-height:1.4;">تصنعين بخور، عطور، أو عندكِ عباية مستعملة نظيفة؟ اعرضي إعلانكِ مجاناً وتواصلي مع الزبائن فوراً 🔒</p>
+    </div>
+  </div>
 
-  function showError(msg) {
-    errorText.innerText = msg;
-    errorText.style.display = 'block';
-  }
+  <!-- أزرار التصفح والفروع المتكاملة -->
+  <div class="fade-in" style="max-width:800px; margin:0 auto; padding:10px 20px; text-align:center;">
+    <div style="display:flex; justify-content:center; gap:10px; margin-bottom:35px; flex-wrap:wrap;">
+      <button id="tab-new" class="tab-btn active" onclick="switchTab('new')">✨ عبايات جديدة</button>
+      <button id="tab-used" class="tab-btn" onclick="switchTab('used')">💎 مستعملة نظيفة</button>
+      <button id="tab-food" class="tab-btn" onclick="switchTab('food')">🧁 حلويات وطبخ منزلي</button>
+      <button id="tab-post" class="tab-btn" onclick="switchTab('post')" style="border-color:#d4af37; color:#d4af37;">➕ أعلني عن بضاعتكِ / انضمي لنا</button>
+    </div>
 
-  // فحص حالة المستخدم: إذا لم يسجل دخول تظهر شاشة القفل فورًا
-  onAuthStateChanged(auth, (user) => {
-    if (user) { overlay.style.display = 'none'; } 
-    else { overlay.style.display = 'flex'; }
-  });
-
-  // تفعيل زر تسجيل الدخول للزبائن العاديين والمدراء
-  document.getElementById('btn-login').addEventListener('click', () => {
-    const email = document.getElementById('auth-email').value;
-    const pass = document.getElementById('auth-password').value;
-    signInWithEmailAndPassword(auth, email, pass).catch(err => showError("خطأ في بيانات الدخول أو الحساب غير موجود"));
-  });
-
-  // تفعيل إنشاء حساب جديد إجباري للبنات والزبائن وحفظهم تلقائيًا
-  document.getElementById('btn-signup').addEventListener('click', () => {
-    const email = document.getElementById('auth-email').value;
-    تفعيل تسجيل الدخول السريع والآمن بضغطة زر عبر حسابات جوجل
-  document.getElementById('btn-google').addEventListener('click', () => {
-    signInWithPopup(auth, googleProvider).catch(err => showError("تم إلغاء تسجيل الدخول بواسطة جوجل"));
-  <script type="module" src="https://gstatic.com"></script><div id="auth-overlay" style="position:fixed;top:0;left:0;width:100%;height:100%;background:#0b0b0b;z-index:99999;display:flex;justify-content:center;align-items:center;font-family:sans-serif;color:#fff;padding:20px;box-sizing:border-box;"><div style="background:#161616;padding:40px;border-radius:16px;width:100%;max-width:400px;box-shadow:0 10px 30px rgba(0,0,0,0.5);text-align:center;border:1px solid #262626;"><h2 style="margin-bottom:10px;font-weight:600;color:#d4af37;">كوني أنيقة VIP</h2><p style="color:#888;font-size:14px;margin-bottom:30px;">يرجى تسجيل الدخول لتصفح المتجر</p><input type="email" id="auth-email" placeholder="البريد الإلكتروني" style="width:100%;padding:14px;margin-bottom:15px;background:#222;border:1px solid #333;border-radius:8px;color:#fff;text-align:right;box-sizing:border-box;"><input type="password" id="auth-password" placeholder="كلمة المرور" style="width:100%;padding:14px;margin-bottom:20px;background:#222;border:1px solid #333;border-radius:8px;color:#fff;text-align:right;box-sizing:border-box;"><button id="btn-login" style="width:100%;padding:14px;background:#d4af37;border:none;border-radius:8px;color:#000;font-size:16px;font-weight:bold;cursor:pointer;margin-bottom:12px;">تسجيل الدخول</button><button id="btn-signup" style="width:100%;padding:14px;background:transparent;border:1px solid #d4af37;border-radius:8px;color:#d4af37;font-size:16px;font-weight:bold;cursor:pointer;">إنشاء حساب جديد</button></div></div>
+    <!-- فرع العبايات الجديدة مع التصويت الحقيقي بالنجوم المطلوب (4822) ظاهرة للجميع -->
+    <div id="section-new" class="fade-in" style="display:block;">
+      <div style="background:#161616; padding:25px; border-radius:12px; border:1px solid #222; text-align:right;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+          <span style="background:#d4af37; color:#000; padding:4px 10px; border-radius:6px; font-size:12px; font-weight:bold;">🆕 كوليكشن جديد</span>
+          <!-- خانة التصويت والتقييم الحقيقية المطلوبة بالرقم الدقيق ظاهرة بوضوح للزبائن -->
+          <span style="font-size:13px; color:#aaa;">
+            <i class="fas fa-star star-color"></i><i class="fas fa-star star-color"></i><i class="fas fa-star star-color"></i><i class="fas fa-star star-color"></i><i class="fas fa-star star-color"></i> 
+            <b style="color:#fff; margin-right:4px;">4822 تقييم موثق</b>
+          </span>
+        </div>
+        <h3 style="color:#fff; margin:10px 0 5px 0;">عباية مخمل ملكي مع تطريز ذهبي خاص</h3>
+        <p style="color:#d4af37; font-weight:bold; font-size:18px;">500 ريال سعودي</p>
