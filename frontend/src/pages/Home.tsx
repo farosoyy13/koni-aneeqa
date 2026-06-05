@@ -141,8 +141,8 @@ export default function Home() {
       )}
 
       <div style={{ textAlign: 'center', padding: '30px 20px', background: '#111', borderBottom: '1px solid #222' }}>
-        <h1 style={{ color: '#d4af37', fontSize: '24px', margin: '0' }}>﷽</h1>
-        <p style={{ color: '#aaa', fontSize: '14px', maxWidth: '700px', margin: '10px auto', borderRight: '3px solid #ff4a4a', paddingRight: '15px' }}>
+        <h1 style={{ color: '#d4af37', fontSize: '24px', marginBottom: '10px' }}>أهلاً بك في أناقة CHIC</h1>
+        <p style={{ color: '#aaa', fontSize: '14px', maxWidth: '400px', margin: '0 auto' }}>وجهتك الحصرية للفخامة والتميز - نورت متجرك</p>
           ⚠️ <b>موعظة وعظة للناس:</b> قال الله تعالى: <i>"وَمَا مِن دَابَّةٍ فِي الْأَرْضِ إِلَّا عَلَى اللَّهِ رِزْقُهَا"</i>. إن السعي في قطع الأرزاق والحسد ونزع البركة من المهالك. يلتزم كل معلن هنا بالأمانة والصدق التام.
         </p>
       </div>
