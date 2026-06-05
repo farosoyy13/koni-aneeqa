@@ -64,19 +64,19 @@ export default function Home() {
   // 👑 ميزة المالك: إضافة منتج جديد لأي قسم وفرع فرعي مجاناً وبدون حدود
   const handleAddNewProduct = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!addTitle || !addPrice) return alert("تنبيه: يرجى تعبئة اسم المنتج والسعر أولاً!");
+    if (!addTitle || !addPrice) return alert("يرجى تعبئة كافة بيانات القطعة في أناقة CHIC أولاً");
     const newItem = {
       id: Date.now(),
       title: addTitle,
       price: addPrice,
       category: addCategory,
       img: addCategory.includes('abaya') ? "👑" : addCategory.includes('dress') ? "👗" : "👜",
-      seller: "صاحب الموقع"
+      seller: "مدير أناقة CHIC"
     };
     setProductsList([newItem, ...productsList]);
     setAddTitle('');
     setAddPrice('');
-    alert("🚀 نجاح: تم نشر المنتج حياً في فرعه المخصص لجميع الزوار بنجاح!");
+    alert("✨ تم إضافة القطعة إلى متجر أناقة CHIC بنجاح");
   };
 
   // 🚫 ميزة المالك: حذف أي منتج فوراً
