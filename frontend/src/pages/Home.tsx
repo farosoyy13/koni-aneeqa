@@ -114,7 +114,7 @@ export default function Home() {
           </div>
           <div style={{ display: 'flex', gap: '8px', marginBottom: '30px', justifyContent: 'center' }}>
             <button onClick={() => setActiveForm('user')} style={{ flex: 1, padding: '10px', background: activeForm === 'user' ? '#d4af37' : '#222', color: '#fff', border: 'none', borderRadius: '8px', cursor: 'pointer', fontWeight: 'bold' }}>👤 زائر / عضو</button>
-            <button onClick={() => setActiveForm('owner')} style={{ flex: 1, padding: '10px', background: activeForm === 'owner' ? '#d4af37' : '#222', color: activeForm === 'owner' ? '#000' : '#fff', border: 'none', borderRadius: '8px', fontWeight: 'bold', fontSize: '11px', cursor: 'pointer' }}>👑 صاحب الموقع</button>
+            <button onClick={() => setActiveForm('owner')} style={{ flex: 1, padding: '10px', background: activeForm === 'owner' ? '#d4af37' : '#222', color: '#fff', border: 'none', borderRadius: '8px', cursor: 'pointer', fontWeight: 'bold' }}>👑 صاحب الموقع</button>
           </div>
           <form onSubmit={handleLoginSubmit}>
             <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="البريد الإلكتروني..." required style={{ width: '100%', padding: '14px', marginBottom: '15px', background: '#222', border: '1px solid #333', borderRadius: '8px', color: '#fff', textAlign: 'right', outline: 'none' }} />
