@@ -25,7 +25,7 @@ export function Catalog() {
     <div className="min-h-screen bg-background pt-12 pb-24">
       <div className="container mx-auto px-4 md:px-8">
         <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold font-serif text-foreground mb-4">التشكيلة الكاملة</h1>
+          <h1 className="text-4xl md:text-5xl font-bold mb-4">كتالوج أناقة CHIC</h1>
           <p className="text-muted-foreground max-w-2xl mx-auto">تصفحي مجموعتنا الفاخرة من الفساتين المصممة بأعلى معايير الجودة والأناقة.</p>
         </div>
 
