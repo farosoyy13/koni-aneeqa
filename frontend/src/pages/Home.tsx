@@ -81,7 +81,7 @@ export default function Home() {
 
   // 🚫 ميزة المالك: حذف أي منتج فوراً
   const handleOwnerDelete = (id: number) => {
-    if (window.confirm("هل أنت متأكد من حذف هذا المنتج نهائياً من المتجر؟")) {
+    if (window.confirm("هل أنت متأكد من حذف هذه القطعة من متجر أناقة CHIC؟")) {
       setProductsList(productsList.filter(p => p.id !== id));
     }
   };
@@ -94,7 +94,7 @@ export default function Home() {
     const newPrice = prompt("تعديل السعر (ريال سعودي):", item.price);
     if (newTitle && newPrice) {
       setProductsList(productsList.map(p => p.id === id ? { ...p, title: newTitle, price: newPrice } : p));
-      alert("⚙️ تم تحديث وتعديل البيانات حياً على الشبكة!");
+      alert("⚙️ تم تحديث بيانات القطعة في أناقة CHIC بنجاح");
     }
   };
 
