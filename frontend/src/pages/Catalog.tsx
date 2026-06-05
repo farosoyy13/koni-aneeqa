@@ -26,7 +26,7 @@ export function Catalog() {
       <div className="container mx-auto px-4 md:px-8">
         <div className="text-center mb-12">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">كتالوج أناقة CHIC</h1>
-          <p className="text-muted-foreground max-w-2xl mx-auto">تصفحي مجموعتنا الفاخرة من الفساتين المصممة بأعلى معايير الجودة والأناقة.</p>
+          <p className="text-muted-foreground max-w-2xl mx-auto">استكشفي أرقى تصاميمنا الحصرية في أناقة CHIC</p>
         </div>
 
         <Tabs defaultValue={activeTab} onValueChange={handleTabChange} className="w-full flex flex-col items-center mb-12" dir="rtl">
@@ -58,7 +58,7 @@ export function Catalog() {
               </div>
             ) : (
               <div className="text-center py-20 bg-card rounded-2xl border border-border">
-                <h3 className="text-2xl font-bold text-muted-foreground">لا توجد منتجات في هذا القسم حالياً</h3>
+                <h3 className="text-2xl font-bold">لا توجد قطع حالياً في متجر أناقة CHIC</h3>
               </div>
             )}
           </>
