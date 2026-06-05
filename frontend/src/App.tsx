@@ -17,7 +17,7 @@ import { Cart } from "@/pages/Cart";
 import { Checkout } from "@/pages/Checkout";
 import { Reviews } from "@/pages/Reviews";
 import { Contact } from "@/pages/Contact";
-
+import { OwnerRoom } from "@/components/OwnerRoom";
 const queryClient = new QueryClient();
 
 function Router() {
@@ -30,6 +30,7 @@ function Router() {
       <Route path="/checkout" component={Checkout} />
       <Route path="/reviews" component={Reviews} />
       <Route path="/contact" component={Contact} />
+<Route path="/owner-room" component={OwnerRoom} />
       <Route component={NotFound} />
     </Switch>
   );
