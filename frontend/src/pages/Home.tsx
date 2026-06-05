@@ -113,7 +113,7 @@ export default function Home() {
                   <p style={{ color: '#aaa', fontSize: '14px', marginTop: '10px' }}>أناقة CHIC - فخامة التصميم بلمسة عصرية</p>
           </div>
           <div style={{ display: 'flex', gap: '8px', marginBottom: '30px', justifyContent: 'center' }}>
-            <button onClick={() => setActiveForm('user')} style={{ flex: 1, padding: '10px', background: activeForm === 'user' ? '#fff' : '#222', color: activeForm === 'user' ? '#000' : '#aaa', border: 'none', borderRadius: '8px', fontWeight: 'bold', fontSize: '12px', cursor: 'pointer' }}>👤 زائر / عضو</button>
+            <button onClick={() => setActiveForm('user')} style={{ flex: 1, padding: '10px', background: activeForm === 'user' ? '#d4af37' : '#222', color: '#fff', border: 'none', borderRadius: '8px', cursor: 'pointer', fontWeight: 'bold' }}>👤 زائر / عضو</button>
             <button onClick={() => setActiveForm('owner')} style={{ flex: 1, padding: '10px', background: activeForm === 'owner' ? '#d4af37' : '#222', color: activeForm === 'owner' ? '#000' : '#fff', border: 'none', borderRadius: '8px', fontWeight: 'bold', fontSize: '11px', cursor: 'pointer' }}>👑 صاحب الموقع</button>
           </div>
           <form onSubmit={handleLoginSubmit}>
