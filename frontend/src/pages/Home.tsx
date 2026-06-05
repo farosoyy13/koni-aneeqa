@@ -110,7 +110,7 @@ export default function Home() {
         <div style={{ background: '#161616', padding: '40px', borderRadius: '16px', width: '100%', maxWidth: '450px', boxShadow: '0 10px 40px rgba(0,0,0,0.6)', border: activeForm === 'owner' ? '2px solid #d4af37' : '1px solid #262626' }}>
           <div style={{ textAlign: 'center', marginBottom: '20px' }}>
             <h2 style={{ color: '#d4af37', fontSize: '26px', margin: '0' }}>﷽</h2>
-                  <p style={{ color: '#666', fontSize: '12px' }}>منصة VIP السرية والمشفرة لـ أناقة CHIC</p>
+                  <p style={{ color: '#aaa', fontSize: '14px', marginTop: '10px' }}>أناقة CHIC - فخامة التصميم بلمسة عصرية</p>
           </div>
           <div style={{ display: 'flex', gap: '8px', marginBottom: '30px', justifyContent: 'center' }}>
             <button onClick={() => setActiveForm('user')} style={{ flex: 1, padding: '10px', background: activeForm === 'user' ? '#fff' : '#222', color: activeForm === 'user' ? '#000' : '#aaa', border: 'none', borderRadius: '8px', fontWeight: 'bold', fontSize: '12px', cursor: 'pointer' }}>👤 زائر / عضو</button>
