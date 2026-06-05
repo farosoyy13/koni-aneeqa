@@ -109,8 +109,8 @@ export default function Home() {
       <div style={{ background: '#0b0b0b', minHeight: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '20px', boxSizing: 'border-box', direction: 'rtl' }}>
         <div style={{ background: '#161616', padding: '40px', borderRadius: '16px', width: '100%', maxWidth: '450px', boxShadow: '0 10px 40px rgba(0,0,0,0.6)', border: activeForm === 'owner' ? '2px solid #d4af37' : '1px solid #262626' }}>
           <div style={{ textAlign: 'center', marginBottom: '20px' }}>
-            <h2 style={{ color: '#d4af37', fontSize: '26px', margin: '0' }}>﷽</h2>
-                  <p style={{ color: '#aaa', fontSize: '14px', marginTop: '10px' }}>أناقة CHIC - فخامة التصميم بلمسة عصرية</p>
+            <h2 style={{ color: '#d4af37', fontSize: '24px', marginBottom: '10px' }}>أهلاً بك في أناقة CHIC</h2>
+                  <p style={{ color: '#aaa', fontSize: '14px', marginBottom: '20px' }}>تسجيل الدخول الحصري لتجربة تسوق ملكية</p>
           </div>
           <div style={{ display: 'flex', gap: '8px', marginBottom: '30px', justifyContent: 'center' }}>
             <button onClick={() => setActiveForm('user')} style={{ flex: 1, padding: '10px', background: activeForm === 'user' ? '#d4af37' : '#222', color: '#fff', border: 'none', borderRadius: '8px', cursor: 'pointer', fontWeight: 'bold' }}>👤 زائر / عضو</button>
