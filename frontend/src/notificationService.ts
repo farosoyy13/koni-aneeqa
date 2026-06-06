@@ -9,12 +9,12 @@ export interface OrderDetails {
 export const sendOrderNotification = async (order: OrderDetails): Promise<boolean> => {
   try {
     const message = `
-👑 طلب جديد في أناقة CHIC!
+👑 NEW ORDER IN ANAQATY CHIC!
 ------------------------
-📦 رقم الطلب: ${order.orderId}
-👤 اسم العميل: ${order.customerName}
-📞 رقم الجوال: ${order.customerPhone}
-💰 الإجمالي: ${order.totalAmount} SAR
+Order ID: ${order.orderId}
+Customer: ${order.customerName}
+Phone: ${order.customerPhone}
+Total: ${order.totalAmount} SAR
     `;
 
     console.log("جاري إرسال التنبيه الخارجي...", message);
