@@ -9,7 +9,7 @@ export function Navbar() {
   const [location] = useLocation();
 
   const navLinks = [
-    { href: "/", label: "الالرئيسية" },
+    { href: "/", label: "الرئيسية" },
     { href: "/dresses", label: "التشكيلة" },
     { href: "/owner-room", label: "غرفة المالك" },
     { href: "/reviews", label: "آراء العميلات" },
