@@ -2,7 +2,7 @@ openapi: 3.1.0
 info:
   title: Api
   version: 0.1.0
-  description: كوني أنيقة - متجر الفساتين الراقية
+  description: أناقة CHIC - متجر الفساتين الراقية
 servers:
   - url: /api
     description: Base API path
@@ -165,8 +165,7 @@ paths:
       tags: [contact]
       summary: Submit contact form
       requestBody:
-        required:
-          true
+        required: true
         content:
           application/json:
             schema:
