@@ -1,9 +1,9 @@
 import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'com.konianeeqa.store',
-  appName: 'كوني أنيقة',
-  webDir: '../artifacts/koni-aneeqa/dist/public',
+  appId: 'com.chicaniqa.store',
+  appName: 'متجر أناقة CHIC',
+  webDir: '../artifacts/chic-aniqa/dist/public',
   server: {
     // أزيلي هذا السطر عند البناء offline وأبقيه للتطوير فقط
     // url: 'https://YOUR-REPLIT-APP.replit.app',
