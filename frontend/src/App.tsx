@@ -1,107 +1,47 @@
-import { useState, useEffect } from "react";
-import { Switch, Route, Router as WouterRouter } from "wouter";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { Toaster } from "@/components/ui/toaster";
-import { TooltipProvider } from "@/components/ui/tooltip";
-import NotFound from "@/pages/not-found";
-import { CartProvider } from "@/contexts/CartContext";
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import LoginPage from './pages/LoginPage'; // تم تحديث المسار السري هنا ليدخل مجلد pages
+import ProtectedRoute from './ProtectedRoute';
 
-// Components
-import { Navbar } from "@/components/Navbar";
-import { Footer } from "@/components/Footer";
+// مكون مؤقت لواجهة المتجر الرئيسية
+const StoreFront = () => (
+  <div style={{ textAlign: 'center', padding: '100px 20px', direction: 'rtl', fontFamily: '"Cairo", sans-serif' }}>
+    <h1 style={{ color: '#2c3e50', fontSize: '36px' }}>مرحباً بك في متجر أناقة CHIC 👗✨</h1>
+    <p style={{ color: '#7f8c8d', fontSize: '18px' }}>الموقع يعمل بنجاح ومرفوع بالكامل.</p>
+  </div>
+);
 
-// Pages
-import { Home } from "@/pages/Home";
-import { Catalog } from "@/pages/Catalog";
-import { DressDetails } from "@/pages/DressDetails";
-import { Cart } from "@/pages/Cart";
-import { Checkout } from "@/pages/Checkout";
-import { Reviews } from "@/pages/Reviews";
-import { Contact } from "@/pages/Contact";
-import { OwnerRoom } from "@/components/OwnerRoom";
-import { AdminDashboard } from "@/pages/AdminDashboard"; // تم إضافة صفحة غرفة العمليات
+// مكون مؤقت لغرفة المالك - سنقوم بإنشاء ملفها المستقل الفخم في الخطوة القادمة
+const OwnerRoomPlaceholder = () => (
+  <div style={{ textAlign: 'center', padding: '100px 20px', direction: 'rtl', fontFamily: '"Cairo", sans-serif' }}>
+    <h1 style={{ color: '#27ae60' }}>👑 مرحباً بك في غرفة المالك السرية</h1>
+    <p>هذه اللوحة محمية بزلازل الطاقة ولا يراها غيرك.</p>
+  </div>
+);
 
-const queryClient = new QueryClient();
-
-function Router() {
+export default function App() {
   return (
-    <Switch>
-      <Route path="/" component={Home} />
-      <Route path="/dresses" component={Catalog} />
-      <Route path="/dresses/:id" component={DressDetails} />
-      <Route path="/cart" component={Cart} />
-      <Route path="/checkout" component={Checkout} />
-      <Route path="/reviews" component={Reviews} />
-      <Route path="/contact" component={Contact} />
-      <Route path="/owner-room" component={OwnerRoom} />
-      <Route path="/admin-dashboard" component={AdminDashboard} /> {/* تم إضافة الرابط هنا */}
-      <Route component={NotFound} />
-    </Switch>
+    <Router>
+      <Routes>
+        {/* 1. الواجهة الرئيسية للمتجر للزوار */}
+        <Route path="/" element={<StoreFront />} />
+
+        {/* 2. بوابة تسجيل الدخول الملكية والزلزالية */}
+        <Route path="/login" element={<LoginPage />} />
+
+        {/* 3. غرفة المالك المحمية بحارس الأمان */}
+        <Route 
+          path="/owner-room" 
+          element={
+            <ProtectedRoute>
+              <OwnerRoomPlaceholder />
+            </ProtectedRoute>
+          } 
+        />
+
+        {/* 4. حماية تلقائية لأي مسار عشوائي */}
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
+    </Router>
   );
 }
-
-function App() {
-  const [welcomeShown, setWelcomeShown] = useState(false);
-
-  // الابتكار: النبض الذهبي التفاعلي
-  useEffect(() => {
-    const createPulse = (e: any) => {
-      const pulse = document.createElement('div');
-      pulse.className = 'fixed bg-[#d4af37] w-16 h-16 rounded-full opacity-20 blur-2xl pointer-events-none animate-ping z-[100]';
-      const x = e.clientX || (e.touches && e.touches[0].clientX);
-      const y = e.clientY || (e.touches && e.touches[0].clientY);
-      if (x && y) {
-        pulse.style.left = `${x - 32}px`;
-        pulse.style.top = `${y - 32}px`;
-        document.body.appendChild(pulse);
-        setTimeout(() => pulse.remove(), 800);
-      }
-    };
-
-    // إظهار الرسالة الملكية بعد ثانية ونصف
-    const timer = setTimeout(() => setWelcomeShown(true), 1500);
-
-    window.addEventListener('pointerdown', createPulse);
-    return () => {
-      window.removeEventListener('pointerdown', createPulse);
-      clearTimeout(timer);
-    };
-  }, []);
-
-  return (
-    <QueryClientProvider client={queryClient}>
-      <CartProvider>
-        <TooltipProvider>
-          {/* الابتكار: الرسالة الملكية المنبثقة */}
-          {welcomeShown && (
-            <div className="fixed inset-0 z-[200] flex items-center justify-center bg-black/80 backdrop-blur-md animate-in fade-in duration-700">
-              <div className="bg-[#050505] border border-[#d4af37] p-8 rounded-3xl text-center max-w-sm mx-4 shadow-[0_0_50px_rgba(212,175,55,0.2)]">
-                <h2 className="text-3xl font-bold text-[#d4af37] mb-4 font-serif">أهلاً بكِ في أناقة CHIC</h2>
-                <p className="text-white/80 mb-6 font-sans">لقد اخترنا لكِ اليوم أجمل القطع التي تليق بذوقك الرفيع. كوني مستعدة للتألق.</p>
-                <button 
-                  onClick={() => setWelcomeShown(false)}
-                  className="w-full py-3 bg-[#d4af37] text-black font-bold rounded-xl hover:scale-105 transition-all"
-                >
-                  دخول المتجر الملكي
-                </button>
-              </div>
-            </div>
-          )}
-
-          <WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, "")}>
-            <div className="flex flex-col min-h-[100dvh] font-sans bg-[#050505] text-white">
-              <Navbar />
-              <main className="flex-1 animate-in fade-in duration-1000">
-                <Router />
-              </main>
-              <Footer />
-            </div>
-          </WouterRouter>
-          <Toaster />
-        </TooltipProvider>
-      </CartProvider>
-    </QueryClientProvider>
-  );
-}
-
-export default App;
