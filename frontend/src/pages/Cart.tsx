@@ -15,7 +15,7 @@ export function Cart() {
           <ShoppingBag size={48} className="text-[#d4af37]" />
         </div>
         <h2 className="text-2xl font-bold text-white mb-4">سلة المشتريات فارغة</h2>
-        <p className="text-white/60 mb-8 text-center max-w-md">لم تقومي بإضافة أي منتجات بعد. كوني أنيقة واكتشفي مجموعتنا الفاخرة.</p>
+        <p className="text-white/60 mb-8 text-center max-w-md">لم تقومي بإضافة أي منتجات بعد. تألقي بأناقة واكتشفي مجموعتنا الفاخرة.</p>
         <Link href="/dresses">
           <Button size="lg" className="rounded-full px-8 font-bold bg-[#d4af37] text-black hover:bg-[#b8860b]">تصفح التشكيلة</Button>
         </Link>
@@ -51,6 +51,7 @@ export function Cart() {
                     </div>
                     <button onClick={() => removeFromCart(item.id)} className="text-white/40 hover:text-red-500 p-2 transition-colors">
                       <Trash2 size={20} />
+                    </colors-transition>
                     </button>
                   </div>
                   
