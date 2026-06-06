@@ -1,9 +1,9 @@
 {
-  "name": "koni-aneeqa-capacitor",
+  "name": "chic-aniqa-capacitor",
   "version": "1.0.0",
-  "description": "كوني أنيقة - Capacitor iOS wrapper",
+  "description": "متجر أناقة CHIC - Capacitor iOS wrapper",
   "scripts": {
-    "build:web": "cd ../artifacts/koni-aneeqa && npm run build",
+    "build:web": "cd ../artifacts/chic-aniqa && npm run build",
     "cap:sync": "npx cap sync ios",
     "cap:open": "npx cap open ios",
     "ios:build": "npm run build:web && npx cap sync ios && npx cap open ios",
