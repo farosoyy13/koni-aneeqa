@@ -1,8 +1,8 @@
+import { useState, useEffect } from "react";
 import { Switch, Route, Router as WouterRouter } from "wouter";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import { useEffect } from "react";
 import NotFound from "@/pages/not-found";
 import { CartProvider } from "@/contexts/CartContext";
 
@@ -39,25 +39,53 @@ function Router() {
 }
 
 function App() {
-  // الابتكار الأول: التأثير الذهبي التفاعلي (يعمل باللمس والماوس)
+  const [welcomeShown, setWelcomeShown] = useState(false);
+
+  // الابتكار: النبض الذهبي التفاعلي
   useEffect(() => {
     const createPulse = (e: any) => {
       const pulse = document.createElement('div');
-      pulse.className = 'fixed bg-[#d4af37] w-16 h-16 rounded-full opacity-20 blur-2xl pointer-events-none animate-ping z-50';
-      pulse.style.left = `${(e.clientX || e.touches[0].clientX) - 32}px`;
-      pulse.style.top = `${(e.clientY || e.touches[0].clientY) - 32}px`;
-      document.body.appendChild(pulse);
-      setTimeout(() => pulse.remove(), 800);
+      pulse.className = 'fixed bg-[#d4af37] w-16 h-16 rounded-full opacity-20 blur-2xl pointer-events-none animate-ping z-[100]';
+      const x = e.clientX || (e.touches && e.touches[0].clientX);
+      const y = e.clientY || (e.touches && e.touches[0].clientY);
+      if (x && y) {
+        pulse.style.left = `${x - 32}px`;
+        pulse.style.top = `${y - 32}px`;
+        document.body.appendChild(pulse);
+        setTimeout(() => pulse.remove(), 800);
+      }
     };
 
+    // إظهار الرسالة الملكية بعد ثانية ونصف
+    const timer = setTimeout(() => setWelcomeShown(true), 1500);
+
     window.addEventListener('pointerdown', createPulse);
-    return () => window.removeEventListener('pointerdown', createPulse);
+    return () => {
+      window.removeEventListener('pointerdown', createPulse);
+      clearTimeout(timer);
+    };
   }, []);
 
   return (
     <QueryClientProvider client={queryClient}>
       <CartProvider>
         <TooltipProvider>
+          {/* الابتكار: الرسالة الملكية المنبثقة */}
+          {welcomeShown && (
+            <div className="fixed inset-0 z-[200] flex items-center justify-center bg-black/80 backdrop-blur-md animate-in fade-in duration-700">
+              <div className="bg-[#050505] border border-[#d4af37] p-8 rounded-3xl text-center max-w-sm mx-4 shadow-[0_0_50px_rgba(212,175,55,0.2)]">
+                <h2 className="text-3xl font-bold text-[#d4af37] mb-4 font-serif">أهلاً بكِ في أناقة CHIC</h2>
+                <p className="text-white/80 mb-6 font-sans">لقد اخترنا لكِ اليوم أجمل القطع التي تليق بذوقك الرفيع. كوني مستعدة للتألق.</p>
+                <button 
+                  onClick={() => setWelcomeShown(false)}
+                  className="w-full py-3 bg-[#d4af37] text-black font-bold rounded-xl hover:scale-105 transition-all"
+                >
+                  دخول المتجر الملكي
+                </button>
+              </div>
+            </div>
+          )}
+
           <WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, "")}>
             <div className="flex flex-col min-h-[100dvh] font-sans bg-[#050505] text-white">
               <Navbar />
