@@ -17,6 +17,8 @@ tags:
     description: Contact form
   - name: orders
     description: Orders
+  - name: listings
+    description: نظام إعلانات المستخدمين (جديد/مستعمل)
 
 paths:
   /healthz:
@@ -87,6 +89,44 @@ paths:
               schema:
                 $ref: "#/components/schemas/Dress"
 
+  /listings:
+    get:
+      operationId: listListings
+      tags: [listings]
+      summary: استعراض إعلانات المستخدمين
+      parameters:
+        - name: category
+          in: query
+          schema:
+            type: string
+            enum: [wedding, bags, abayas, mothers, girls]
+      responses:
+        "200":
+          description: List of listings
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Listing"
+    post:
+      operationId: createListing
+      tags: [listings]
+      summary: أعلن/ي معنا (جديد أو مستعمل)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ListingInput"
+      responses:
+        "201":
+          description: Listing created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Listing"
+
   /reviews:
     get:
       operationId: listReviews
@@ -125,7 +165,8 @@ paths:
       tags: [contact]
       summary: Submit contact form
       requestBody:
-        required: true
+        required:
+          true
         content:
           application/json:
             schema:
@@ -200,6 +241,31 @@ components:
           type: ["number", "null"]
         reviewCount:
           type: ["integer", "null"]
+
+    Listing:
+      type: object
+      required: [id, title, category, condition, price, cleanliness]
+      properties:
+        id: {type: integer}
+        title: {type: string}
+        category: {type: string, enum: [wedding, bags, abayas, mothers, girls]}
+        condition: {type: string, enum: [new, used]}
+        price: {type: number}
+        cleanliness: {type: integer}
+
+    ListingInput:
+      type: object
+      required: [title, category, condition, price, size, cleanliness]
+      properties:
+        title: {type: string}
+        category: {type: string, enum: [wedding, bags, abayas, mothers, girls]}
+        condition: {type: string, enum: [new, used]}
+        size: {type: string}
+        cleanliness: {type: integer}
+        price: {type: number}
+        originalPrice: {type: number}
+        description: {type: string}
+        images: {type: array, items: {type: string}}
 
     Review:
       type: object
