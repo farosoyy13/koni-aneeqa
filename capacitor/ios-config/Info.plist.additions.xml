@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-  أضيفي هذه المحتويات داخل ملف ios/App/App/Info.plist
-  ضعيها داخل <dict> الرئيسي
+  أضف هذه المحتويات داخل ملف ios/App/App/Info.plist
+  ضعها داخل <dict> الرئيسي
 -->
 <plist>
   <dict>
 
-    <!-- اسم التطبيق بالعربية -->
+    <!-- اسم التطبيق بالعربية على شاشة الآيفون -->
     <key>CFBundleDisplayName</key>
-    <string>كوني أنيقة</string>
+    <string>متجر أناقة CHIC</string>
 
     <key>CFBundleName</key>
-    <string>KoniAneeqa</string>
+    <string>ChicAniqa</string>
 
-    <!-- معرف الحزمة - يجب أن يطابق Apple Developer -->
+    <!-- معرف الحزمة المحدث - يجب أن يطابق Apple Developer -->
     <key>CFBundleIdentifier</key>
-    <string>com.konianeeqa.store</string>
+    <string>com.chicaniqa.store</string>
 
     <key>CFBundleVersion</key>
     <string>1</string>
@@ -23,7 +23,7 @@
     <key>CFBundleShortVersionString</key>
     <string>1.0.0</string>
 
-    <!-- دعم الاتجاهات -->
+    <!-- دعم الاتجاهات (تثبيت الواجهة بشكل طولي مريح للمستخدم) -->
     <key>UISupportedInterfaceOrientations</key>
     <array>
       <string>UIInterfaceOrientationPortrait</string>
@@ -38,23 +38,27 @@
       <string>UIInterfaceOrientationLandscapeRight</string>
     </array>
 
-    <!-- لون شريط الحالة -->
+    <!-- لون شريط الحالة الفخم المتوافق مع الهوية الجديدة -->
     <key>UIStatusBarStyle</key>
     <string>UIStatusBarStyleDarkContent</string>
 
     <key>UIViewControllerBasedStatusBarAppearance</key>
     <true/>
 
-    <!-- السماح بشبكة HTTP (للتطوير) -->
+    <!-- السماح بشبكة HTTP السريعة (للتطوير والربط السحابي المستقر) -->
     <key>NSAppTransportSecurity</key>
     <dict>
       <key>NSAllowsArbitraryLoads</key>
       <true/>
     </dict>
 
-    <!-- اتجاه RTL العربي -->
+    <!-- اتجاه RTL العربي للآيفون -->
     <key>NSPrincipalClass</key>
     <string>NSApplication</string>
+
+    <!-- ✨ ميزة إبداعية: إذن حفظ صور العبايات والتصاميم في الاستوديو للمشاركة ✨ -->
+    <key>NSPhotoLibraryAddUsageDescription</key>
+    <string>يتطلب متجر أناقة CHIC إذنًا لحفظ صور المنتجات والعبايات الفاخرة مباشرة في ألبوم الكاميرا الخاص بكِ لتسهيل مشاركتها.</string>
 
   </dict>
 </plist>
