@@ -19,6 +19,7 @@ import { Checkout } from "@/pages/Checkout";
 import { Reviews } from "@/pages/Reviews";
 import { Contact } from "@/pages/Contact";
 import { OwnerRoom } from "@/components/OwnerRoom";
+import { AdminDashboard } from "@/pages/AdminDashboard"; // تم إضافة صفحة غرفة العمليات
 
 const queryClient = new QueryClient();
 
@@ -33,6 +34,7 @@ function Router() {
       <Route path="/reviews" component={Reviews} />
       <Route path="/contact" component={Contact} />
       <Route path="/owner-room" component={OwnerRoom} />
+      <Route path="/admin-dashboard" component={AdminDashboard} /> {/* تم إضافة الرابط هنا */}
       <Route component={NotFound} />
     </Switch>
   );
