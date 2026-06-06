@@ -5,53 +5,66 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>متجر أناقة CHIC الملكي VIP - المنصة الإعلانية</title>
     <style>
-        /* التنسيقات السابقة التي وضعتها أنت كما هي */
         @keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.5; } 100% { opacity: 1; } }
         .fade-in { animation: fadeIn 0.5s ease-out forwards; }
-        .tab-btn { padding: 12px 24px; background: #161616; color: #aaa; border: 1px solid #333; border-radius: 30px; font-weight: bold; cursor: pointer; transition: 0.3s; }
-        .tab-btn.active { background: #d4af37; color: #000; border-color: #d4af37; }
-        .promo-box { flex: 1; min-width: 280px; background: #1c1c1c; border: 1px dashed #d4af37; padding: 15px; border-radius: 12px; cursor: pointer; }
         .royal-header { background: linear-gradient(135deg, #1e1b10 0%, #0f0e08 100%); border: 2px solid #d4af37; padding: 30px; border-radius: 16px; margin-bottom: 35px; text-align: center; }
-        .royal-title { color: #d4af37; font-size: 26px; font-weight: 900; margin: 0 0 10px 0; }
-        
-        /* التنسيق المضاف للتذييل */
+        .royal-title { color: #d4af37; font-size: 26px; font-weight: 900; }
+        .btn-royal { background: #d4af37; color: #000; padding: 15px 30px; border-radius: 50px; border: none; font-weight: bold; cursor: pointer; margin: 10px; }
         .footer-section { background: #111; color: #fff; padding: 40px 20px; text-align: center; margin-top: 50px; border-top: 2px solid #d4af37; }
-        .footer-link { color: #fff; text-decoration: none; font-size: 16px; margin: 10px; display: block; }
-        .bank-info { background: #1a1a1a; padding: 15px; border-radius: 8px; margin: 10px auto; max-width: 400px; border: 1px solid #333; }
+        .footer-link { color: #fff; text-decoration: none; padding: 10px 20px; background: #25d366; border-radius: 50px; display: inline-block; margin: 5px; font-weight: bold; }
+        .bank-card { background: #1a1a1a; padding: 15px; border-radius: 8px; margin: 10px auto; max-width: 400px; border: 1px solid #333; }
     </style>
 </head>
 <body style="margin:0; background:#0b0b0b; font-family:sans-serif; color:#fff;">
 
-<!-- [المحتوى السابق الخاص بك هنا] -->
-<!-- (تم الاكتفاء هنا بوضع التذييل الجديد لضمان اكتمال طلبك) -->
-
-<!-- 4️⃣ قسم التذييل (Footer) - البيانات الحقيقية -->
-<div class="footer-section">
-    <h3>روابط ومبادئ أناقة CHIC</h3>
-    <a href="#" class="footer-link">من نحن</a>
-    <a href="#" class="footer-link">وظائفنا</a>
-    <a href="#" class="footer-link">شركاؤنا</a>
-
-    <div style="margin-top:30px;">
-        <h4 style="color:#d4af37;">تواصل معنا فوراً</h4>
-        <a href="https://wa.me/966536667222" class="footer-link">🟢 واتساب: 0536667222</a>
-        <a href="https://wa.me/966507882771" class="footer-link">🟢 واتساب: 0507882771</a>
-        <a href="https://snapchat.com/t/exsdm9hg" class="footer-link">👻 سناب شات: pmp.u</a>
-        <a href="mailto:kal6667222@gmail.com" class="footer-link">📧 البريد: kal6667222@gmail.com</a>
+    <!-- الهيدر الملكي -->
+    <div class="royal-header fade-in">
+        <h1 class="royal-title">أناقة CHIC الملكي VIP</h1>
+        <p>الفرصة الرقمية لا تنتظر أحداً!</p>
     </div>
 
-    <div style="margin-top:30px;">
-        <h4 style="color:#d4af37;">الحسابات البنكية المعتمدة</h4>
-        <div class="bank-card">
-            <p><strong>مصرف الراجحي</strong><br>الأيبان: SA0980000509608010069017<br>حساب محلي: 09608010069017</p>
-        </div>
-        <div class="bank-card">
-            <p><strong>البنك العربي</strong><br>الأيبان: SA9830400108088851870011<br>حساب محلي: 0108088851870011</p>
-        </div>
+    <!-- المزاد وساعة الصفر -->
+    <div style="text-align: center; padding: 20px;">
+        <h2 id="timer-title">ينتهي العرض الملكي بعد:</h2>
+        <div id="timer" style="font-size: 48px; color: #d4af37; font-weight: bold;">60</div>
+        <button class="btn-royal" onclick="triggerRoyalAlert()">أدخل المزاد الآن</button>
     </div>
-    <p style="font-size:12px; color:#555; margin-top:20px;">جميع الحقوق محفوظة © أناقة CHIC 2026</p>
-</div>
 
+    <!-- التذييل (Footer) -->
+    <div class="footer-section">
+        <h3>تواصل معنا فوراً</h3>
+        <a href="https://wa.me/966536667222" class="footer-link">💬 واتساب 1</a>
+        <a href="https://wa.me/966507882771" class="footer-link">💬 واتساب 2</a>
+        
+        <div style="margin-top:30px;">
+            <h4 style="color:#d4af37;">الحسابات البنكية</h4>
+            <div class="bank-card">
+                <p><strong>مصرف الراجحي</strong><br>الأيبان: SA0980000509608010069017</p>
+            </div>
+        </div>
+        <p style="font-size:12px; color:#555;">جميع الحقوق محفوظة © أناقة CHIC 2026</p>
+    </div>
+
+    <script>
+        // النداء الملكي الصوتي
+        function triggerRoyalAlert() {
+            const msg = new SpeechSynthesisUtterance("يا لورد، الفرصة بين يديك الآن، لا تتردد.");
+            msg.lang = 'ar-SA';
+            window.speechSynthesis.speak(msg);
+            alert("تم تفعيل طلب المزاد بنجاح!");
+        }
+
+        // ساعة الصفر
+        let time = 60;
+        const timerEl = document.getElementById('timer');
+        const countdown = setInterval(() => {
+            time--;
+            timerEl.innerText = time;
+            if(time <= 0) {
+                clearInterval(countdown);
+                document.getElementById('timer-title').innerText = "انتهت الفرصة الملكية!";
+            }
+        }, 1000);
+    </script>
 </body>
 </html>
