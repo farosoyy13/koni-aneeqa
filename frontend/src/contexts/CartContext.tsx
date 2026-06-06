@@ -22,9 +22,12 @@ interface CartContextType {
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
 export function CartProvider({ children }: { children: React.ReactNode }) {
+  // تحديث مفتاح التخزين المحلي ليتناسب مع الاسم الجديد للمتجر
+  const CART_STORAGE_KEY = 'anaqa-chic-cart';
+
   const [items, setItems] = useState<CartItem[]>(() => {
     try {
-      const stored = localStorage.getItem('koni-aneeqa-cart');
+      const stored = localStorage.getItem(CART_STORAGE_KEY);
       return stored ? JSON.parse(stored) : [];
     } catch (e) {
       return [];
@@ -32,7 +35,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   });
 
   useEffect(() => {
-    localStorage.setItem('koni-aneeqa-cart', JSON.stringify(items));
+    localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(items));
   }, [items]);
 
   const addToCart = (dress: Dress, size: string, color: string, quantity: number) => {
