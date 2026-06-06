@@ -61,7 +61,7 @@ function App() {
           <WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, "")}>
             <div className="flex flex-col min-h-[100dvh] font-sans bg-[#050505] text-white">
               <Navbar />
-              <main className="flex-1">
+              <main className="flex-1 animate-in fade-in duration-1000">
                 <Router />
               </main>
               <Footer />
