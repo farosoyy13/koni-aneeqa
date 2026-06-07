@@ -35,6 +35,25 @@ export function AdminDashboard() {
         </button>
       </div>
 
+      {/* قسم الذكاء الاصطناعي الملكي الجديد */}
+      <section style={{ marginTop: '40px', padding: '20px', border: '2px dashed #d4af37', borderRadius: '20px' }}>
+        <h2 style={{ color: '#d4af37' }}>وحدة تحكم المستشار الذكي (AI Consultant)</h2>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px', marginTop: '10px' }}>
+          <div style={{ background: '#111', padding: '15px', borderRadius: '10px' }}>
+            <label>رابط سناب شات للمستشار:</label>
+            <input type="text" placeholder="أدخل رابط السناب هنا..." style={{ width: '100%', padding: '10px', marginTop: '5px', background: '#000', border: '1px solid #333', color: '#fff', borderRadius: '5px' }} />
+          </div>
+          <div style={{ background: '#111', padding: '15px', borderRadius: '10px' }}>
+            <label>سعر السؤال الواحد (ريال):</label>
+            <input type="number" defaultValue="2" style={{ width: '100%', padding: '10px', marginTop: '5px', background: '#000', border: '1px solid #333', color: '#fff', borderRadius: '5px' }} />
+          </div>
+          <div style={{ gridColumn: 'span 2', display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: '#111', padding: '15px', borderRadius: '10px' }}>
+            <span>تفعيل نظام الدفع (بعد 3 رسائل مجانية)</span>
+            <input type="checkbox" checked style={{ width: '20px', height: '20px', accentColor: '#d4af37' }} />
+          </div>
+        </div>
+      </section>
+
       {/* لوحة الصلاحيات الـ 15 */}
       <section style={{ marginTop: '40px' }}>
         <h2 style={{ color: '#d4af37' }}>سلطة التحكم المطلق:</h2>
