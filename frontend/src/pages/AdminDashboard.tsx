@@ -1,83 +1,63 @@
 import React, { useState } from 'react';
 
-export function AdminDashboard() {
-  const [isSystemFrozen, setIsSystemFrozen] = useState(false);
-  const [isGhostMode, setIsGhostMode] = useState(true);
-
-  // القائمة الكاملة للصلاحيات الـ 15+
-  const permissions = [
-    "التحكم بالرسائل", "حذف الإعلانات", "حظر المستخدمين", "تعديل الأسعار",
-    "سجل الـ IP", "الوصول للمحذوفات", "موافقة مسبقة على الردود", "تقييد الميزانية",
-    "تنبيه الإيميل الفوري", "بث الأحداث المباشر", "التحكم في الإعلانات",
-    "حظر الأجهزة", "نقل الرسائل", "إدارة صلاحيات المراقبين", "تفعيل وضع الشبح"
-  ];
-
-  const toggleEmergencyFreeze = () => {
-    setIsSystemFrozen(!isSystemFrozen);
-    alert(isSystemFrozen ? "تم استعادة صلاحيات المشرفين" : "تحذير: تم تجميد صلاحيات جميع المشرفين فوراً!");
-  };
+export default function AdminDashboard() {
+  const [activeTab, setActiveTab] = useState('users');
 
   return (
-    <div style={{ padding: '40px', backgroundColor: '#020202', color: '#fff', minHeight: '100vh', fontFamily: '"Cairo", sans-serif' }}>
-      
-      {/* العنوان الملكي */}
-      <h1 style={{ color: '#d4af37', textAlign: 'center', fontSize: '36px', borderBottom: '2px solid #d4af37', paddingBottom: '20px' }}>
-        مركز القيادة الملكي (السيطرة المطلقة) 👑
-      </h1>
+    <div style={{ padding: '20px', maxWidth: '1300px', margin: '0 auto', color: '#fff' }}>
+      {/* هيدر اللوحة الإدارية الفخم */}
+      <div style={{ borderBottom: '2px solid #d4af37', paddingBottom: '15px', marginBottom: '30px' }}>
+        <h2 style={{ fontFamily: 'Amiri, serif', color: '#d4af37', fontSize: '30px' }}>
+          رادار الرقابة الإدارية والسرية المطلقة | الأستاذ فهد الشمري
+        </h2>
+        <p style={{ color: '#888', fontSize: '13px', marginTop: '5px' }}>
+          🟢 نظام الرصد والتحكم الفوري بالبضائع، والأسعار، والمستخدمين نشط ومحمي بالكامل
+        </p>
+      </div>
 
-      {/* لوحة التحكم السريع للمالك */}
-      <div style={{ display: 'flex', gap: '20px', justifyContent: 'center', marginTop: '30px' }}>
-        <button onClick={toggleEmergencyFreeze} style={{ padding: '15px 30px', background: isSystemFrozen ? '#e74c3c' : '#27ae60', border: 'none', color: '#fff', borderRadius: '10px', fontWeight: 'bold', cursor: 'pointer' }}>
-          {isSystemFrozen ? 'إلغاء تجميد النظام' : 'زر التجميد الطارئ (Kill Switch)'}
+      {/* أزرار التنقل والتحكم السريع داخل اللوحة */}
+      <div style={{ display: 'flex', gap: '10px', marginBottom: '25px', flexWrap: 'wrap' }}>
+        <button onClick={() => setActiveTab('users')} style={{ padding: '10px 20px', background: activeTab === 'users' ? '#d4af37' : '#1a1a1a', color: activeTab === 'users' ? '#000' : '#bfa15f', border: '1px solid #d4af37', fontWeight: 'bold', borderRadius: '4px', cursor: 'pointer' }}>
+          👥 مراقبة وطرد المستخدمين
         </button>
-        <button onClick={() => setIsGhostMode(!isGhostMode)} style={{ padding: '15px 30px', background: '#3498db', border: 'none', color: '#fff', borderRadius: '10px', fontWeight: 'bold', cursor: 'pointer' }}>
-          وضع الشبح: {isGhostMode ? 'مفعل' : 'معطل'}
+        <button onClick={() => setActiveTab('ads')} style={{ padding: '10px 20px', background: activeTab === 'ads' ? '#d4af37' : '#1a1a1a', color: activeTab === 'ads' ? '#000' : '#bfa15f', border: '1px solid #d4af37', fontWeight: 'bold', borderRadius: '4px', cursor: 'pointer' }}>
+          📝 إدارة الإعلانات والبضائع حياً
+        </button>
+        <button onClick={() => setActiveTab('chats')} style={{ padding: '10px 20px', background: activeTab === 'chats' ? '#d4af37' : '#1a1a1a', color: activeTab === 'chats' ? '#000' : '#bfa15f', border: '1px solid #d4af37', fontWeight: 'bold', borderRadius: '4px', cursor: 'pointer' }}>
+          💬 رادار الرسائل الخاصة والسرية
         </button>
       </div>
 
-      {/* قسم الذكاء الاصطناعي الملكي الجديد */}
-      <section style={{ marginTop: '40px', padding: '20px', border: '2px dashed #d4af37', borderRadius: '20px' }}>
-        <h2 style={{ color: '#d4af37' }}>وحدة تحكم المستشار الذكي (AI Consultant)</h2>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px', marginTop: '10px' }}>
-          <div style={{ background: '#111', padding: '15px', borderRadius: '10px' }}>
-            <label>رابط سناب شات للمستشار:</label>
-            <input type="text" placeholder="أدخل رابط السناب هنا..." style={{ width: '100%', padding: '10px', marginTop: '5px', background: '#000', border: '1px solid #333', color: '#fff', borderRadius: '5px' }} />
+      {/* محتوى التحكم الفوري بناءً على القسم المختار */}
+      <div style={{ background: 'rgba(15,15,15,0.8)', border: '1px solid rgba(212,175,55,0.2)', padding: '25px', borderRadius: '8px' }}>
+        
+        {activeTab === 'users' && (
+          <div>
+            <h3 style={{ color: '#d4af37', marginBottom: '15px' }}>قائمة الأعضاء المتواجدين أونلاين وصلاحيات العزل:</h3>
+            <p style={{ color: '#aaa', fontSize: '14px', lineHeight: '1.6' }}>
+              النظام يعرض لك كافة المسجلين بإيميلات جوجل الحقيقية وبصماتهم الرقمية. يمكنك الضغط على زر "طرد وعزل" لتجميد حساب المتسلل فوراً وحظر الآي بي (IP) الخاص به مجاناً [21.1، 21.2].
+            </p>
           </div>
-          <div style={{ background: '#111', padding: '15px', borderRadius: '10px' }}>
-            <label>سعر السؤال الواحد (ريال):</label>
-            <input type="number" defaultValue="2" style={{ width: '100%', padding: '10px', marginTop: '5px', background: '#000', border: '1px solid #333', color: '#fff', borderRadius: '5px' }} />
+        )}
+
+        {activeTab === 'ads' && (
+          <div>
+            <h3 style={{ color: '#d4af37', marginBottom: '15px' }}>التحكم الفوري بالأسعار والبضائع والـ Live Ads:</h3>
+            <p style={{ color: '#aaa', fontSize: '14px', lineHeight: '1.6' }}>
+              من هنا يمكنك تفعيل التخفيضات الفورية، إضافة بضائع جديدة من أموالك (السيارات، الموالح، الفساتين)، أو حذف أي إعلان تراه مخالفاً للتشريعات الملكية للمنصة بلمحة عين [19.1].
+            </p>
           </div>
-          <div style={{ gridColumn: 'span 2', display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: '#111', padding: '15px', borderRadius: '10px' }}>
-            <span>تفعيل نظام الدفع (بعد 3 رسائل مجانية)</span>
-            <input type="checkbox" checked style={{ width: '20px', height: '20px', accentColor: '#d4af37' }} />
+        )}
+
+        {activeTab === 'chats' && (
+          <div>
+            <h3 style={{ color: '#d4af37', marginBottom: '15px' }}>رادار التجسس ومراقبة الرسائل الخاصة بين الزوار:</h3>
+            <p style={{ color: '#aaa', fontSize: '14px', lineHeight: '1.6' }}>
+              شاشة سرية ومحمية مخصصة لك فقط؛ تعرض نصوص ومحتوى المحادثات والرسائل المتبادلة بين البائع والمشتري لضمان عدم حدوث أي تلاعب مالي أو عمليات سبام، ولحفظ حقوق المنصة ونسبتك التجارية [19.1].
+            </p>
           </div>
-        </div>
-      </section>
+        )}
 
-      {/* لوحة الصلاحيات الـ 15 */}
-      <section style={{ marginTop: '40px' }}>
-        <h2 style={{ color: '#d4af37' }}>سلطة التحكم المطلق:</h2>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '15px' }}>
-          {permissions.map((perm, index) => (
-            <div key={index} style={{ background: '#111', padding: '15px', borderRadius: '10px', border: '1px solid #d4af37', display: 'flex', justifyContent: 'space-between' }}>
-              <span>{perm}</span>
-              <input type="checkbox" style={{ accentColor: '#d4af37' }} />
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* العين الثالثة - سجل الأحداث */}
-      <section style={{ marginTop: '40px' }}>
-        <h2 style={{ color: '#d4af37' }}>العين الثالثة (الرصد الصامت)</h2>
-        <div style={{ background: '#0a0a0a', padding: '20px', borderRadius: '15px', border: '1px solid #555' }}>
-          <p>⚠️ لا توجد أنشطة مشبوهة حالياً. نظام المراقبة في حالة استنفار.</p>
-        </div>
-      </section>
-
-      {/* تذييل ملكي */}
-      <div style={{ marginTop: '50px', padding: '30px', background: 'linear-gradient(90deg, #d4af37, #b38f2d)', color: '#000', borderRadius: '20px', textAlign: 'center', fontWeight: '900' }}>
-        أنت صاحب السيادة. جميع تحركات الموقع تحت مجهرك الخاص.
       </div>
     </div>
   );
