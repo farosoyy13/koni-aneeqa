@@ -1,93 +1,69 @@
-import { useState, useEffect } from "react";
-import { initializeApp } from "firebase/app";
-import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "firebase/auth";
-import { Volume2, VolumeX, Crown, Mail, Megaphone } from "lucide-react";
-
-const firebaseConfig = {
-  apiKey: "AIzaSyCkPWGfxXRaZJ7rdpWIs-Y3647V877p7vU",
-  authDomain: "koni-aniqa.firebaseapp.com",
-  projectId: "koni-aniqa",
-  storageBucket: "koni-aniqa.appspot.com",
-  messagingSenderId: "350938973339",
-  appId: "1:350938973339:web:cee80346157e4f721a323e"
-};
-
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
+import React from 'react';
 
 export default function Home() {
-  const [user, setUser] = useState<any>(null);
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [authError, setAuthError] = useState('');
-
-  // 1. نظام الصدى الترحيبي (The Welcome Echo)
-  const getWelcomeTheme = () => {
-    const hour = new Date().getHours();
-    if (hour < 12) return { bg: 'linear-gradient(135deg, #1a1a2e, #4b5d67)', msg: 'صباح الخير يا صاحب العرش، فجرٌ جديد من الأناقة.' };
-    if (hour < 18) return { bg: 'linear-gradient(135deg, #2c3e50, #000)', msg: 'أهلاً بك في وقت الذروة، أناقة CHIC تزهو بحضورك.' };
-    return { bg: 'radial-gradient(circle, #1a1a1a 0%, #000000 100%)', msg: 'مساء ملكي عميق، القصر في انتظار إبداعاتك.' };
-  };
-
-  const theme = getWelcomeTheme();
-
-  useEffect(() => {
-    onAuthStateChanged(auth, (currentUser) => setUser(currentUser));
-  }, []);
-
-  const toggleMusic = () => {
-    const audio = new Audio('/theme.mp3');
-    if (!isPlaying) { audio.play(); setIsPlaying(true); }
-    else { audio.pause(); setIsPlaying(false); }
-  };
-
-  if (!user) {
-    return (
-      <div className="min-h-screen flex items-center justify-center p-4 transition-all duration-1000" style={{ background: theme.bg }}>
-        <div className="w-full max-w-md bg-[#111]/80 border border-[#d4af37] p-8 rounded-3xl backdrop-blur-md shadow-[0_0_50px_rgba(212,175,55,0.2)]">
-          <div className="text-center mb-8">
-            <Crown size={48} className="mx-auto text-[#d4af37] mb-4 animate-bounce" />
-            <h1 className="text-3xl font-bold text-[#d4af37]">عرش المالك</h1>
-          </div>
-          <form onSubmit={(e) => { e.preventDefault(); signInWithEmailAndPassword(auth, email, password).catch(() => setAuthError("بيانات الدخول خاطئة")); }} className="space-y-4">
-            <input type="email" placeholder="البريد الإلكتروني" onChange={(e) => setEmail(e.target.value)} className="w-full p-4 bg-[#000] border border-[#333] rounded-xl text-white outline-none focus:border-[#d4af37]" />
-            <input type="password" placeholder="البريد الإلكتروني" onChange={(e) => setPassword(e.target.value)} className="w-full p-4 bg-[#000] border border-[#333] rounded-xl text-white outline-none focus:border-[#d4af37]" />
-            <button className="w-full py-4 bg-[#d4af37] text-black font-bold rounded-xl hover:bg-[#b8962f] transition-all">دخول العرش</button>
-          </form>
-          {authError && <p className="text-red-500 text-center mt-4">{authError}</p>}
-        </div>
-      </div>
-    );
-  }
-
   return (
-    <div className="min-h-screen text-white transition-all duration-1000" style={{ background: theme.bg }}>
-      {/* 2. شريط النبض الملكي */}
-      <div className="bg-[#d4af37] text-black p-3 flex items-center justify-center gap-2 font-bold animate-pulse shadow-[0_0_15px_#d4af37]">
-        <Megaphone size={20} />
-        <span>{theme.msg}</span>
-      </div>
-
-      <div className="container mx-auto p-10 text-center">
-        <h1 className="text-5xl font-serif text-[#d4af37] mb-12 drop-shadow-lg">أناقة CHIC</h1>
-        
-        <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-          {/* 3. تأثير اللمسة الذهبية بالـ CSS عند المرور */}
-          <div className="p-8 border border-[#d4af37] rounded-3xl bg-[#111]/50 hover:shadow-[0_0_20px_#d4af37] transition-all cursor-pointer">
-            <Mail size={40} className="mx-auto mb-4 text-[#d4af37]" />
-            <h3 className="text-2xl font-bold">غرفة الشكاوى</h3>
-            <p className="text-white/70 mt-2">متابعة رسائل العملاء المباشرة</p>
-          </div>
-          <div onClick={toggleMusic} className="p-8 border border-[#333] rounded-3xl bg-[#111]/50 hover:border-[#d4af37] transition-all cursor-pointer">
-            {isPlaying ? <Volume2 size={40} className="mx-auto mb-4 text-[#d4af37]" /> : <VolumeX size={40} className="mx-auto mb-4" />}
-            <h3 className="text-2xl font-bold">موسيقى الموقع</h3>
-            <p className="text-white/70 mt-2">{isPlaying ? "إيقاف الموسيقى" : "تشغيل موسيقى الخلفية"}</p>
-          </div>
+    <>
+      <div style={{ padding: '20px', maxWidth: '1250px', margin: '0 auto' }}>
+        {/* هيدر ترحيبي فخم يتناسق مع الواجهة الملكية */}
+        <div style={{ textAlign: 'center', marginBottom: '40px', padding: '20px', background: 'rgba(15,15,15,0.8)', border: '1px solid #d4af37', borderRadius: '12px' }}>
+          <h1 style={{ fontFamily: 'Amiri, serif', color: '#d4af37', fontSize: '36px', marginBottom: '10px' }}>
+            منصة أناقة REVE الملكية الفاخرة
+          </h1>
+          <p style={{ color: '#ccc', fontSize: '15px' }}>
+            بوابة التجارة والحراج الحي الشاملة للأستاذ فهد الشمري - أهلاً بكم في عالم الفخامة الرقمية
+          </p>
         </div>
 
-        <button onClick={() => signOut(auth)} className="mt-12 text-[#d4af37] hover:underline">تسجيل خروج من العرش</button>
+        {/* شبكة المنتجات والبضائع الحقيقية لترزق الله فيها */}
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '25px' }}>
+          
+          {/* المنتج 1: التمور الملكية */}
+          <div style={{ background: 'rgba(20,20,20,0.6)', border: '1px solid rgba(212,175,55,0.2)', padding: '25px', borderRadius: '8px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+            <div>
+              <span style={{ background: '#ff3333', color: '#fff', padding: '2px 8px', fontSize: '11px', fontWeight: 'bold', borderRadius: '3px' }}>🔥 إعلان نشط</span>
+              <h3 style={{ color: '#d4af37', margin: '15px 0 10px 0', fontSize: '18px' }}>تمور خلاص ملكي فاخر ونادر جداً</h3>
+              <p style={{ color: '#aaa', fontSize: '13px', lineHeight: '1.6' }}>منتقاة بعناية فائقة لقصور ومجالس الفخامة العربية الأصيلة. وزن كرتون متميز وحفظ مستدام.</p>
+            </div>
+            <div>
+              <p style={{ color: '#d4af37', fontWeight: 'bold', fontSize: '20px', marginTop: '15px' }}>180 ريال</p>
+              <a href="https://wa.me" target="_blank" rel="noreferrer" style={{ display: 'block', width: '100%', padding: '12px 0', background: 'linear-gradient(135deg, #d4af37 0%, #bfa15f 100%)', color: '#000', textDecoration: 'none', fontWeight: 'bold', borderRadius: '4px', marginTop: '15px', textAlign: 'center', fontSize: '14px' }}>
+                💳 الشراء والدفع الفوري الآمن
+              </a>
+            </div>
+          </div>
+
+          {/* المنتج 2: سيارات مرسيدس */}
+          <div style={{ background: 'rgba(20,20,20,0.6)', border: '1px solid rgba(212,175,55,0.2)', padding: '25px', borderRadius: '8px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+            <div>
+              <span style={{ background: '#ff3333', color: '#fff', padding: '2px 8px', fontSize: '11px', fontWeight: 'bold', borderRadius: '3px' }}>🔥 تفاعل عالي</span>
+              <h3 style={{ color: '#d4af37', margin: '15px 0 10px 0', fontSize: '18px' }}>سيارة مرسيدس مايباخ الملكية الفخمة S-Class</h3>
+              <p style={{ color: '#aaa', fontSize: '13px', lineHeight: '1.6' }}>كاملة المواصفات والمميزات الملوكية الفاخرة، معروضة عبر حركات تصفح لامعة تمنح منصتك رونقاً لا مثيل له.</p>
+            </div>
+            <div>
+              <p style={{ color: '#d4af37', fontWeight: 'bold', fontSize: '20px', marginTop: '15px' }}>عربون ثابت: 5,000 ريال</p>
+              <a href="https://wa.me" target="_blank" rel="noreferrer" style={{ display: 'block', width: '100%', padding: '12px 0', background: 'linear-gradient(135deg, #d4af37 0%, #bfa15f 100%)', color: '#000', textDecoration: 'none', fontWeight: 'bold', borderRadius: '4px', marginTop: '15px', textAlign: 'center', fontSize: '14px' }}>
+                💳 دفع العربون الفوري المباشر
+              </a>
+            </div>
+          </div>
+
+          {/* المنتج 3: خدمات المغسلة */}
+          <div style={{ background: 'rgba(20,20,20,0.6)', border: '1px solid rgba(212,175,55,0.2)', padding: '25px', borderRadius: '8px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+            <div>
+              <span style={{ background: '#d4af37', color: '#000', padding: '2px 8px', fontSize: '11px', fontWeight: 'bold', borderRadius: '3px' }}>🟢 خدمة موثقة</span>
+              <h3 style={{ color: '#d4af37', margin: '15px 0 10px 0', fontSize: '18px' }}>خدمات المغسلة الذكية والـ Dry Clean الملكي</h3>
+              <p style={{ color: '#aaa', fontSize: '13px', lineHeight: '1.6' }}>عناية فائقة وفورية بنوع القماش، غسيل، وكي فاخر لملابس العميل الراقي لضمان أعلى مستويات الأناقة المستدامة.</p>
+            </div>
+            <div>
+              <p style={{ color: '#d4af37', fontWeight: 'bold', fontSize: '20px', marginTop: '15px' }}>75 ريال</p>
+              <a href="https://wa.me" target="_blank" rel="noreferrer" style={{ display: 'block', width: '100%', padding: '12px 0', background: 'linear-gradient(135deg, #d4af37 0%, #bfa15f 100%)', color: '#000', textDecoration: 'none', fontWeight: 'bold', borderRadius: '4px', marginTop: '15px', textAlign: 'center', fontSize: '14px' }}>
+                💳 حجز الخدمة والدفع الفوري
+              </a>
+            </div>
+          </div>
+
+        </div>
       </div>
-    </div>
+    </>
   );
 }
