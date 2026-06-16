@@ -7,6 +7,11 @@ export default function App() {
   const [otp, setOtp] = useState('');
   
   const [liveCount, setLiveCount] = useState(1438);
+  
+  // 📢 نظام البث والإعلان الجماعي من غرفة صاحب الموقع لكافة الصفحات
+  const [broadcastMessage, setBroadcastMessage] = useState('🚨 تنبيه إداري رسمي: يرجى من كافة المستخدمين والمشرفين الالتزام التام بالأسعار والتشريعات المعتمدة.');
+  const [inputBroadcast, setInputBroadcast] = useState('');
+
   const [chatRooms, setChatRooms] = useState([
     { id: 1, sender: "عضو موثق 1", text: "تم استلام خلاص ملكي فاخر، جودة متميزة وتغليف آمن ومستدام 🌟", time: "الآن" },
     { id: 2, sender: "عضو موثق 2", comment: "المرسيدس المايباخ المعروضة تم فحصها برمجياً والتحقق من حالتها الفاخرة 🚗", time: "قبل دقيقة" },
@@ -22,10 +27,6 @@ export default function App() {
     { id: 1, name: "مستخدم موثق", target: "أحد المشرفين", message: "تأخر في تحديث وتفعيل إعلان المركبة الفاخرة لأكثر من ساعة", status: "قيد المراجعة والتدقيق" }
   ]);
   const [newComplaint, setNewComplaint] = useState({ name: '', target: '', message: '' });
-
-  // 🟢 نظام الـ Broadcast الراداري المعجزة لبث الرسائل الجماعية الشاملة
-  const [globalMessage, setGlobalMessage] = useState('تنبيه سيادي: رادار الرقابة والمتابعة الفورية نشط ومحمي من الإدارة العامة.');
-  const [broadcastInput, setBroadcastInput] = useState('');
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -43,8 +44,17 @@ export default function App() {
       audio.play().catch(() => console.log("Audio play blocked"));
     } else {
       setAdminLogs([{ id: Date.now(), event: "⚠️ محاولة ولوج غير مصرحة", desc: `رصد محاولة دخول فاشلة للمعرف: ${email}`, time: "الآن", type: "danger" }, ...adminLogs]);
-      alert("⚠️ تحذير أمني صارم! تم حظر جهازك وتوثيق البصمة الرقمية وإرسالها فوراً لغرفة العمليات السرية لـ صاحب موقع أناقة CHIC!");
+      alert("⚠️ تحذير أمني فيدرالي صارم! تم حظر جهازك وتوثيق البصمة الرقمية وإرسالها فوراً لغرفة العمليات السرية لـ صاحب موقع أناقة CHIC!");
     }
+  };
+
+  const handleSendBroadcast = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!inputBroadcast) return;
+    setBroadcastMessage(inputBroadcast);
+    setAdminLogs([{ id: Date.now(), event: "📢 إطلاق بث جماعي فوري", desc: `قام صاحب الموقع بنشر إعلان جماعي موحد يظهر في كافة الصفحات والواجهات الحالية.`, time: "الآن", type: "warning" }, ...adminLogs]);
+    alert("📢 تم بث رسالتك الجماعية المشفرة فوراً، وهي تظهر الآن أعلى كافة شاشات وصفحات الموقع أمام جميع الزوار والمشرفين!");
+    setInputBroadcast('');
   };
 
   const submitComplaint = (e: React.FormEvent) => {
@@ -57,26 +67,10 @@ export default function App() {
     setNewComplaint({ name: '', target: '', message: '' });
   };
 
-  const triggerBroadcast = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!broadcastInput) return;
-    setGlobalMessage(broadcastInput);
-    setAdminLogs([{ id: Date.now(), event: "📢 بث نداء جماعي عاجل", desc: `صاحب موقع أناقة CHIC أطلق نداءً رادارياً شاملاً: "${broadcastInput}"`, time: "الآن", type: "warning" }, ...adminLogs]);
-    alert("📡 تم إطلاق البث والنداء الجماعي الراداري الفوري في كامل صفحات المنصة بنجاح ساحق!");
-    setBroadcastInput('');
-  };
-
-  // 1️⃣ واجهة التحقق والأمان الفيدرالي الثلاثي (مع حقن الشريط الشامل في الأعلى لمن يراها من الخارج)
   if (!isAuthenticated) {
     return (
-      <div style={{ background: '#050505', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '20px', color: '#fff', fontFamily: 'sans-serif', position: 'relative' }}>
-        
-        {/* 🚨 بث الرسالة الجماعية يظهر هنا للزائر المفتوح في أول واجهة قفل أمان قبل الدخول */}
-        <div style={{ position: 'absolute', top: 0, left: 0, right: 0, background: 'linear-gradient(90deg, #500 0%, #100 50%, #500 100%)', color: '#d4af37', borderBottom: '2px solid #d4af37', padding: '12px 20px', textAlign: 'center', fontWeight: 'bold', fontSize: '14px', zIndex: 1000, boxShadow: '0 4px 15px rgba(212,175,55,0.2)' }}>
-          📢 بث راداري عاجل من الإدارة العليا: <span style={{ color: '#fff' }}>{globalMessage}</span>
-        </div>
-
-        <div style={{ background: '#0b0b0b', border: '2px solid #d4af37', padding: '40px', borderRadius: '16px', maxWidth: '450px', width: '100%', textAlign: 'center', boxShadow: '0 0 30px rgba(212,175,55,0.2)', marginTop: '60px' }}>
+      <div style={{ background: '#050505', minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px', color: '#fff', fontFamily: 'sans-serif' }}>
+        <div style={{ background: '#0b0b0b', border: '2px solid #d4af37', padding: '40px', borderRadius: '16px', maxWidth: '450px', width: '100%', textAlign: 'center', boxShadow: '0 0 30px rgba(212,175,55,0.2)' }}>
           <h1 style={{ color: '#d4af37', fontSize: '26px', fontWeight: '900', marginBottom: '5px', fontFamily: 'serif' }}>أناقة CHIC الملكي VIP</h1>
           <p style={{ color: '#888', fontSize: '12px', marginBottom: '25px' }}>بوابة الحماية والأمان والتدقيق الفيدرالي الثلاثي</p>
           <form onSubmit={handleLogin} style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
@@ -93,12 +87,19 @@ export default function App() {
   }
 
   return (
-    <div style={{ background: '#0b0b0b', minHeight: '100vh', color: '#fff', fontFamily: 'sans-serif', paddingBottom: '160px', position: 'relative' }}>
+    <div style={{ background: '#0b0b0b', minHeight: '100vh', color: '#fff', fontFamily: 'sans-serif', paddingBottom: '90px' }}>
       
-      {/* 📜 الـمـوجـة والـمـنـشـور المـتـحـرك الـرئـيـسـي لـلـمـتـصـفـحـيـن للشكاوى */}
-      <div style={{ background: '#d4af37', color: '#000', padding: '8px 0', overflow: 'hidden', whiteSpace: 'nowrap', fontWeight: 'bold', fontSize: '13px', borderBottom: '1px solid #000' }}>
-        <marquee direction="right" scrollamount="5">
-          👑 من لديه أي شكوى رسمية أو مظلمة ضد موظف أو مشرف، يرجى التوجه فوراً لـ (قسم الشكاوى المفتوح) بالأسفل؛ وسيتم إرسال رسالتك المشفرة مباشرة لغرفة العمليات السرية الفورية لـ صاحب موقع أناقة CHIC، وسوف يتم محاسبة المتسبب قانونياً وصارماً إما عبر أنظمة حظر المنصة التلقائية أو من خلال الرفع الفوري للسلطات الأمنية المختصة! 👑
+      {/* 🔴 شريط البث الجماعي الموحد المحدث حياً ليتغير فوراً بناءً على أمر صاحب الموقع من أي صفحة */}
+      <div style={{ background: '#ff3333', color: '#fff', padding: '10px 0', overflow: 'hidden', whiteSpace: 'nowrap', fontWeight: 'bold', fontSize: '14px', borderBottom: '2px solid #d4af37', boxShadow: '0 4px 15px rgba(255,51,51,0.4)' }}>
+        <marquee direction="right" scrollamount="6">
+          👑 {broadcastMessage} 👑
+        </marquee>
+      </div>
+
+      {/* 📜 الشريط التأسيسي الثاني للشكاوى والمظالم */}
+      <div style={{ background: '#d4af37', color: '#000', padding: '6px 0', overflow: 'hidden', whiteSpace: 'nowrap', fontWeight: 'bold', fontSize: '12px' }}>
+        <marquee direction="right" scrollamount="4">
+          ⚠️ من لديه أي شكوى رسمية أو مظلمة ضد موظف أو مشرف، يرجى التوجه فوراً لـ (قسم الشكاوى المفتوح) بالأسفل؛ وسيتم إرسال رسالتك المشفرة مباشرة لغرفة العمليات السرية الفورية لـ صاحب موقع أناقة CHIC، وسوف يتم محاسبة المتسبب قانونياً وصارماً إما عبر أنظمة حظر المنصة التلقائية أو من خلال الرفع الفوري للسلطات الأمنية المختصة! ⚠️
         </marquee>
       </div>
 
@@ -113,9 +114,9 @@ export default function App() {
         <span>🎯 10. إشعارات الطرد الراداري الحي</span>
       </div>
 
-      {/* المحتوى الداخلي لغرف وقنوات التلفزيون السبعة */}
       <div style={{ padding: '20px', maxWidth: '1200px', margin: '0 auto' }}>
         
+        {/* 1️⃣ صـالـة الـعـرض الـكـبـرى */}
         {currentTab === 'home' && (
           <div>
             <div style={{ textAlign: 'center', marginBottom: '35px', padding: '25px', background: 'linear-gradient(145deg, #16140e 0%, #080805 100%)', border: '1px solid #d4af37', borderRadius: '12px' }}>
@@ -132,3 +133,5 @@ export default function App() {
                 <a href="https://wa.me" target="_blank" rel="noreferrer" style={{ display: 'block', width: '100%', padding: '10px 0', background: '#d4af37', color: '#000', textDecoration: 'none', fontWeight: 'bold', borderRadius: '4px', marginTop: '15px', textAlign: 'center', fontSize: '13px' }}>💳 شراء فوري آمن</a>
               </div>
 
+              <div style={{ background: '#141414', border: '1px solid rgba(212,175,55,0.2)', padding: '20px', borderRadius: '8px' }}>
+                <span style={{ background: '#ff3333', color: '#fff', padding: '2px 6px', fontSize: '10px', borderRadius: '3px', fontWeight: 'bold' }}>🔥 تفاعل مروّع</span>
