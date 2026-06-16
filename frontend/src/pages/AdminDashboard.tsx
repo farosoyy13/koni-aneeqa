@@ -5,7 +5,6 @@ export default function AdminDashboard() {
 
   return (
     <div style={{ padding: '20px', maxWidth: '1300px', margin: '0 auto', color: '#fff' }}>
-      {/* هيدر اللوحة الإدارية الفخم */}
       <div style={{ borderBottom: '2px solid #d4af37', paddingBottom: '15px', marginBottom: '30px' }}>
         <h2 style={{ fontFamily: 'Amiri, serif', color: '#d4af37', fontSize: '30px' }}>
           رادار الرقابة الإدارية والسرية المطلقة | الأستاذ فهد الشمري
@@ -15,7 +14,6 @@ export default function AdminDashboard() {
         </p>
       </div>
 
-      {/* أزرار التنقل والتحكم السريع داخل اللوحة */}
       <div style={{ display: 'flex', gap: '10px', marginBottom: '25px', flexWrap: 'wrap' }}>
         <button onClick={() => setActiveTab('users')} style={{ padding: '10px 20px', background: activeTab === 'users' ? '#d4af37' : '#1a1a1a', color: activeTab === 'users' ? '#000' : '#bfa15f', border: '1px solid #d4af37', fontWeight: 'bold', borderRadius: '4px', cursor: 'pointer' }}>
           👥 مراقبة وطرد المستخدمين
@@ -28,14 +26,12 @@ export default function AdminDashboard() {
         </button>
       </div>
 
-      {/* محتوى التحكم الفوري بناءً على القسم المختار */}
       <div style={{ background: 'rgba(15,15,15,0.8)', border: '1px solid rgba(212,175,55,0.2)', padding: '25px', borderRadius: '8px' }}>
-        
         {activeTab === 'users' && (
           <div>
             <h3 style={{ color: '#d4af37', marginBottom: '15px' }}>قائمة الأعضاء المتواجدين أونلاين وصلاحيات العزل:</h3>
             <p style={{ color: '#aaa', fontSize: '14px', lineHeight: '1.6' }}>
-              النظام يعرض لك كافة المسجلين بإيميلات جوجل الحقيقية وبصماتهم الرقمية. يمكنك الضغط على زر "طرد وعزل" لتجميد حساب المتسلل فوراً وحظر الآي بي (IP) الخاص به مجاناً [21.1، 21.2].
+              النظام يعرض لك كافة المسجلين بإيميلات جوجل الحقيقية وبصماتهم الرقمية. يمكنك الضغط على زر "طرد وعزل" لتجميد حساب المتسلل فوراً وحظر الآي بي (IP) الخاص به مجاناً.
             </p>
           </div>
         )}
@@ -44,7 +40,7 @@ export default function AdminDashboard() {
           <div>
             <h3 style={{ color: '#d4af37', marginBottom: '15px' }}>التحكم الفوري بالأسعار والبضائع والـ Live Ads:</h3>
             <p style={{ color: '#aaa', fontSize: '14px', lineHeight: '1.6' }}>
-              من هنا يمكنك تفعيل التخفيضات الفورية، إضافة بضائع جديدة من أموالك (السيارات، الموالح، الفساتين)، أو حذف أي إعلان تراه مخالفاً للتشريعات الملكية للمنصة بلمحة عين [19.1].
+              من هنا يمكنك تفعيل التخفيضات الفورية، إضافة بضائع جديدة من أموالك (السيارات، الموالح، الفساتين)، أو حذف أي إعلان تراه مخالفاً للتشريعات الملكية للمنصة بلمحة عين.
             </p>
           </div>
         )}
@@ -53,11 +49,10 @@ export default function AdminDashboard() {
           <div>
             <h3 style={{ color: '#d4af37', marginBottom: '15px' }}>رادار التجسس ومراقبة الرسائل الخاصة بين الزوار:</h3>
             <p style={{ color: '#aaa', fontSize: '14px', lineHeight: '1.6' }}>
-              شاشة سرية ومحمية مخصصة لك فقط؛ تعرض نصوص ومحتوى المحادثات والرسائل المتبادلة بين البائع والمشتري لضمان عدم حدوث أي تلاعب مالي أو عمليات سبام، ولحفظ حقوق المنصة ونسبتك التجارية [19.1].
+              شاشة سرية ومحمية مخصصة لك فقط؛ تعرض نصوص ومحتوى المحادثات والرسائل المتبادلة بين البائع والمشتري لضمان عدم حدوث أي تلاعب مالي أو عمليات سبام، ولحفظ حقوق المنصة ونسبتك التجارية.
             </p>
           </div>
         )}
-
       </div>
     </div>
   );
