@@ -8,8 +8,8 @@ export default function App() {
   
   const [liveCount, setLiveCount] = useState(1438);
   
-  // 📢 نظام البث والإعلان الجماعي الفوري لكافة شاشات الموقع حياً
-  const [broadcastMessage, setBroadcastMessage] = useState('🚨 تنبيه تنظيمي رسمي: يرجى من كافة المستخدمين والمشرفين الالتزام التام بالتشريعات المعتمدة.');
+  // 📢 نظام البث والنداء الجماعي الحكيم من غرفة صاحب الموقع لكافة الصفحات حياً
+  const [broadcastMessage, setBroadcastMessage] = useState('🚨 تنبيه إداري رسمي: يرجى من كافة المستخدمين والمشرفين الالتزام التام بالتشريعات المعتمدة.');
   const [inputBroadcast, setInputBroadcast] = useState('');
 
   const [chatRooms, setChatRooms] = useState([
@@ -52,7 +52,7 @@ export default function App() {
     e.preventDefault();
     if (!inputBroadcast) return;
     setBroadcastMessage(inputBroadcast);
-    setAdminLogs([{ id: Date.now(), event: "📢 إطلاق بث جماعي فوري", desc: `قام صاحب الموقع بنشر إعلان جماعي موحد يظهر في كافة الصفحات والواجهات حياً.`, time: "الآن", type: "warning" }, ...adminLogs]);
+    setAdminLogs([{ id: Date.now(), event: "📢 إطلاق بث جماعي فوري", desc: `قام صاحب الموقع بنشر إعلان جماعي موحد يظهر في كافة الصفحات والواجهات الحالية.`, time: "الآن", type: "warning" }, ...adminLogs]);
     alert("📢 تم بث رسالتك الجماعية المشفرة فوراً، وهي تظهر الآن أعلى كافة شاشات وصفحات الموقع أمام جميع الزوار والمشرفين!");
     setInputBroadcast('');
   };
@@ -89,17 +89,24 @@ export default function App() {
   return (
     <div style={{ background: '#0b0b0b', minHeight: '100vh', color: '#fff', fontFamily: 'sans-serif', paddingBottom: '90px' }}>
       
-      {/* 🔴 شريط البث والنداء الجماعي الموحد المحدث حياً ليتغير بناءً على أمر صاحب الموقع من أي صفحة */}
+      {/* 🔴 شريط البث والنداء الجماعي الموحد المحدث حياً ليتغير فوراً بناءً على أمر صاحب الموقع من أي صفحة */}
       <div style={{ background: '#ff3333', color: '#fff', padding: '10px 0', overflow: 'hidden', whiteSpace: 'nowrap', fontWeight: 'bold', fontSize: '14px', borderBottom: '2px solid #d4af37', boxShadow: '0 4px 15px rgba(255,51,51,0.4)' }}>
         <marquee direction="right" scrollamount="6">
           👑 {broadcastMessage} 👑
         </marquee>
       </div>
 
-      {/* 📜 الشريط التأسيسي الثاني للشكاوى والمظالم */}
-      <div style={{ background: '#d4af37', color: '#000', padding: '6px 0', overflow: 'hidden', whiteSpace: 'nowrap', fontWeight: 'bold', fontSize: '12px' }}>
-        <marquee direction="right" scrollamount="4">
-          ⚠️ من لديه أي شكوى رسمية أو مظلمة ضد موظف أو مشرف، يرجى التوجه فوراً لـ (قسم الشكاوى المفتوح) بالأسفل؛ وسيتم إرسال رسالتك المشفرة مباشرة لغرفة العمليات السرية الفورية لـ صاحب موقع أناقة CHIC، وسوف يتم محاسبة المتسبب قانونياً وصارماً إما عبر أنظمة حظر المنصة التلقائية أو من خلال الرفع الفوري للسلطات الأمنية المختصة! ⚠️
+      {/* 📜 🟢 الشريط الملوكي المتحرك الأول: إعلان الصيانة وعودة الموقع الفخمة */}
+      <div style={{ background: '#d4af37', color: '#000', padding: '8px 0', overflow: 'hidden', whiteSpace: 'nowrap', fontWeight: 'bold', fontSize: '13px', borderBottom: '1px solid #000' }}>
+        <marquee direction="right" scrollamount="5">
+          ⚜️ عاد إليكم موقع (أناقة CHIC) من جديد بتصميم إمبراطوري متطور، حيث تم الانتهاء من أعمال الصيانة الشاملة وتحديث أنظمة الحماية الفيدرالية وتشفير الخزانة البنكية لضمان أعلى مستويات الأمان للمتداولين والزوار أونلاين. ومن لديه أي شكوى رسمية أو مظلمة ضد موظف أو مشرف يرجى التوجه لـ (قسم الشكاوى المفتوح)، وسوف يتم محاسبة المتسبب قانونياً وصارماً إما عبر أنظمة حظر المنصة أو من خلال الرفع الفوري للسلطات الأمنية المختصة! ⚜️
+        </marquee>
+      </div>
+
+      {/* 📜 🟢 الشريط الملوكي المتحرك الثاني: إعلان الفساتين والحقائب والعبايات المستعملة والنظيفة */}
+      <div style={{ background: '#111', color: '#d4af37', padding: '8px 0', overflow: 'hidden', whiteSpace: 'nowrap', fontStyle: 'italic', fontSize: '13px', borderBottom: '1px solid rgba(212,175,55,0.3)' }}>
+        <marquee direction="left" scrollamount="4">
+          🛍️ عندك فستان زواج ولبستية مرة واحدة وصعبة تلبسة بزواج آخر وراميتة بالدولاب او عباية او شنطة نظيفة وماتبينهم؟ أعرضيهم في موقع (أناقة CHIC) يضمن لك البيع باسرع وقت وبأعلى عوائد ربحية حرة واحترافية متكاملة! 🛍️
         </marquee>
       </div>
 
@@ -129,9 +136,3 @@ export default function App() {
                 <span style={{ background: '#ff3333', color: '#fff', padding: '2px 6px', fontSize: '10px', borderRadius: '3px', fontWeight: 'bold' }}>LIVE إعلان نشط</span>
                 <h3 style={{ color: '#d4af37', margin: '10px 0' }}>تمور خلاص ملكي فاخر ونادر</h3>
                 <p style={{ color: '#aaa', fontSize: '13px' }}>منتقاة بعناية فائقة لقصور ومجالس الفخامة العربية الأصيلة. السعر شامل التوصيل السريع.</p>
-                <p style={{ color: '#d4af37', fontWeight: 'bold', fontSize: '18px', marginTop: '15px' }}>180 ريال</p>
-                <a href="https://wa.me" target="_blank" rel="noreferrer" style={{ display: 'block', width: '100%', padding: '10px 0', background: '#d4af37', color: '#000', textDecoration: 'none', fontWeight: 'bold', borderRadius: '4px', marginTop: '15px', textAlign: 'center', fontSize: '13px' }}>💳 شراء فوري آمن</a>
-              </div>
-
-              <div style={{ background: '#141414', border: '1px solid rgba(212,175,55,0.2)', padding: '20px', borderRadius: '8px' }}>
-                <span style={{ background: '#ff3333', color: '#fff', padding: '2px 6px', fontSize: '10px', borderRadius: '3px', fontWeight: 'bold' }}>🔥 تفاعل مروّع</span>
