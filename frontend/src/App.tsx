@@ -27,7 +27,7 @@ export default function App() {
           <form onSubmit={(e) => { e.preventDefault(); if (email === "owner@gmail.com" && otp === "7222") { setIsAuthenticated(true); } else { alert("⚠️ المعرف غير صحيح!"); } }} style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
             <input type="email" placeholder="المعرف الملوكي المعتمد للإدارة" value={email} onChange={e => setEmail(e.target.value)} style={{ padding: '12px', background: '#000', border: '1px solid #333', color: '#fff', borderRadius: '6px', textAlign: 'center' }} required />
             <input type="password" placeholder="رمز النفاذ السري OTP" value={otp} onChange={e => setOtp(e.target.value)} style={{ padding: '12px', background: '#000', border: '1px solid #333', color: '#fff', borderRadius: '6px', textAlign: 'center' }} required />
-            <button type="submit" style={{ background: 'linear-gradient(135deg, #d4af37 0%, #bfa15f 100%)', color: '#000', padding: '14px', border: 'none', borderRadius: '6px', fontWeight: 'bold', cursor: 'pointer' }}>⚡️ توثيق الهوية والعبور السحابي</button>
+            <button type="submit" style={{ background: 'linear-gradient(135deg, #d4af37 0%, #bfa15f 100%)', color: '#000', padding: '14px', border: 'none', borderRadius: '6px', fontWeight: 'bold' }}>⚡️ توثيق الهوية والعبور السحابي</button>
           </form>
           <p style={{ color: '#555', fontSize: '11px', marginTop: '20px' }}>⚠️ معرف المالك: owner@gmail.com والرمز: 7222</p>
         </div>
@@ -53,10 +53,6 @@ export default function App() {
               <h2 style={{ color: '#d4af37' }}>منصة أناقة CHIC الملكية الفاخرة</h2>
               <p style={{ color: '#aaa', fontSize: '14px' }}>بوابة التجارة والحراج السحابي والآمن المعتمدة للإدارة العامة</p>
             </div>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '20px' }}>
-              <div style={{ background: '#141414', border: '1px solid rgba(212,175,55,0.2)', padding: '20px', borderRadius: '8px' }}><span style={{ background: '#ff3333', color: '#fff', padding: '2px 6px', fontSize: '10px', borderRadius: '3px', fontWeight: 'bold' }}>LIVE نشط</span><h3 style={{ color: '#d4af37' }}>تمور خلاص ملكي فاخر</h3><p style={{ color: '#aaa', fontSize: '13px' }}>منتقاة بعناية فائقة لقصور ومجالس الفخامة العربية الأصيلة.</p></div>
-              <div style={{ background: '#141414', border: '1px solid rgba(212,175,55,0.2)', padding: '20px', borderRadius: '8px' }}><span style={{ background: '#ff3333', color: '#fff', padding: '2px 6px', fontSize: '10px', borderRadius: '3px', fontWeight: 'bold' }}>🔥 تفاعل</span><h3 style={{ color: '#d4af37' }}>مرسيدس مايباخ S-Class</h3><p style={{ color: '#aaa', fontSize: '13px' }}>معروضة عبر تصفح بلوري لامع بدون أي تعليق.</p></div>
-            </div>
           </div>
         )}
         {currentTab === 'owner' && (
@@ -74,16 +70,6 @@ export default function App() {
             </div>
           </div>
         )}
-        {currentTab === 'complaints' && (
-          <div style={{ maxWidth: '600px', margin: '0 auto', background: '#111', padding: '30px', borderRadius: '12px', border: '1px solid #d4af37' }}>
-            <h2 style={{ color: '#d4af37', textAlign: 'center', marginBottom: '10px' }}>📥 إرسال بلاغ ومظلمة مشفرة (سرية للغاية)</h2>
-            <form onSubmit={(e) => { e.preventDefault(); if (newComplaint.name && newComplaint.message) { setComplaints([{ id: Date.now(), ...newComplaint, status: "محمي ومشفر" }, ...complaints]); alert("🚀 تم إرسال بلاغك المشفر مباشرة لغرفة العمليات."); setNewComplaint({ name: '', target: '', message: '' }); } }} style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
-              <input type="text" placeholder="الاسم المستعار للعميل" value={newComplaint.name} onChange={e => setNewComplaint({...newComplaint, name: e.target.value})} style={{ padding: '12px', background: '#000', border: '1px solid #333', color: '#fff', borderRadius: '6px' }} required />
-              <textarea placeholder="يرجى كتابة تفاصيل المظلمة هنا..." value={newComplaint.message} onChange={e => setNewComplaint({...newComplaint, message: e.target.value})} style={{ padding: '12px', background: '#000', border: '1px solid #333', color: '#fff', borderRadius: '6px', height: '120px' }} required />
-              <button type="submit" style={{ background: 'linear-gradient(135deg, #ff3333 0%, #aa0000 100%)', color: '#fff', padding: '14px', border: 'none', borderRadius: '6px', fontWeight: 'bold' }}>🚀 إرسال البلاغ المشفر</button>
-            </form>
-          </div>
-        )}
         {currentTab === 'about' && (
           <div style={{ maxWidth: '700px', margin: '0 auto', background: '#111', padding: '35px', borderRadius: '16px', border: '1px solid #d4af37', textAlign: 'right' }}>
             <h2 style={{ color: '#d4af37', fontSize: '24px', textAlign: 'center' }}>⚜️ السجل الرسمي والتوثيق التاريخي للمنصة ⚜️</h2>
@@ -95,3 +81,11 @@ export default function App() {
           </div>
         )}
       </div>
+      <div style={{ position: 'fixed', bottom: 0, left: 0, right: 0, background: '#0a0a0a', borderTop: '2px solid #d4af37', display: 'flex', justifyContent: 'space-around', padding: '12px 5px', zIndex: 1000 }}>
+        <button onClick={() => setCurrentTab('home')} style={{ background: currentTab === 'home' ? '#d4af37' : '#000', color: currentTab === 'home' ? '#000' : '#fff', border: '1px solid #d4af37', padding: '8px 14px', borderRadius: '4px', fontSize: '11px', fontWeight: 'bold' }}>📺 صالة العرض</button>
+        <button onClick={() => setCurrentTab('owner')} style={{ background: currentTab === 'owner' ? '#d4af37' : '#000', color: currentTab === 'owner' ? '#000' : '#fff', border: '1px solid #d4af37', padding: '8px 14px', borderRadius: '4px', fontSize: '11px', fontWeight: 'bold' }}>👑 غرفة صاحب الموقع</button>
+        <button onClick={() => setCurrentTab('about')} style={{ background: currentTab === 'about' ? '#d4af37' : '#000', color: currentTab === 'about' ? '#000' : '#fff', border: '1px solid #d4af37', padding: '8px 14px', borderRadius: '4px', fontSize: '11px', fontWeight: 'bold' }}>📜 من نحن</button>
+      </div>
+    </div>
+  );
+}
