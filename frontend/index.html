@@ -3,231 +3,183 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>متجر أناقة CHIC الملكي VIP - المنصة الإعلانية</title>
+    <title>متجر أناقة CHIC الملكي VIP - الواجهة الإمبراطورية</title>
     <style>
         @import url('https://googleapis.com');
         
-        body {
+        html, body {
             margin: 0;
-            background: #050505;
-            color: #fff;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
             font-family: 'Tajawal', sans-serif;
             overflow-x: hidden;
         }
 
-        /* شريط متحرك ذهبي ملكي علوي */
-        .marquee-top {
-            background: #d4af37;
-            color: #000;
-            padding: 8px 0;
-            overflow: hidden;
-            whiteSpace: nowrap;
-            font-weight: bold;
-            font-size: 13px;
-            border-bottom: 2px solid #000;
-        }
-
-        /* شريط الإعلانات المتحرك الآخر */
-        .marquee-ads {
-            background: #111;
-            color: #d4af37;
-            padding: 6px 0;
-            overflow: hidden;
-            whiteSpace: nowrap;
-            font-size: 12px;
-            border-bottom: 1px solid rgba(212,175,55,0.3);
-        }
-
-        /* تصميم الشاشة السينمائية المنحنية الفخمة */
-        .cinema-screen-container {
-            max-width: 1200px;
-            margin: 30px auto;
-            padding: 20px;
-            perspective: 1000px;
-        }
-
-        .cinema-screen {
-            background: linear-gradient(135deg, #12110c 0%, #050505 100%);
-            border: 2px solid #d4af37;
-            border-radius: 24px;
-            padding: 50px 30px;
-            text-align: center;
-            box-shadow: 0 20px 50px rgba(212,175,55,0.15), inset 0 0 40px rgba(0,0,0,0.9);
-            transform: rotateX(4deg);
+        /* 📺 ميزة التمدد العالمي السينمائي الكامل للصورة الفخمة على كامل الشاشة */
+        .full-screen-cinema {
             position: relative;
+            width: 100%;
+            min-height: 100vh;
+            background-image: url('https://googleusercontent.com_'); /* تم رفع صورتك السينمائية المنحنية الفخمة برابط سحابي سريع ومباشر */
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        /* طبقة حماية رقمية سوداء خفيفة لإبراز النصوص والأزرار المشعة */
+        .full-screen-cinema::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0, 0, 0, 0.4);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* محتوى شاشتك الفخمة الموزون بمنتصف الأيفون */
+        .cinema-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 800px;
+            width: 100%;
+            padding: 40px 20px;
+            box-sizing: border-box;
         }
 
         .royal-badge {
             font-family: 'Amiri', serif;
             color: #d4af37;
-            font-size: 38px;
+            font-size: 45px;
             font-weight: bold;
             margin-bottom: 15px;
-            text-shadow: 0 4px 10px rgba(212,175,55,0.4);
+            text-shadow: 0 4px 15px rgba(212,175,55,0.6);
         }
 
-        .royal-subtitle {
+        .royal-title {
             color: #fff;
-            font-size: 20px;
-            font-weight: 700;
-            margin-bottom: 25px;
+            font-size: 26px;
+            font-weight: 900;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
         }
 
-        /* شبكة الأزرار التفاعلية الفورية مع اللوجوهات التلقائية للتحويل */
+        .royal-desc {
+            color: #e0e0e0;
+            font-size: 15px;
+            line-height: 1.8;
+            margin: 0 auto 40px auto;
+            max-width: 600px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+        }
+
+        /* 🚀 تصميم ريموت الأزرار الذهبية المشعة والمستديرة ذات التحويل التلقائي الفوري للواتساب والسناب */
         .button-grid {
             display: flex;
             justify-content: center;
             gap: 15px;
             flex-wrap: wrap;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
         }
 
         .btn-cinema {
-            background: rgba(0, 0, 0, 0.7);
+            background: rgba(0, 0, 0, 0.75);
             color: #fff;
-            border: 1px solid rgba(212,175,55,0.4);
-            padding: 12px 28px;
+            border: 1px solid rgba(212,175,55,0.6);
+            padding: 14px 32px;
             font-size: 14px;
             font-weight: bold;
             border-radius: 50px;
             cursor: pointer;
             text-decoration: none;
             transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            white-space: nowrap;
         }
 
         .btn-cinema.active {
             background: linear-gradient(135deg, #d4af37 0%, #bfa15f 100%);
             color: #000;
             border: 1px solid #d4af37;
-            box-shadow: 0 0 15px rgba(212,175,55,0.3);
+            box-shadow: 0 0 25px rgba(212,175,55,0.5);
         }
 
         .btn-cinema:hover {
-            transform: translateY(-2px);
+            transform: translateY(-3px) scale(1.02);
             border-color: #d4af37;
+            box-shadow: 0 6px 20px rgba(212,175,55,0.4);
         }
 
-        /* جدار الولاء الوطني الفاخر */
-        .loyalty-section {
-            background: rgba(20,20,20,0.8);
-            border: 1px solid rgba(212,175,55,0.2);
-            padding: 25px;
-            border-radius: 12px;
-            margin-top: 30px;
-            text-align: right;
-        }
-
-        .loyalty-title {
-            color: #d4af37;
-            font-family: 'Amiri', serif;
-            font-size: 22px;
-            margin-top: 0;
-            margin-bottom: 15px;
-            text-align: center;
-        }
-
-        /* شبكة الحسابات البنكية المعتمدة بالكامل */
+        /* الخزانة المالية المزدوجة الفخمة */
         .bank-container {
             display: flex;
             justify-content: center;
             gap: 15px;
             flex-wrap: wrap;
-            margin-top: 30px;
+            margin-top: 35px;
         }
 
         .bank-card {
-            background: rgba(15,15,15,0.9);
+            background: rgba(10,10,10,0.85);
             border: 1px solid #222;
             padding: 15px 20px;
             border-radius: 12px;
             border-top: 2px solid #d4af37;
-            max-width: 340px;
+            max-width: 320px;
             width: 100%;
             text-align: right;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-        }
-
-        /* ميثاق الحماية والخصوصية المكتوب أسفل الخط */
-        .privacy-box {
-            border-top: 1px solid #ff3333;
-            margin-top: 40px;
-            padding-top: 20px;
-            text-align: right;
-            font-size: 13px;
-            color: #ccc;
-            line-height: 1.7;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
         }
     </style>
 </head>
 <body>
 
-    <!-- 🟢 صندوق التجميع السحري لربط غرف الريموت والأقسام السبعة بالخلفية تلقائياً -->
+    <!-- 🟢 صندوق التجميع السحري لفتح بوابات الأمان والريموت بالأقسام السبعة بالخلفية تلقائياً في المتصفح -->
     <div id="root"></div>
 
-    <!-- 📜 الشريط الذهبي المتحرك الأول: مخصص للشكاوى والتوجه السريع للغرفة -->
-    <div class="marquee-top">
-        <marquee direction="right" scrollamount="5">
-            👑 من لديه أي شكوى رسمية أو مظلمة ضد موظف أو مشرف، يرجى التوجه فوراً لـ (قسم الشكاوى المفتوح) بداخل غرفة المراقبة الإدارية بالمنصة؛ وسيتم إرسال رسالتك المشفرة مباشرة لغرفة العمليات السرية الفورية للأستاذ فهد الشمري لجلد المخالف وعزله فوراً! 👑
-        </marquee>
-    </div>
+    <!-- الواجهة الممددة بكامل الشاشة -->
+    <div class="full-screen-cinema">
+        <div class="cinema-content">
+            
+            <div class="royal-badge">الْوَاجِهَةُ الْمَلَكِيَّةُ الشَّامِلَةُ</div>
+            <div class="royal-title">مرحباً بك في عالم الفخامة الكاملة</div>
+            <div class="royal-desc">
+                مرحباً بك في عالم الفخامة الإلكترونية الحية في التداول. ويعمل الجو في قنوات التأصيل والتحصيل والفخامة الكاملة للأستاذ فهد الشمري.
+            </div>
 
-    <!-- 📜 الشريط الذهبي المتحرك الثاني: باقة ميزات المتجر الـ 10 الحصرية المستحيلة وأيام المجانية -->
-    <div class="marquee-ads">
-        <marquee direction="left" scrollamount="4">
-            🔥 عرض لـ (أول 10 أيام مجانية) وبأسعار مرضية إلى آخره.. | ⚡️ ميزات المنصة: إضافة خيار إلزامية فروع المنتجات وتأصيل التصفح | 👤 نظام حظر الأعضاء المزيفة والمخربين | 📊 رادار رصد المتواجدين نشط الآن وبقوة
-        </marquee>
-    </div>
-
-    <div class="cinema-screen-container">
-        <div class="cinema-screen">
-            <div class="royal-badge">متجر أناقة CHIC الملكي VIP</div>
-            <div class="royal-subtitle">الفرصة الرقمية لا تنتظر أحداً!</div>
-
-            <!-- 🚀 ريموت الأزرار الذهبية الذكية الفورية مع أيقونات التواصل للتحويل المباشر -->
+            <!-- الأزرار الذهبية التفاعلية مع التوجيه السريع -->
             <div class="button-grid">
-                <a href="https://wa.meً+أستاذ+فهد،+دخلت+من+خلال+الواجهة+الرسمية+وأود+التعامل+معك" target="_blank" class="btn-cinema active">💬 الشاشة الرئيسية (واتساب 1)</a>
-                <a href="https://wa.meً+أستاذ+فهد،+أريد+الاستفسار+عن+الخدمات+والحراج" target="_blank" class="btn-cinema">💬 الخدمات الملكية (واتساب 2)</a>
-                <a href="https://snapchat.com" target="_blank" class="btn-cinema">👻 قنوات التواصل (سناب شات)</a>
-                <a href="mailto:kal6667222@://gmail.com ملوكي فاخر من المنصة" class="btn-cinema">📧 التواصل الرسمي (البريد الإلكتروني)</a>
+                <a href="https://wa.meً+أستاذ+فهد+دخلت+من+خلال+الواجهة+السينمائية+الممددة+وأود+التعامل+معك" target="_blank" class="btn-cinema active">الشاشة الرئيسية (واتساب 1)</a>
+                <a href="https://wa.meً+أستاذ+فهد+أريد+الاستفسار+عن+الخدمات+والحراج" target="_blank" class="btn-cinema">الخدمات الملكية (واتساب 2)</a>
+                <a href="https://snapchat.com" target="_blank" class="btn-cinema">قنوات التواصل (سناب شات)</a>
             </div>
 
-            <!-- 🇸🇦 جدار الولاء الوطني ومدح ولاة الأمر وشعب طويق المكتوب بالخط الملكي -->
-            <div class="loyalty-section">
-                <div class="loyalty-title">⚔️ مِيثَاقُ الْوَلَاءِ وَالْفَخْرِ الْعَرَبِيِّ الْأَصِيلِ ⚔️</div>
-                <p style="margin: 0; line-height: 1.8; color: #fff; font-size: 14px; text-align: justify;">
-                    نرفع أسمى آيات الفخر والاعتزاز والولاء لمقام <strong>خادم الحرمين الشريفين الملك سلمان بن عبدالعزيز آل سعود</strong>، وإلى مقام سيدي <strong>صاحب السمو الملكي الأمير محمد بن سلمان بن عبدالعزيز آل سعود</strong> ولي العهد رئيس مجلس الوزراء -حفظهما الله ورعاهما-. براندنا يفتخر ويعتز بالانتماء لـ <strong>الشعب السعودي العظيم (شعب طويق)</strong> الشامخ الطموح، ونرسل تحية ملؤها المحبة والتقدير والمدح لأخواننا الأوفياء في كافة أرجاء دول الخليج العربي الأباة. أنتم منبع الفخر والإلهام والإبداع دائماً وأبداً.
-                </p>
-            </div>
-
-            <!-- 💰 الخزانة المالية المعتمدة للتحصيل (الراجحي + العربي بحساباتك الحقيقية بالملّي) -->
+            <!-- الخزانة البنكية المزدوجة المنسقة -->
             <div class="bank-container">
-                <!-- الحساب 1: الراجحي -->
                 <div class="bank-card">
-                    <h4 style="color:#d4af37; margin: 0 0 8px 0; font-size: 14px;">💳 مصرف الراجحي الدولي</h4>
-                    <p style="margin: 0; font-size: 12px; color: #ccc; line-height: 1.6;">
-                        <strong>الآيبان الدولية المعتمدة:</strong><br>
-                        <span style="font-family: monospace; color: #fff; font-size: 12px; display: block; margin-top: 2px;">SA0980000509608010069017</span>
-                        <strong>الحساب المحلي للراجحي:</strong><br>
-                        <span style="font-family: monospace; color: #bfa15f; font-size: 12px;">09608010069017</span>
-                    </p>
+                    <h4 style="color:#d4af37; margin: 0 0 5px 0; font-size: 14px;">💳 مصرف الراجحي الدولي</h4>
+                    <p style="margin: 0; font-size: 12px; color: #ccc;">آيبان: SA0980000509608010069017</p>
                 </div>
-
-                <!-- الحساب 2: العربي الشامل الفخم -->
                 <div class="bank-card">
-                    <h4 style="color:#d4af37; margin: 0 0 8px 0; font-size: 14px;">💳 البنك العربي الوطني (ANB)</h4>
-                    <p style="margin: 0; font-size: 12px; color: #ccc; line-height: 1.6;">
-                        <strong>الآيبان الدولية المعتمدة:</strong><br>
-                        <span style="font-family: monospace; color: #fff; font-size: 12px; display: block; margin-top: 2px;">SA9830400108088851870011</span>
-                        <strong>الحساب المحلي للعربي:</strong><br>
-                        <span style="font-family: monospace; color: #bfa15f; font-size: 12px;">0108088851870011</span>
-                    </p>
+                    <h4 style="color:#d4af37; margin: 0 0 5px 0; font-size: 14px;">💳 البنك العربي الوطني (ANB)</h4>
+                    <p style="margin: 0; font-size: 12px; color: #ccc;">آيبان: SA9830400108088851870011</p>
                 </div>
             </div>
 
-            <!-- 🔒 ⚖️ ميثاق الأمان وحماية الخصوصية وميثاق المحاماة والنسب والتشريع -->
-            <div class="privacy-box">
-                <h4 style="color: #ff3333; margin: 0 0 10px 0; font-size: 15px; text-align: center;">⚖️ خِطَابُ التَّشْرِيعِ الْمَالِيِّ وَمِيثَاقُ الْحِمَايَةِ وَالْخُصُوصِيَّةِ الْفِيدِرَالِيَّةِ</h4>
-                <p style="margin: 0; font-size: 13px; text-align: justify; color: #bbb;">
+            <p style="font-size:11px; color:#666; margin-top: 50px; margin-bottom: 0;">جميع الحقوق محفوظة © براند أناقة CHIC الملكي 2026</p>
+        </div>
+    </div>
+
+    <!-- 🟢 سلك التشغيل المعجزة لمحرك React والصفحات السبعة -->
+    <script type="module" src="/src/main.tsx"></script>
+
+</body>
+</html>
