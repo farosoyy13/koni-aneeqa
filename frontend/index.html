@@ -18,10 +18,10 @@
 </head>
 <body style="margin:0; background:#0b0b0b; font-family:sans-serif; color:#fff;">
 
-    <!-- هذا المربع السحري هو صالة العرض الكبرى لـ React لكي تنزل فيها الأقسام السبعة والريموت أونلاين -->
+    <!-- 🟢 صندوق التجميع السحري (Root) لتشغيل الأقسام السبعة واللوحة الإدارية والريموت معاً في المتصفح -->
     <div id="root"></div>
 
-    <!-- الهيدر الملكي الاحتياطي للزوار -->
+    <!-- الهيدر الملكي -->
     <div class="royal-header fade-in">
         <h1 class="royal-title">أناقة CHIC الملكي VIP</h1>
         <p>الفرصة الرقمية لا تنتظر أحداً!</p>
@@ -37,8 +37,8 @@
     <!-- التذييل -->
     <div class="footer-section">
         <h3>تواصل معنا فوراً</h3>
-        <a href="https://wa.me/966536667222" class="footer-link">💬 واتساب 1</a>
-        <a href="https://wa.me/966507882771" class="footer-link">💬 واتساب 2</a>
+        <a href="https://wa.me" class="footer-link">💬 واتساب 1</a>
+        <a href="https://wa.me" class="footer-link">💬 واتساب 2</a>
         
         <div style="margin-top:30px;">
             <h4 style="color:#d4af37;">الحسابات البنكية</h4>
@@ -49,7 +49,22 @@
         <p style="font-size:12px; color:#555;">جميع الحقوق محفوظة © أناقة CHIC 2026</p>
     </div>
 
-    <!-- 🟢 تم تصحيح السلك البرمجي للـ Script وربطه بالمحرك الرئيسي بنجاح 100% -->
+    <!-- 🟢 السلك البرمجي المعجزة لتفعيل ربط شاشات الريموت والتحكم مباشرة من الـ React للمتصفح -->
     <script type="module" src="/src/main.tsx"></script>
+
+    <script>
+        // دالة العداد والمزاد التفاعلية الاحتياطية لتعمل بنعومة
+        let count = 60;
+        const timerElement = document.getElementById('timer');
+        if(timerElement) {
+            setInterval(() => {
+                if(count > 0) { count--; timerElement.innerText = count; }
+                else { count = 60; }
+            }, 1000);
+        }
+        function triggerRoyalAlert() {
+            alert("تم توثيق طلب دخول المزاد الملكي بنجاح! يرجى إتمام التحقق الثلاثي عبر لوحة الأمان للعبور.");
+        }
+    </script>
 </body>
 </html>
