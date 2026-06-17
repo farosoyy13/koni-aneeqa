@@ -131,5 +131,13 @@ export default function App() {
       </div>
 
       {/* 📢 شريط البث الجماعي المتغير ديناميكياً من غرفة صاحب الموقع - يظهر للزوار في كافة الصفحات الحية */}
-      <div style={{ background: '#ffaa00', color: '#000', padding: '6px 0', overflow: 'hidden', whiteSpace: 'nowrap', fontWeight: 'bold', fontSize: '12px', borderBottom: '1px solid rgba(212,175,55,0.3)', boxShadow: '0 2px 10px rgba(212,175,55,0.2)' }}>
-        <marquee direction="right" scrollamount="5">
+                     <marquee direction="right" scrollamount="5">
+          📢 شريط البث المباشر: ترقبوا إطلاق العروض الحصرية والمباشرة قريباً في منصة أناقة CHIC!
+        </marquee>
+      </div>
+
+    </div>
+  );
+};
+
+export default App;
