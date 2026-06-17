@@ -181,7 +181,7 @@ export default function App() {
             { id: 'dresses', label: 'فساتين فاخرة' },
             { id: 'abayas', label: 'عبايات ملكية' },
             { id: 'bags', label: 'حقائب نادرة' },
-            { id: 'accessories', label: 'مجوهرات وألماس' }
+            { id: 'accessories', label: 'مجورات وألماس' }
           ].map(tab => (
             <button
               key={tab.id}
@@ -214,3 +214,34 @@ export default function App() {
                 )}
                 <button 
                   onClick={() => toggleFavorite(product.id)}
+                >
+                  <Heart className={`w-6 h-6 ${favorites.includes(product.id) ? 'text-red-600' : 'text-white'}`} />
+                </button>
+              </div>
+              <div className="p-4 flex flex-col flex-1">
+                <h3 className="text-lg font-bold mb-2">{product.title}</h3>
+                <p className="flex items-baseline gap-1">
+                  <span className="text-lg font-extrabold text-[#d4af37]">{product.price} SAR</span>
+                  {product.originalPrice && <span className="text-sm line-through text-gray-500">{product.originalPrice} SAR</span>}
+                </p>
+                <div className="flex items-center justify-between mt-3">
+                  <button 
+                    className="px-4 py-2 rounded-lg bg-[#d4af37] text-black font-bold transition-all hover:bg-[#aa8416]" 
+                    onClick={handleAddToCart}
+                  >
+                    أضف إلى السلة
+                  </button>
+                  <div className="flex items-center gap-1">
+                    <Star className="w-5 h-5 text-[#d4af37]" />
+                    <span className="text-sm font-bold">{product.rating}</span>
+                    <span className="text-xs text-gray-500">({product.reviewsCount})</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+    </div>
+  );
+}
