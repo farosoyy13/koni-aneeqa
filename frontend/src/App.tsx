@@ -131,7 +131,7 @@ export default function App() {
       </div>
 
       {/* 📢 شريط البث الجماعي المتغير ديناميكياً من غرفة صاحب الموقع - يظهر للزوار في كافة الصفحات الحية */}
-                     <marquee direction="right" scrollamount="5">
+                                  <marquee direction="right" scrollamount="5">
           📢 شريط البث المباشر: ترقبوا إطلاق العروض الحصرية والمباشرة قريباً في منصة أناقة CHIC!
         </marquee>
       </div>
@@ -141,3 +141,4 @@ export default function App() {
 };
 
 export default App;
+
