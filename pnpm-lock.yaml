@@ -20,6 +20,9 @@ importers:
       react:
         specifier: ^18.3.1
         version: 18.3.1
+      react-router-dom:
+        specifier: ^6.22.3
+        version: 6.22.3
       react-confetti:
         specifier: ^6.4.0
         version: 6.4.0
