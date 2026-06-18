@@ -1,13 +1,11 @@
 import app from "./app";
-import { logger } "./lib/logger";
-
-const PORT = process.env.PORT || 3000;
+import { logger } from "./lib/logger";
 
 // --- [ نظام جدار الدفع لرسائل الذكاء الاصطناعي ] ---
 
-app.post("/api/ai/chat", async (req, res) => {
+app.post("/api/ai/chat", async (c) => {
   logger.info("AI Chat request received - Verifying user credits");
-  res.json({ 
+  return c.json({ 
     status: "paywall_active", 
     message: "لقد استهلكت حدك المجاني اليوم. افتح الباقة الملكية بـ $1 فقط لتستمتع بمساعد الأزياء الشخصي الخارق للأبد!" 
   });
@@ -15,9 +13,9 @@ app.post("/api/ai/chat", async (req, res) => {
 
 // --- [ نظام الدردشة العامة المميزة ] ---
 
-app.post("/api/chat/premium", async (req, res) => {
+app.post("/api/chat/premium", async (c) => {
   logger.info("Premium message triggered - Verifying digital coins");
-  res.json({ 
+  return c.json({ 
     success: true, 
     message: "تم تثبيت رسالتك وتنسيقك الملكي في أعلى الدردشة لجميع الزوار بنجاح!" 
   });
@@ -25,18 +23,11 @@ app.post("/api/chat/premium", async (req, res) => {
 
 // --- [ نظام المزاد الحي ] ---
 
-app.get("/api/auction/live", async (req, res) => {
-  res.json({
+app.get("/api/auction/live", async (c) => {
+  return c.json({
     auction_status: "active",
     item: "طقم الأناقة الفاخر - إصدار محدود",
     current_highest_bid: "$450",
     time_left: "04:52"
   });
-});
-
-// --- [ تشغيل الخادم ] ---
-
-app.listen(PORT, () => {
-  logger.info(`🚀 Server is running on port ${PORT}`);
-  logger.info(`📡 API available at http://localhost:${PORT}/api`);
 });
