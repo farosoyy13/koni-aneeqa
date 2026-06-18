@@ -2,21 +2,22 @@
   "name": "anaqa-chic-root",
   "version": "1.0.0",
   "private": true,
-  "description": "أناقة CHIC - منصة الفخامة الرقمية",
+  "description": "أناقة CHIC - منصة الفخامة الرقمية ببروتوكولات حماية سيادية",
   "scripts": {
-    "install-all": "npm install && cd frontend && npm install",
-    "dev": "cd frontend && npm run dev",
-    "build": "cd frontend && npm run build",
-    "preview": "cd frontend && npm run preview",
-    "lint": "cd frontend && npm run lint",
-    "format": "cd frontend && npm run format"
+    "install-all": "pnpm install && cd frontend && pnpm install",
+    "dev": "cd frontend && pnpm run dev",
+    "build": "cd frontend && pnpm run build",
+    "preview": "cd frontend && pnpm run preview",
+    "lint": "cd frontend && pnpm run lint"
   },
   "engines": {
-    "node": ">=18.0.0"
+    "node": ">=22.16.0",
+    "pnpm": ">=10.11.1"
   },
   "keywords": [
     "أناقة CHIC",
     "luxury-fashion",
-    "e-commerce"
+    "e-commerce",
+    "secure-auction"
   ]
 }
