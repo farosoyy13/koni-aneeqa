@@ -49,6 +49,24 @@ function App() {
       setFade(true);
     }, 200);
   };
+  // 🌟 حركات إغرائية ووهمية لتنشيط الموقع
+  const [showNotification, setShowNotification] = useState(false);
+  const [notificationText, setNotificationText] = useState('');
+  useEffect(() => {
+    const fakeAlerts = [
+      "💎 قبل دقيقتين.. انضمت عميلة من الرياض للعضوية الماسية بنجاح!",
+      "✨ مؤخراً.. قامت سارة الـ... بحجز استشارة ملكية مع مستشار الأناقة الذكي!",
+      "🛍️ تم شراء عباية 'النخبة السيادية' الفاخرة وشحنها إلى جدة قبل قليل!",
+      "👑 انضمت عميلة جديدة لنادي الأناقة السري من الشرقية!",
+      "🔥 متبقي مقعدين فقط في العضوية الماسية المخصصة لهذا الشهر!"
+    ];
+    const interval = setInterval(() => {
+      setNotificationText(fakeAlerts[Math.floor(Math.random() * fakeAlerts.length)]);
+      setShowNotification(true);
+      setTimeout(() => setShowNotification(false), 5000);
+    }, 12000);
+    return () => clearInterval(interval);
+  }, []);
 
   const handleSendMessage = () => {
     if (!inputMessage.trim()) return;
@@ -153,8 +171,15 @@ function App() {
         </div>
 
       </div>
+        <NotificationBox show={showNotification} text={notificationText} />
     </ErrorBoundary>
   );
 }
+// 🌟 نافذة الإشعارات الإغرائية الذكية المتفاعلة
+const NotificationBox = ({ show, text }: { show: boolean, text: string }) => (
+  <div style={{ position: 'fixed', bottom: '30px', left: '30px', backgroundColor: '#0a0a0a', color: '#fff', border: '1px solid #d4af37', padding: '12px 20px', borderRadius: '8px', boxShadow: '0 4px 15px rgba(212,175,55,0.2)', zIndex: 99999, display: show ? 'block' : 'none', transition: 'all 0.5s ease-in-out', fontFamily: 'sans-serif', fontSize: '14px', maxWidth: '300px', direction: 'rtl' }}>
+    <span style={{ color: '#d4af37', marginLeft: '5px' }}>⚡</span> {text}
+  </div>
+);
 
 export default App;
