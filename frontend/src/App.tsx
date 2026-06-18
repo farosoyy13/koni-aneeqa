@@ -1,247 +1,160 @@
-import React, { useState, useEffect } from 'react';
-import { 
-  Sparkles, ShoppingBag, Heart, Shield, Award, Clock, 
-  Menu, X, ChevronRight, MessageCircle, Star, Send, 
-  User, CheckCircle, Bell, Eye, Share2, Filter, 
-  TrendingUp, Compass, HeartHandshake, HelpCircle, 
-  Laptop, Phone, Mail, MapPin, DollarSign, ArrowRight
-} from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React, { useState, useEffect, Suspense, lazy } from 'react';
 
-// --- Types & Interfaces ---
-interface Product {
-  id: string;
-  title: string;
-  price: number;
-  originalPrice?: number;
-  category: 'dresses' | 'abayas' | 'bags' | 'accessories';
-  image: string;
-  badge?: string;
-  rating: number;
-  reviewsCount: number;
-  isVIP?: boolean;
+// 🌟 1. تأثير التحميل الملكي (Premium Shimmer Loading) أثناء التنقل كالتلفاز
+const ShimmerLoader = () => (
+  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100vh', background: '#0a0a0a', color: '#d4af37', fontFamily: 'sans-serif' }}>
+    <div style={{ width: '50px', height: '50px', border: '3px solid #1a1a1a', borderTop: '3px solid #d4af37', borderRadius: '50%', animation: 'spin 1s linear infinite' }} />
+    <p style={{ marginTop: '20px', letterSpacing: '2px', fontSize: '14px', opacity: 0.8 }}>أناقة CHIC .. جاري تحميل الفخامة</p>
+    <style>{`@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }`}</style>
+  </div>
+);
+
+// 🌟 2. معالجة الأخطاء والانهيار الذكية (Error Boundary)
+class ErrorBoundary extends React.Component<{ children: React.ReactNode }, { hasError: boolean }> {
+  state = { hasError: false };
+  static getDerivedStateFromError() { return { hasError: true }; }
+  render() {
+    if (this.state.hasError) {
+      return (
+        <div style={{ backgroundColor: '#0a0a0a', color: '#fff', height: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', fontFamily: 'sans-serif' }}>
+          <h2 style={{ color: '#d4af37' }}>عذراً، حدث خلل في بروتوكول الحماية</h2>
+          <p>يرجى العودة إلى البوابة الرئيسية</p>
+          <button onClick={() => window.location.href = '/'} style={{ backgroundColor: '#d4af37', color: '#000', border: 'none', padding: '10px 20px', cursor: 'pointer', fontWeight: 'bold', marginTop: '10px' }}>العودة للرئيسية</button>
+        </div>
+      );
+    }
+    return this.children;
+  }
 }
 
-export default function App() {
-  // --- States ---
-  const [activeTab, setActiveTab] = useState<'all' | 'dresses' | 'abayas' | 'bags' | 'accessories'>('all');
-  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
-  const [cartCount, setCartCount] = useState(0);
-  const [favorites, setFavorites] = useState<string[]>([]);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [showConfetti, setShowConfetti] = useState(false);
-  const [chatMessage, setChatMessage] = useState('');
-  const [liveViews, setLiveViews] = useState(142);
-  const [broadcastMessage, setBroadcastMessage] = useState('✨ أهلاً بكم في منصة أناقة CHIC الملكية VIP ✨');
+function App() {
+  const [activeTab, setActiveTab] = useState('home');
+  const [fade, setFade] = useState(true);
+  const [aiOpen, setAiOpen] = useState(false);
+  const [chatCount, setChatCount] = useState(0);
+  const [messages, setMessages] = useState<{ sender: 'user' | 'ai', text: string }[]>([
+    { sender: 'ai', text: 'أهلاً بكِ في دليل الأناقة الذكي. محتارة في تنسيق ألوان إطلالتك أو تبين تعرفين مقاس ثوبك الملكي المثالي؟ اسأليني!' }
+  ]);
+  const [inputMessage, setInputMessage] = useState('');
 
-  // --- Sample Products Data ---
-  const products: Product[] = [
-    {
-      id: '1',
-      title: 'فستان سهرة ملكي مطرز بالخيوط الذهبية فاخر',
-      price: 2450,
-      originalPrice: 3800,
-      category: 'dresses',
-      image: 'https://unsplash.com',
-      badge: 'الأكثر مبيعاً',
-      rating: 4.9,
-      reviewsCount: 124,
-      isVIP: true
-    },
-    {
-      id: '2',
-      title: 'عباية مخمل سوداء فاخرة مع تطريز يدوي ملكي',
-      price: 1200,
-      category: 'abayas',
-      image: 'https://unsplash.com',
-      badge: 'VIP جديد',
-      rating: 4.8,
-      reviewsCount: 86,
-      isVIP: true
-    },
-    {
-      id: '3',
-      title: 'طقم إكسسوارات ألماس مطلي بماء الذهب عيار 21',
-      price: 850,
-      originalPrice: 1200,
-      category: 'accessories',
-      image: 'https://unsplash.com',
-      rating: 4.7,
-      reviewsCount: 42
-    },
-    {
-      id: '4',
-      title: 'حقيبة يد من الجلد الطبيعي الفاخر بتصميم كلاسيكي',
-      price: 1650,
-      category: 'bags',
-      image: 'https://unsplash.com',
-      badge: 'قطعة فريدة',
-      rating: 5.0,
-      reviewsCount: 19
-    }
-  ];
-
-  // --- Live Views Simulator ---
   useEffect(() => {
-    const interval = setInterval(() => {
-      setLiveViews(prev => prev + Math.floor(Math.random() * 5) - 2);
-    }, 4000);
-    return () => clearInterval(interval);
+    const savedCount = localStorage.getItem('chic_ai_count');
+    if (savedCount) setChatCount(parseInt(savedCount));
   }, []);
 
-  // --- Handlers ---
-  const toggleFavorite = (id: string) => {
-    setFavorites(prev => 
-      prev.includes(id) ? prev.filter(favId => favId !== id) : [...prev, id]
-    );
+  const handleTabChange = (tabName: string) => {
+    setFade(false);
+    setTimeout(() => {
+      setActiveTab(tabName);
+      setFade(true);
+    }, 200);
   };
 
-  const handleAddToCart = () => {
-    setCartCount(prev => prev + 1);
-    setShowConfetti(true);
-    setTimeout(() => setShowConfetti(false), 3000);
+  const handleSendMessage = () => {
+    if (!inputMessage.trim()) return;
+    if (chatCount >= 3) {
+      setMessages(prev => [...prev, 
+        { sender: 'user', text: inputMessage },
+        { sender: 'ai', text: '🔒 استهلكتِ استشاراتكِ المجانية الفاخرة لليوم. اشتركي الآن في العضوية الماسية للحصول على استشارات لامتناهية وتنسيق فوري مع خبير الموضة الذكي!' }
+      ]);
+      setInputMessage('');
+      return;
+    }
+    const newUserMessage = { sender: 'user', text: inputMessage };
+    const nextCount = chatCount + 1;
+    setChatCount(nextCount);
+    localStorage.setItem('chic_ai_count', nextCount.toString());
+    setMessages(prev => [...prev, newUserMessage]);
+    setInputMessage('');
+    setTimeout(() => {
+      let aiResponse = 'بناءً على أحدث صيحات الموضة الملكية، أنصحكِ بدمج الألوان الدافئة مع القطع الفاخرة المخملية لتبرزي هيبتكِ السيادية.';
+      if (inputMessage.includes('مقاس')) aiResponse = 'لتحديد مقاسك الفاخر بدقة، يرجى تزويدي بطول القامة، وسيقوم النظام فوراً بحساب القياس الملكي الملائم لجسدكِ.';
+      setMessages(prev => [...prev, { sender: 'ai', text: aiResponse }]);
+    }, 800);
   };
-
-  const filteredProducts = activeTab === 'all' 
-    ? products 
-    : products.filter(p => p.category === activeTab);
-
   return (
-    <div className="min-h-screen bg-[#0a0a0a] text-white font-sans antialiased selection:bg-[#d4af37] selection:text-black">
-      
-      {/* 👑 شريط الإعلان الملكي الأول الممتد والأنيق */}
-      <div style={{ background: 'linear-gradient(90deg, #d4af37, #f3e5ab, #d4af37)', color: '#000', padding: '10px 0', overflow: 'hidden', whiteSpace: 'nowrap', fontWeight: 'bold', fontSize: '14px', borderBottom: '2px solid #000', boxShadow: '0 4px 20px rgba(212,175,55,0.4)' }}>
-        <marquee direction="right" scrollamount="6">
-          ✨ أهلاً بكم في منصة "أناقة CHIC" الفاخرة - أول منصة سعودية وعربية حية متكاملة لبيع وتأجير الفساتين والعبايات الملكية الفاخرة بنسبة 100% تجربة تسوق آمنة وضمان ذهبي صارم ✨
-        </marquee>
-      </div>
+    <ErrorBoundary>
+      <div style={{ backgroundColor: '#070707', color: '#ffffff', minHeight: '100vh', fontFamily: 'sans-serif', position: 'relative', overflowX: 'hidden' }}>
+        
+        <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '20px 40px', borderBottom: '1px solid #1a1a1a', background: '#0a0a0a' }}>
+          <div style={{ fontSize: '22px', fontWeight: 'bold', color: '#d4af37', letterSpacing: '1px' }}>أناقة CHIC</div>
+          <nav style={{ display: 'flex', gap: '20px' }}>
+            {['home', 'secret-club', 'auctions', 'elite', 'payment'].map((tab) => (
+              <button key={tab} onClick={() => handleTabChange(tab)} style={{ background: 'none', border: 'none', color: activeTab === tab ? '#d4af37' : '#888', cursor: 'pointer', fontSize: '15px', fontWeight: activeTab === tab ? 'bold' : 'normal', transition: 'color 0.3s' }}>
+                {tab === 'home' && 'الرئيسية'}
+                {tab === 'secret-club' && 'نادي الأناقة السري'}
+                {tab === 'auctions' && 'المزادات السيادية'}
+                {tab === 'elite' && 'مبيعات النخبة'}
+                {tab === 'payment' && 'بوابة الدفع'}
+              </button>
+            ))}
+          </nav>
+        </header>
 
-      {/* 📜 الشريط الجديد الثاني: عرض الفساتين المستعملة */}
-      <div style={{ background: '#d4af37', color: '#000', padding: '8px 0', overflow: 'hidden', whiteSpace: 'nowrap', fontWeight: 'bold', fontSize: '13px', borderBottom: '1px solid #000' }}>
-        <marquee direction="right" scrollamount="4">
-          ✨ عندك فستان زواج ولبستية مرة واحدة وصعبة تلبسه بزواج آخر وراميتة بالدولاب او عباية او شنطة نظيفة وماتبينهم؟ أعرضيهم في موقع "أناقة CHIC" يضمن لك البيع بأسرع وقت وبأعلى عوائد استثمارية للأعضاء! ✨
-        </marquee>
-      </div>
-
-      {/* 🧭 الهيدر الفاخر ونظام التنقل الرئيسي */}
-      <header className="sticky top-0 z-50 bg-[#0a0a0a]/90 backdrop-blur-md border-b border-[#d4af37]/20 px-4 py-4 max-w-7xl mx-auto flex items-center justify-between">
-        <div className="flex items-center gap-3">
-          <div className="relative p-2.5 bg-gradient-to-br from-[#d4af37] to-[#aa8416] rounded-xl shadow-[0_0_15px_rgba(212,175,55,0.3)]">
-            <Sparkles className="w-6 h-6 text-black" />
-          </div>
-          <div>
-            <h1 className="text-xl md:text-2xl font-extrabold tracking-wider bg-gradient-to-r from-[#d4af37] via-[#f3e5ab] to-[#aa8416] bg-clip-text text-transparent">
-              أناقة CHIC
-            </h1>
-            <p className="text-[9px] text-[#d4af37] font-semibold tracking-widest mt-0.5">THE ROYAL LUXURY</p>
-          </div>
-        </div>
-
-        {/* أزرار سلة التسوق والمفضلة وقائمة الجوال */}
-        <div className="flex items-center gap-4">
-          <button className="relative p-2 hover:bg-white/5 rounded-lg transition-colors text-[#d4af37]">
-            <Heart className="w-6 h-6" />
-            {favorites.length > 0 && (
-              <span className="absolute -top-1 -right-1 bg-red-600 text-white text-xs w-4 h-4 rounded-full flex items-center justify-center font-bold">
-                {favorites.length}
-              </span>
-            )}
-          </button>
-
-          <button className="relative p-2 bg-white/5 hover:bg-white/10 rounded-lg transition-colors border border-white/10 text-white">
-            <ShoppingBag className="w-6 h-6" />
-            {cartCount > 0 && (
-              <span className="absolute -top-1 -right-1 bg-[#d4af37] text-black text-xs w-4 h-4 rounded-full flex items-center justify-center font-bold">
-                {cartCount}
-              </span>
-            )}
-          </button>
-        </div>
-      </header>
-
-      {/* 🌟 البطل والواجهة الترحيبية الملكية الفاخرة */}
-      <section className="relative overflow-hidden py-20 px-4 max-w-7xl mx-auto text-center">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(212,175,55,0.1)_0%,transparent_65%)] pointer-events-none" />
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#d4af37]/10 border border-[#d4af37]/30 text-[#d4af37] mb-6 text-sm font-semibold">
-          <Award className="w-4 h-4" /> منصة الأزياء الراقية الأولى في الشرق الأوسط
-        </div>
-        <h2 className="text-4xl md:text-6xl font-black mb-6 leading-tight max-w-4xl mx-auto">
-          تألقي كالملكات في أرقى <span className="bg-gradient-to-r from-[#d4af37] to-[#f3e5ab] bg-clip-text text-transparent">المناسبات والاحتفالات</span>
-        </h2>
-        <p className="text-gray-400 text-base md:text-lg max-w-2xl mx-auto mb-10 leading-relaxed">
-          ننتقي لكِ بعناية فائقة فساتين السهرة والزفاف الفاخرة والعبايات المصممة بأيدي أشهر المصممين العالميين والمحليين لتليق بمستوى تطلعاتكِ الفخمة.
-        </p>
-      </section>
-
-      {/* 🛍️ قسم عرض المنتجات التفاعلي المطور وبطاقات العرض */}
-      <section className="py-12 px-4 max-w-7xl mx-auto">
-        <div className="flex flex-wrap justify-center gap-2 md:gap-4 mb-12">
-          {[
-            { id: 'all', label: 'الكل الملكي' },
-            { id: 'dresses', label: 'فساتين فاخرة' },
-            { id: 'abayas', label: 'عبايات ملكية' },
-            { id: 'bags', label: 'حقائب نادرة' },
-            { id: 'accessories', label: 'مجورات وألماس' }
-          ].map(tab => (
-            <button
-              key={tab.id}
-              onClick={() => setActiveTab(tab.id as any)}
-              className={`px-5 py-2.5 rounded-xl font-bold transition-all border ${
-                activeTab === tab.id
-                  ? 'bg-gradient-to-r from-[#d4af37] to-[#aa8416] text-black border-[#d4af37] shadow-[0_4px_15px_rgba(212,175,55,0.25)]'
-                  : 'bg-[#121212] text-gray-400 border-white/5 hover:border-white/10 hover:text-white'
-              }`}
-            >
-              {tab.label}
-            </button>
-          ))}
-        </div>
-
-        {/* شبكة المنتجات الذكية الراقية */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {filteredProducts.map(product => (
-            <div key={product.id} className="group relative bg-[#121212] border border-white/5 hover:border-[#d4af37]/40 rounded-2xl overflow-hidden transition-all duration-300 flex flex-col shadow-xl">
-              <div className="relative aspect-[3/4] overflow-hidden bg-zinc-900">
-                <img 
-                  src={product.image} 
-                  alt={product.title}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                />
-                {product.badge && (
-                  <span className="absolute top-3 right-3 bg-gradient-to-r from-[#d4af37] to-[#aa8416] text-black text-xs font-black px-2.5 py-1 rounded-md shadow-lg">
-                    {product.badge}
-                  </span>
-                )}
-                <button 
-                  onClick={() => toggleFavorite(product.id)}
-                >
-                  <Heart className={`w-6 h-6 ${favorites.includes(product.id) ? 'text-red-600' : 'text-white'}`} />
-                </button>
+        <main style={{ padding: '40px', opacity: fade ? 1 : 0, transition: 'opacity 0.2s ease-in-out', minHeight: '60vh' }}>
+          <Suspense fallback={<ShimmerLoader />}>
+            {activeTab === 'home' && (
+              <div style={{ textAlign: 'center', marginTop: '50px' }}>
+                <h1 style={{ color: '#d4af37', fontSize: '42px', marginBottom: '20px' }}>بروتوكولات حماية سيادية للأزياء الفاخرة</h1>
+                <p style={{ color: '#aaa', fontSize: '18px' }}>مرحباً بك في المنصة النخبوية الأولى عالمياً.</p>
               </div>
-              <div className="p-4 flex flex-col flex-1">
-                <h3 className="text-lg font-bold mb-2">{product.title}</h3>
-                <p className="flex items-baseline gap-1">
-                  <span className="text-lg font-extrabold text-[#d4af37]">{product.price} SAR</span>
-                  {product.originalPrice && <span className="text-sm line-through text-gray-500">{product.originalPrice} SAR</span>}
-                </p>
-                <div className="flex items-center justify-between mt-3">
-                  <button 
-                    className="px-4 py-2 rounded-lg bg-[#d4af37] text-black font-bold transition-all hover:bg-[#aa8416]" 
-                    onClick={handleAddToCart}
-                  >
-                    أضف إلى السلة
-                  </button>
-                  <div className="flex items-center gap-1">
-                    <Star className="w-5 h-5 text-[#d4af37]" />
-                    <span className="text-sm font-bold">{product.rating}</span>
-                    <span className="text-xs text-gray-500">({product.reviewsCount})</span>
+            )}
+            
+            {activeTab === 'secret-club' && (
+              <div style={{ maxWidth: '800px', margin: '0 auto', background: '#0a0a0a', padding: '30px', borderRadius: '8px', border: '1px solid #222' }}>
+                <h2 style={{ color: '#d4af37' }}>👑 نادي الأناقة السري</h2>
+                <p style={{ color: '#ccc', lineHeight: '1.8' }}>هذه المجموعة الملكية النادرة محجوبة عن العامة. اشترك في العضوية الماسية لتفتح لك القطع فوراً وتستمتع بمزايا لا يحظى بها سواك.</p>
+                <button onClick={() => handleTabChange('payment')} style={{ marginTop: '20px', backgroundColor: '#d4af37', color: '#000', padding: '12px 30px', border: 'none', borderRadius: '4px', fontWeight: 'bold', cursor: 'pointer' }}>طلب انضمام فوري</button>
+              </div>
+            )}
+
+            {activeTab === 'auctions' && <div style={{ textAlign: 'center' }}><h2>🔨 المزادات السيادية المفتوحة حالياً</h2><p style={{ color: '#888' }}>لا توجد مزادات نشطة للعامة في هذه اللحظة.</p></div>}
+            {activeTab === 'elite' && <div style={{ textAlign: 'center' }}><h2>💎 مبيعات النخبة المغلقة</h2><p style={{ color: '#888' }}>مخصصة لأصحاب الدعوات الخاصة فقط.</p></div>}
+            
+            {activeTab === 'payment' && (
+              <div style={{ maxWidth: '500px', margin: '0 auto', textAlign: 'center', background: '#0a0a0a', padding: '40px', borderRadius: '12px', border: '1px solid #d4af37' }}>
+                <h2 style={{ color: '#d4af37', marginBottom: '30px' }}>بوابة الترقية الماسية الآمنة</h2>
+                <p style={{ marginBottom: '30px', color: '#aaa' }}>اضغط على الزر أدناه لإرسال طلب الترقية الفورية والربط بنظام الدفع السيادي للمشروع.</p>
+                <button onClick={() => alert('تم تسجيل طلب الترقية الماسية بنجاح! سيتم تحويلك لبوابة الدفع السيادية الآمنة فور مراجعة الحساب.')} style={{ background: '#d4af37', color: '#000', padding: '15px 40px', border: 'none', borderRadius: '30px', fontWeight: 'bold', display: 'inline-block', boxShadow: '0 4px 15px rgba(212,175,55,0.3)', cursor: 'pointer', fontSize: '16px' }}>💳 تفعيل العضوية الماسية الآن</button>
+              </div>
+            )}
+          </Suspense>
+        </main>
+
+        <div style={{ position: 'fixed', bottom: '30px', right: '30px', zIndex: 9999 }}>
+          <button onClick={() => setAiOpen(!aiOpen)} style={{ backgroundColor: '#d4af37', color: '#000', border: 'none', width: '60px', height: '60px', borderRadius: '50%', cursor: 'pointer', fontSize: '24px', boxShadow: '0 4px 20px rgba(212,175,55,0.4)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            {aiOpen ? '✕' : '✨'}
+          </button>
+
+          {aiOpen && (
+            <div style={{ position: 'absolute', bottom: '80px', right: '0', width: '350px', height: '450px', backgroundColor: '#0a0a0a', border: '1px solid #d4af37', borderRadius: '12px', boxShadow: '0 10px 30px rgba(0,0,0,0.5)', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
+              <div style={{ backgroundColor: '#111', padding: '15px', borderBottom: '1px solid #222', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <span style={{ color: '#d4af37', fontWeight: 'bold' }}>✦ مستشار الأناقة الذكي</span>
+                <span style={{ fontSize: '12px', color: '#888' }}>المتبقي لكِ: {Math.max(0, 3 - chatCount)} استشارات مجانية</span>
+              </div>
+              
+              <div style={{ flex: 1, padding: '15px', overflowY: 'auto', display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                {messages.map((msg, i) => (
+                  <div key={i} style={{ alignSelf: msg.sender === 'user' ? 'flex-end' : 'flex-start', backgroundColor: msg.sender === 'user' ? '#d4af37' : '#1e1e1e', color: msg.sender === 'user' ? '#000' : '#fff', padding: '10px 14px', borderRadius: '8px', maxWidth: '85%', fontSize: '14px', lineHeight: '1.5' }}>
+                    {msg.text}
+                    {chatCount >= 3 && msg.text.includes('🔒') && (
+                      <button onClick={() => handleTabChange('payment')} style={{ marginTop: '8px', width: '100%', padding: '6px', backgroundColor: '#d4af37', border: 'none', color: '#000', fontWeight: 'bold', borderRadius: '4px', cursor: 'pointer' }}>👑 انضمي للملكية الآن</button>
+                    )}
                   </div>
-                </div>
+                ))}
+              </div>
+
+              <div style={{ padding: '10px', borderTop: '1px solid #222', display: 'flex', gap: '8px', backgroundColor: '#111' }}>
+                <input type="text" value={inputMessage} onChange={(e) => setInputMessage(e.target.value)} onKeyDown={(e) => e.key === 'Enter' && handleSendMessage()} placeholder="اسألي عن مقاسك أو تنسيق ألوانكِ..." style={{ flex: 1, backgroundColor: '#1a1a1a', border: '1px solid #333', borderRadius: '4px', padding: '8px 12px', color: '#fff', outline: 'none', fontSize: '14px' }} />
+                <button onClick={handleSendMessage} style={{ backgroundColor: '#d4af37', color: '#000', border: 'none', padding: '8px 16px', borderRadius: '4px', fontWeight: 'bold', cursor: 'pointer' }}>إرسال</button>
               </div>
             </div>
-          ))}
+          )}
         </div>
-      </section>
-    </div>
+
+      </div>
+    </ErrorBoundary>
   );
 }
+
+export default App;
