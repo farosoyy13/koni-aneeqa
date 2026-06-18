@@ -17,7 +17,7 @@ import Reviews from './pages/Reviews';
 import NotFound from './pages/not-found';
 import ProtectedRoute from './ProtectedRoute';
 
-// 🛡️ صمام الأمان العالمي لحظر الشاشات البيضاء وإنعاش الأكواد تلقائياً
+// 🛡️ صمام الأمان العالمي لحظر الشاشات البيضاء وإنعاش الأكواد تلقائياً وبشكل فوري
 class ErrorBoundary extends React.Component<{ children: React.ReactNode }, { hasError: boolean }> {
   constructor(props: { children: React.ReactNode }) {
     super(props);
@@ -29,7 +29,7 @@ class ErrorBoundary extends React.Component<{ children: React.ReactNode }, { has
   }
 
   componentDidCatch(error: any, errorInfo: any) {
-    console.error("[رادار الأمان]: تم رصد عطل مفاجئ وتم تفعيل الإنعاش الآلي:", error, errorInfo);
+    console.error("[رادار الأمان]: تم رصد عطل مفاجئ وتم تفعيل الإنعاش الآلي بنجاح:", error, errorInfo);
   }
 
   render() {
@@ -123,7 +123,7 @@ function Layout() {
       fontFamily: '"Cairo", sans-serif'
     }}>
       
-      {/* شريط التحذير التلقائي من انقطاع الشبكة */}
+      {/* شريط التحذير التلقائي من انقطاع الشبكة لحفظ البيانات */}
       {!isOnline && (
         <div style={{ background: '#ff0000', color: '#fff', padding: '8px', fontSize: '12px', fontWeight: 'bold', zIndex: 10000, position: 'fixed', width: '100%', top: 0, textAlign: 'center' }}>
           ⚠️ تم قطع الاتصال بالشبكة! رادار الأمان يحفظ عملياتك حالياً، يرجى استعادة الاتصال فوراً.
@@ -182,7 +182,7 @@ function Layout() {
             <Route path="/contact" element={<Contact />} />
             <Route path="/reviews" element={<Reviews />} />
             
-            {/* حماية غرفة صاحب الموقع بقفل الهوية الصارم والمنفرد */}
+            {/* hماية غرفة صاحب الموقع بقفل الهوية الصارم والمنفرد */}
             <Route path="/admin" element={
               <ProtectedRoute>
                 <AdminDashboard />
