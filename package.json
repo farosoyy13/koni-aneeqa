@@ -9,7 +9,7 @@
     "dev": "pnpm dev:frontend & pnpm dev:backend",
     "build": "cd frontend && pnpm build",
     "preview": "cd frontend && pnpm preview",
-    "lint": "cd frontend && pnpm lint"
+    "lint": "cd frontend && pnpm lint & cd backend && pnpm lint"
   },
   "engines": {
     "node": ">=22.16.0",
