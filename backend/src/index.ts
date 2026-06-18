@@ -31,3 +31,5 @@ app.get("/api/auction/live", async (c) => {
     time_left: "04:52"
   });
 });
+
+export default app;
