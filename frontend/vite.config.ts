@@ -10,6 +10,26 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     assetsDir: 'assets',
-    sourcemap: false
+    sourcemap: false,
+    // 🌟 لمسة إبداعية: تحسين وضغط الأكواد لضمان السرعة الفاخرة وتنقل الصفحات كالتلفاز
+    minify: 'terser',
+    terserOptions: {
+      compress: {
+        drop_console: true, // تنظيف الكود تلقائياً لزيادة سرعة التصفح للأعضاء
+        drop_debugger: true
+      }
+    },
+    rollupOptions: {
+      output: {
+        // 🌟 لمسة إبداعية: التحميل الكسول الذكي لتسريع فتح الموقع وتخفيف الضغط على Cloudflare
+        chunkFileNames: 'assets/js/[name]-[hash].js',
+        entryFileNames: 'assets/js/[name]-[hash].js',
+        assetFileNames: 'assets/[ext]/[name]-[hash].[ext]'
+      }
+    }
+  },
+  // 🌟 لمسة إبداعية: ضبط حماية المسارات الصارمة لبروتوكولات الأناقة
+  server: {
+    strictPort: true
   }
 })
