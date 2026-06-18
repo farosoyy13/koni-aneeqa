@@ -5,17 +5,17 @@ import reviewsRouter from "./reviews";
 import contactRouter from "./contact";
 import ordersRouter from "./orders";
 
-// 1. إنشاء موجه الروابط الملكي لـ Cloudflare
+// 1. إنشاء موجه الروابط
 const router = new Hono();
 
-// 2. ربط مسارات وأزرار المتجر الحالية لتتوافق مع Hono
+// 2. ربط مسارات المتجر
 router.route("/health", healthRouter);
 router.route("/dresses", dressesRouter);
 router.route("/reviews", reviewsRouter);
 router.route("/contact", contactRouter);
 router.route("/orders", ordersRouter);
 
-// 3. [إضافة ملكية] مسار تتبع الطلبات الذكي المطور لتجربة زبائن فاخرة
+// 3. مسار تتبع الطلبات
 router.get("/orders/track/:id", async (c) => {
   const orderId = c.req.param("id");
   return c.json({
@@ -25,7 +25,7 @@ router.get("/orders/track/:id", async (c) => {
   });
 });
 
-// 4. [بدعة تجارية مجرمة] مسار تذاكر الأولوية للشحن الخارق والمدفوع
+// 4. مسار تذاكر الأولوية للشحن
 router.post("/orders/priority/:id", async (c) => {
   const orderId = c.req.param("id");
   return c.json({
@@ -35,7 +35,7 @@ router.post("/orders/priority/:id", async (c) => {
   });
 });
 
-// 5. [اختراع بهلواني] مسار نادي الأناقة السري والقطع الفاخرة المحجوبة
+// 5. مسار نادي الأناقة السري
 router.get("/dresses/vip/secret-collection", async (c) => {
   return c.json({
     status: "locked",
@@ -43,5 +43,5 @@ router.get("/dresses/vip/secret-collection", async (c) => {
   });
 });
 
-// 6. تصدير الروابط لتعمل بنجاح داخل الـ Backend
+// 6. تصدير الروابط
 export default router;
