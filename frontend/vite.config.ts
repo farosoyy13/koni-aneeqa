@@ -1,34 +1,37 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
+import { viteStaticCopy } from 'vite-plugin-static-copy'
 
-// 🟢 تم تحديث التكوين البرمجي لـ Vite لمنع تعارض الحزم وتثبيت التنسيقات الملكية بنجاح 100%
 export default defineConfig({
   base: './',
   plugins: [
-    react()
+    react(),
+    // نسخ ملفات التوجيه الخاصة بالاستضافة إلى مجلد البناء النهائي
+    viteStaticCopy({
+      targets: [
+        { src: '_redirects', dest: '.' }
+      ]
+    })
   ],
   build: {
     outDir: 'dist',
     assetsDir: 'assets',
     sourcemap: false,
-    // 🌟 لمسة إبداعية: تحسين وضغط الأكواد لضمان السرعة الفاخرة وتنقل الصفحات كالتلفاز
-    minify: 'terser',
-    terserOptions: {
-      compress: {
-        drop_console: true, // تنظيف الكود تلقائياً لزيادة سرعة التصفح للأعضاء
-        drop_debugger: true
-      }
-    },
+    // تنظيف الكود وتحسين الأداء عند بناء المشروع للإنتاج
+    minify: 'esbuild', 
     rollupOptions: {
       output: {
-        // 🌟 لمسة إبداعية: التحميل الكسول الذكي لتسريع فتح الموقع وتخفيف الضغط على Cloudflare
+        // تقسيم الملفات لضمان التخزين المؤقت (Caching) الفعال
         chunkFileNames: 'assets/js/[name]-[hash].js',
         entryFileNames: 'assets/js/[name]-[hash].js',
         assetFileNames: 'assets/[ext]/[name]-[hash].[ext]'
       }
     }
   },
-  // 🌟 لمسة إبداعية: ضبط حماية المسارات الصارمة لبروتوكولات الأناقة
+  // مسح ملفات السجل (Console) والتصحيح تلقائياً باستخدام esbuild الأسرع
+  esbuild: {
+    drop: ['console', 'debugger']
+  },
   server: {
     strictPort: true
   }
