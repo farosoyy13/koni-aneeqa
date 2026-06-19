@@ -6,7 +6,7 @@ settings:
 
 importers:
 
-  .:
+  frontend:
     dependencies:
       firebase:
         specifier: ^10.14.1
@@ -38,18 +38,12 @@ importers:
       helmet:
         specifier: ^8.0.0
         version: 8.0.0
-      express-rate-limit:
-        specifier: ^7.5.0
-        version: 7.5.0
       crypto-js:
         specifier: ^4.2.0
         version: 4.2.0
       "@tanstack/react-table":
         specifier: ^8.20.5
         version: 8.20.5
-      jsonwebtoken:
-        specifier: ^9.0.2
-        version: 9.0.2
       recharts:
         specifier: ^2.12.7
         version: 2.12.7
@@ -90,12 +84,22 @@ importers:
       '@types/crypto-js':
         specifier: ^4.2.2
         version: 4.2.2
-      '@types/jsonwebtoken':
-        specifier: ^9.0.6
-        version: 9.0.6
       '@types/uuid':
         specifier: ^10.0.0
         version: 10.0.0
       '@types/validator':
         specifier: ^13.12.2
         version: 13.12.2
+
+  backend:
+    dependencies:
+      express-rate-limit:
+        specifier: ^7.5.0
+        version: 7.5.0
+      jsonwebtoken:
+        specifier: ^9.0.2
+        version: 9.0.2
+    devDependencies:
+      '@types/jsonwebtoken':
+        specifier: ^9.0.6
+        version: 9.0.6
