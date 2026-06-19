@@ -1,4 +1,3 @@
-// خدمة إرسال التنبيهات لمالك أناقة CHIC لحماية قاعدة البيانات من الامتلاء
 export interface OrderDetails {
   orderId: string;
   customerName: string;
@@ -19,11 +18,15 @@ Total: ${order.totalAmount} SAR
 
     console.log("جاري إرسال التنبيه الخارجي...", message);
 
-    // ربط فوري ومجاني عبر الـ Webhook (لا يستهلك قاعدة بيانات الموقع)
-    const response = await fetch('YOUR_FREE_WEBHOOK_URL_HERE', {
+    // إرسال التنبية إلى قناة تيليجرام @FA7A0 عبر بوتك الخاص
+    const response = await fetch('https://api.telegram.org/bot<YOUR_BOT_TOKEN>/sendMessage', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ text: message })
+      body: JSON.stringify({
+        chat_id: '@FA7A0',
+        text: message,
+        parse_mode: 'Markdown'
+      })
     });
 
     return true;
