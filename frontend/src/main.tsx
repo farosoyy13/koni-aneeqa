@@ -5,7 +5,8 @@ import './index.css';
 
 // استيراد كافة الصفحات الـ 10 ومكونات الأمان السيادية للمنصة
 import Home from './pages/Home';
-import AboutView from './AboutView';
+import AboutView from "./components/Aboutview";
+
 import Catalog from './pages/Catalog';
 import DressDetails from './pages/DressDetails';
 import Cart from './pages/Cart';
