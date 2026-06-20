@@ -20,5 +20,11 @@
     "luxury-fashion",
     "e-commerce",
     "secure-auction"
-  ]
+  ],
+  "dependencies": {
+    "@vitejs/plugin-react": "^6.0.2",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7",
+    "vite": "^8.0.16"
+  }
 }
