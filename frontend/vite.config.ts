@@ -33,6 +33,8 @@ export default defineConfig({
     drop: ['console', 'debugger']
   },
   server: {
-    strictPort: true
+    strictPort: true,
+    // تعطيل طبقة أخطاء HMR أثناء التطوير (اختياري)
+    hmr: { overlay: false }
   }
 })
