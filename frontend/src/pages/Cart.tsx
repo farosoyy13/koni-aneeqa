@@ -14,7 +14,7 @@ export function Cart() {
         <div className="w-24 h-24 bg-[#d4af37]/10 rounded-full flex items-center justify-center mb-6 animate-pulse">
           <ShoppingBag size={48} className="text-[#d4af37]" />
         </div>
-        <h2 className="text-2xl font-bold text-white mb-4">سلة Mشترياتكِ فارغة</h2>
+        <h2 className="text-2xl font-bold text-white mb-4">سلة مشترياتكِ فارغة</h2>
         <p className="text-white/60 mb-8 text-center max-w-md">لم تقومي بإضافة أي منتجات بعد. تألقي بأناقة واكتشفي مجموعتنا الفاخرة.</p>
         <Link href="/dresses">
           <Button size="lg" className="rounded-full px-8 font-bold bg-[#d4af37] text-black hover:bg-[#b8860b]">تصفح التشكيلة</Button>
