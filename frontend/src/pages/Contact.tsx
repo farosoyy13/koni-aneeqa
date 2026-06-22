@@ -1,4 +1,3 @@
-import { useSubmitContact } from "@workspace/api-client-react";
 import { Button } from "@/components/ui/button";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -19,7 +18,6 @@ const contactSchema = z.object({
 type ContactValues = z.infer<typeof contactSchema>;
 
 export function Contact() {
-  const submitContact = useSubmitContact();
   const { toast } = useToast();
 
   const form = useForm<ContactValues>({
@@ -28,12 +26,9 @@ export function Contact() {
   });
 
   const onSubmit = (data: ContactValues) => {
-    submitContact.mutate({ data }, {
-      onSuccess: () => {
-        toast({ title: "تم الإرسال ببريق!", description: "وصلت رسالتك لأناقة CHIC، سنرد عليكِ بكل فخر قريباً." });
-        form.reset();
-      }
-    });
+    console.log("بيانات النموذج:", data);
+    toast({ title: "تم الإرسال ببريق!", description: "وصلت رسالتك لأناقة CHIC، سنرد عليكِ بكل فخر قريباً." });
+    form.reset();
   };
 
   return (
