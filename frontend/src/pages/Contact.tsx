@@ -50,12 +50,15 @@ export function Contact() {
           <div className="bg-[#111] border border-[#d4af37]/30 rounded-3xl p-8 md:p-12 shadow-[0_0_30px_rgba(212,175,55,0.05)]">
             <h2 className="text-2xl font-bold font-serif text-[#d4af37] mb-8">معلومات التواصل</h2>
             <div className="space-y-8">
-              {[ { icon: MapPin, title: "المعرض", text: "الرياض، المملكة العربية السعودية" },
-                 { icon: Phone, title: "الهاتف", text: "+966 50 XXX XXXX" },
-                 { icon: Mail, title: "البريد", text: "hello@anaqachic.com" } ].map((item, i) => (
-                <div key={i} className="flex items-start gap-4 group">
-                  <div className="w-12 h-12 rounded-full bg-[#050505] flex items-center justify-center border border-[#d4af37]/50 text-[#d4af37] group-hover:scale-110 transition-transform">
-                    <item.icon size={20} />
+              {[
+    { icon: MapPin, title: "المعرض", text: "الرياض، المملكة العربية السعودية" },
+    { icon: Phone, title: "☎️ واتساب", text: "00966536667222 / 00966507882771" },
+    { icon: Mail, title: "البريد", text: "kal6667222@gmail.com" },
+    { icon: Sparkles, title: "سناب شات", text: "pmp.u" },
+  ].map((item, i) => (
+    <div key={i} className="flex items-start gap-4 group">
+      <div className="w-12 h-12 rounded-full bg-[#050505] flex items-center justify-center border border-[#d4af37]/50 text-[#d4af37] group-hover:scale-110 transition-transform">
+        <item.icon size={20} />
                   </div>
                   <div>
                     <h3 className="font-bold text-[#d4af37]">{item.title}</h3>
