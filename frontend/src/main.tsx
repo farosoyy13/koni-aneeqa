@@ -7,13 +7,13 @@ import './index.css';
 import Home from './pages/Home';
 import AboutView from './AboutView'; // 🎯 تم تعديل المسار هنا إلى مكانه النظامي والرسمي الجديد
 
-import Catalog from './pages/Catalog';
-import DressDetails from './pages/DressDetails';
-import Cart from './pages/Cart';
-import Checkout from './pages/Checkout';
+import { Catalog } from './pages/Catalog';
+import { DressDetails } from './pages/DressDetails';
+import { Cart } from './pages/Cart';
+import { Checkout } from './pages/Checkout';
 import LoginPage from './pages/LoginPage';
 import AdminDashboard from './pages/AdminDashboard';
-import Contact from './pages/Contact';
+import { Contact } from './pages/Contact';
 import Reviews from './pages/Reviews';
 import NotFound from './pages/not-found';
 import ProtectedRoute from './ProtectedRoute';
