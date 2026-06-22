@@ -2,13 +2,14 @@ import React, { useState, useEffect, startTransition } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-// قاعدة بيانات ذكية ومقسمة لفروع داخلية متطابقة مع خريطة فهد الشمري بالضبط
-const CATEGORIES_TREE: Record<string, string[]> = {
-  'الجيل الذهبي': ['جلابيات فاخرة', 'شالات ملكية'],
-  'شناط وأحذية واكسسوارات': ['حقائب سهرة', 'أحذية مخمل', 'اكسسوارات ذهبية']
-};
+// 🎯 الاستدعاء الصارم والصحيح داخل الأقواس لتطابق نظام الصفحات الـ 5 حقتك 100% بدون لمسها
+import { Catalog } from './pages/Catalog';
+import { DressDetails } from './pages/DressDetails';
+import { Cart } from './pages/Cart';
+import { Checkout } from './pages/Checkout';
+import { Contact } from './pages/Contact';
 
-const MAIN_CATEGORIES = ['الكل', 'فساتين سهرة', 'فساتين ناعمة', 'فساتين مناسبات', 'أحدث الموديلات', 'الجيل الذهبي', 'بنات (2-15 سنة)', 'شناط وأحذية واكسسوارات'];
+const MAIN_CATEGORIES = ['الكل', 'فساتين سهرة', 'فساتين ناعمة', 'فساتين مناسبات', 'أحدث الموديلات', 'الجيل الذهبي', 'بنات (2-15 سنة)', 'حراج أناقة CHIC 🎰'];
 
 const INITIAL_COMMENTS = [
   { id: 1, name: 'سارة القحطاني', review: 'فستان السهرة المطرز يجنن وفخامته خيال وعن تجربة الشراء أنصحكم فيه بشدة! 😍' },
@@ -16,12 +17,10 @@ const INITIAL_COMMENTS = [
   { id: 3, name: 'أمل العنزي', review: 'أجمل متجر تعاملت معه، الفساتين الناعمة خاماتها أصلية ومريحة 💎' }
 ];
 
-// تعديل التصدير الرسمي ليكون Default ليطابق الـ 5 صفحات حقتك 100% بدون تعديلها
 export default function App() {
   const [currentChannel, setCurrentChannel] = useState(0);
   const [activeGate, setActiveGate] = useState('gate1');
   const [selectedCat, setSelectedCat] = useState('الكل');
-  const [selectedSub, setSelectedSub] = useState('الكل');
   const [conditionFilter, setConditionFilter] = useState('الكل');
   const [isStealthMode, setIsStealthMode] = useState(false);
   const [password, setPassword] = useState('');
@@ -52,8 +51,8 @@ export default function App() {
   return (
     <div className={`fixed inset-0 w-screen h-screen bg-[#050505] text-white font-sans overflow-hidden select-none antialiased transition-opacity duration-500 ${tvFade ? 'opacity-0' : 'opacity-100'}`} dir="rtl">
       
-      {/* 👤 الزر المخفي جِدّاً لـ وضع الشبح السري */}
-      <div onClick={() => { setIsStealthMode(true); triggerChannelChange(2); toast.success('👤 تم تفعيل وضع الشبح المخفي للرقابة!'); }} className="absolute top-0 left-0 w-2 h-2 bg-transparent cursor-pointer z-50 hover:bg-[#d4af37]/5" />
+      {/* 👤 الزر المخفي جِدّاً لـ وضع الشبح السري للمالك فهد */}
+      <div onClick={() => { setIsStealthMode(true); triggerChannelChange(2); toast.success('👤 تم تفعيل وضع الشبح المخفي للرقابة الإدارية!'); }} className="absolute top-0 left-0 w-2 h-2 bg-transparent cursor-pointer z-50 hover:bg-[#d4af37]/5" />
 
       {/* 🎀 شريطان متحركان علويان */}
       <div className="fixed top-0 inset-x-0 z-50 flex flex-col shadow-2xl">
@@ -74,7 +73,7 @@ export default function App() {
         <div className="w-full h-full flex flex-col items-center justify-center p-6 bg-radial from-[#0d0d0d] to-[#050505] pt-20">
           <div className="text-center mb-6 animate-pulse">
             <h1 className="text-2xl md:text-4xl font-bold text-[#d4af37] font-serif mb-2">بسم الله الرحمن الرحيم</h1>
-            <p className="text-white/50 text-xs">منصة "أناقة CHIC" الفاخرة لفساتين السهرة. مستند الحماية والأمان مطبق بالكامل.</p>
+            <p className="text-white/50 text-xs">منصة "أناقة CHIC" لفساتين السهرة. مستند الأمان مطبق بالكامل لحماية حلالك.</p>
           </div>
           <div className="w-full max-w-md bg-[#0b0b0b] rounded-2xl border border-[#d4af37]/30 p-8 shadow-2xl">
             <form onSubmit={(e) => { e.preventDefault(); if(password==='fahad123') triggerChannelChange(1); }} className="space-y-4">
@@ -92,7 +91,7 @@ export default function App() {
           <div className="flex flex-col lg:flex-row justify-between items-center border-b border-white/5 pb-2 gap-2">
             <div className="flex flex-wrap gap-1 bg-[#0b0b0b] p-1 rounded-xl border border-white/5 text-[10px] font-bold">
               {MAIN_CATEGORIES.map(cat => (
-                <button key={cat} onClick={() => setSelectedCat(cat)} className={`px-2.5 py-1.5 rounded-lg transition-all ${selectedCat === cat ? 'bg-[#d4af37] text-black font-black' : 'text-white/60 hover:text-white'}`}>{cat}</button>
+                <button key={cat} onClick={() => { if(cat.includes('حراج')) { triggerChannelChange(3); } else { setSelectedCat(cat); } }} className={`px-2.5 py-1.5 rounded-lg transition-all ${selectedCat === cat ? 'bg-[#d4af37] text-black font-black' : 'text-white/60 hover:text-white'}`}>{cat}</button>
               ))}
             </div>
             <div className="bg-gradient-to-r from-red-950/40 to-[#110f08] border border-[#d4af37]/30 rounded-xl px-3 py-1 text-center animate-pulse">
@@ -133,7 +132,7 @@ export default function App() {
                   تحت راية الملك سلمان وعضيده محمد بن سلمان، نسير بعز وفخر نحو أمجاد لا تنتهي. حفظ الله ملوكنا الأوفياء ودام عز وطننا الشامخ.
                 </div>
                 <div className="w-full bg-[#050505] border border-[#d4af37]/40 rounded-xl p-2 text-[10px] font-bold text-[#d4af37]">
-                  💪 فخر وثناء للشعب السعودي الكريم: <span className="text-white text-xs bg-[#d4af37]/10 px-1 rounded">( شعب طويق )</span> أهل الجود والنخوة ✨
+                  💪 فخر وثناء للشعب السعودي الكريم: <span className="text-white text-xs bg-[#d4af37]/10 px-1  rounded">( شعب طويق )</span> أهل الجود والنخوة ✨
                 </div>
               </div>
             </div>
