@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useLocation } from 'wouter';
-import { auth, db } from '@/lib/firebase';
+import { auth, db } from '../lib/firebase';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { doc, getDoc } from 'firebase/firestore';
 import { Button } from '@/components/ui/button';
@@ -13,22 +13,23 @@ export default function LoginPage() {
   const [error, setError] = useState('');
   const [, setLocation] = useLocation();
 
-  const handleLogin = async (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
     setError('');
 
     try {
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
-      const userDoc = await getDoc(doc(db, 'users', userCredential.user.uid));
+      const userRef = doc(db, 'users', userCredential.user.uid);
+      const userDoc = await getDoc(userRef);
 
-      if (userDoc.exists() && userDoc.data().role === 'owner') {
+      if (userDoc.exists() && userDoc.data()?.role === 'owner') {
         setLocation('/admin');
       } else {
         setError('عذراً، هذا الحساب لا يملك صلاحيات الإدارة.');
         await auth.signOut();
       }
-    } catch (err: any) {
+    } catch {
       setError('خطأ في تسجيل الدخول. يرجى التحقق من البيانات.');
     } finally {
       setLoading(false);
@@ -62,8 +63,9 @@ export default function LoginPage() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="w-full h-12 bg-[#141414] border border-[#d4af37]/20 rounded-xl pr-12 pl-4 text-white placeholder-white/20 focus:border-[#d4af37] focus:outline-none transition-colors text-right"
-                placeholder="admin@anagahchic.com"
+                placeholder="admin@anaqa-chic.com"
                 required
+                autoComplete="username"
               />
             </div>
           </div>
@@ -79,6 +81,7 @@ export default function LoginPage() {
                 className="w-full h-12 bg-[#141414] border border-[#d4af37]/20 rounded-xl pr-12 pl-4 text-white placeholder-white/20 focus:border-[#d4af37] focus:outline-none transition-colors text-right"
                 placeholder="••••••••"
                 required
+                autoComplete="current-password"
               />
             </div>
           </div>
