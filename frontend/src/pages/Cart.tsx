@@ -1,4 +1,4 @@
-import { useCart } from "@/contexts/CartContext";
+import CartContext from "@/contexts/CartContext";
 import { formatSAR } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Link, useLocation } from "wouter";
