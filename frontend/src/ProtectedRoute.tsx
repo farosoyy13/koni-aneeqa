@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Navigate } from 'react-router-dom';
-import { auth, db } from '../lib/firebase'; // التطهير الجراحي للمسار لمنع أخطاء البناء
+import { auth, db } from './lib/firebase'; // التطهير الجراحي النهائي بنقطة المسار الصحيحة لمنع أخطاء البناء
 import { doc, getDoc } from 'firebase/firestore';
 import { onAuthStateChanged } from 'firebase/auth';
 
