@@ -3,9 +3,9 @@ import { CapacitorConfig } from '@capacitor/cli';
 const config: CapacitorConfig = {
   appId: 'com.chicaniqa.store',
   appName: 'متجر أناقة CHIC',
-  webDir: '../artifacts/chic-aniqa/dist/public',
+  webDir: 'dist', // التوجيه القياسي والموحد للمجلد النظيف مباشرة لتخطي تعارض السيرفر
   server: {
-    // أزيلي هذا السطر عند البناء offline وأبقيه للتطوير فقط
+    // يلي هذا السطر عند البناء offline وللتطوير فقط
     // url: 'https://YOUR-REPLIT-APP.replit.app',
     // cleartext: true,
   },
