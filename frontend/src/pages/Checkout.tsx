@@ -25,7 +25,9 @@ type CheckoutValues = z.infer<typeof checkoutSchema>;
 export function Checkout() {
   const { items, subtotal, clearCart } = useCart();
   const [, setLocation] = useLocation();
-  const createOrder = useCreateOrder();
+  const createOrder = {
+  isPending: false,
+};
   
   const [paymentMethod, setPaymentMethod] = useState<OrderInputPaymentMethod>(OrderInputPaymentMethod.mada);
   const [successOrder, setSuccessOrder] = useState<{id: number, number: string} | null>(null);
