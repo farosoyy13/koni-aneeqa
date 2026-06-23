@@ -36,7 +36,16 @@ export function Checkout() {
     resolver: zodResolver(checkoutSchema),
     defaultValues: { customerName: "", phone: "", address: "", cardNumber: "", expiry: "", cvv: "" },
   });
+const onSubmit = async (data: CheckoutValues) => {
+  console.log(data);
 
+  setSuccessOrder({
+    id: Date.now(),
+    number: Date.now().toString(),
+  });
+
+  clearCart();
+};
   if (items.length === 0 && !successOrder) {
     setLocation("/cart");
     return null;
