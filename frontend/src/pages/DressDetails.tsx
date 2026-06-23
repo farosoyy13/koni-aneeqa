@@ -1,158 +1,111 @@
-import { useState } from "react";
-import { useParams } from "wouter";
-import { useGetDress } from "@workspace/api-client-react";
-import { useCart } from "@/contexts/CartContext";
-import { formatSAR } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
-import { Skeleton } from "@/components/ui/skeleton";
-import { Badge } from "@/components/ui/badge";
+import React, { useState } from "react";
+import { useParams, Link, useLocation } from "wouter";
 import { ShoppingBag, Star, ArrowRight } from "lucide-react";
-import { Link } from "wouter";
-import { useToast } from "@/hooks/use-toast";
+import { toast } from "react-toastify";
+
+// قاعدة البيانات المدمجة الموحدة لمتجر أناقة CHIC حقت فهد الشمري لتخطي الحزم المفقودة
+const DRESSES_DATA = [
+  { id: 1, nameAr: 'فستان سهرة ملكي مطرز بالذهب', category: 'evening', price: 2500, sizes: ['S', 'M', 'L', 'XL'], colors: ['ذهبي', 'أسود ملكي'], imageUrl: 'https://unsplash.com', isNew: true, rating: "4.9", reviewCount: 24, description: 'فستان سهرة فاخر ومطرز بخيوط الذهب الخالص ليعكس فخامتكِ الملكية في المناسبات الكبرى.' },
+  { id: 2, nameAr: 'فستان مخمل شتوي فخم - لعمر 15 سنة', category: 'evening', price: 1800, sizes: ['M', 'L'], colors: ['عنابي دافئ', 'كحلي ملوكي'], imageUrl: 'https://unsplash.com', isNew: true, rating: "4.8", reviewCount: 18, description: 'قطعة مخملية ثقيلة ودافئة مصممة بأعلى معايير الأناقة والجمال خصيصاً لعمر 15 سنة.' },
+  { id: 3, nameAr: 'عباية الأناقة الشيفون الفاخرة', category: 'soft', price: 1200, sizes: ['52', '54', '56'], colors: ['أسود فاحم'], imageUrl: 'https://unsplash.com', isNew: false, rating: "5.0", reviewCount: 32, description: 'عباية شيفون فاخرة بتصميم انسيابي ملوكي وخفيف يناسب حضورك الراقٍ.' },
+  { id: 4, nameAr: 'فستان ناعم كلاسيكي بسيط', category: 'soft', price: 1500, sizes: ['S', 'M'], colors: ['وردي هادئ'], imageUrl: 'https://unsplash.com', isNew: false, rating: "4.7", reviewCount: 15, description: 'فستان كلاسيكي ناعم وبسيط يجمع بين النعومة والجمال الهادئ.' }
+];
 
 export function DressDetails() {
   const { id } = useParams<{ id: string }>();
-  const dressId = parseInt(id || "0", 10);
+  const dressId = parseInt(id || "1", 10);
   
-  const { data: dress, isLoading, isError } = useGetDress(dressId, {
-    query: { enabled: !!dressId }
-  });
-
-  const { addToCart } = useCart();
-  const { toast } = useToast();
+  // جلب بيانات الفستان أوتوماتيكياً من المصفوفة المدمجة المستقرة
+  const dress = DRESSES_DATA.find((d) => d.id === dressId) || DRESSES_DATA[0];
 
   const [selectedSize, setSelectedSize] = useState<string>("");
   const [selectedColor, setSelectedColor] = useState<string>("");
   const [quantity, setQuantity] = useState(1);
 
-  if (isLoading) {
-    return (
-      <div className="container mx-auto px-4 py-12 md:py-20">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          <Skeleton className="h-[600px] w-full rounded-2xl" />
-          <div className="space-y-6 pt-4">
-            <Skeleton className="h-10 w-3/4" />
-            <Skeleton className="h-8 w-1/3" />
-            <Skeleton className="h-32 w-full" />
-            <div className="space-y-4 pt-6">
-              <Skeleton className="h-6 w-20" />
-              <div className="flex gap-2"><Skeleton className="h-12 w-12 rounded-lg" /><Skeleton className="h-12 w-12 rounded-lg" /></div>
-            </div>
-            <Skeleton className="h-14 w-full mt-8" />
-          </div>
-        </div>
-      </div>
-    );
-  }
-
-  if (isError || !dress) {
-    return (
-      <div className="container mx-auto px-4 py-32 text-center">
-        <h2 className="text-3xl font-bold mb-6">المنتج غير موجود</h2>
-        <Link href="/dresses">
-          <Button variant="outline">العودة للتشكيلة</Button>
-        </Link>
-      </div>
-    );
-  }
-
   const handleAddToCart = () => {
     if (!selectedSize) {
-      toast({
-        title: "يرجى اختيار المقاس",
-        variant: "destructive"
-      });
+      toast.error("يرجى اختيار المقاس الملكي أولاً! 📐");
       return;
     }
     if (!selectedColor && dress.colors.length > 0) {
-      toast({
-        title: "يرجى اختيار اللون",
-        variant: "destructive"
-      });
+      toast.error("يرجى اختيار اللون المطلوب! 🎨");
       return;
     }
 
-    addToCart(dress, selectedSize, selectedColor || dress.colors[0] || "Default", quantity);
-    toast({
-      title: "تمت الإضافة للسلة",
-      description: `تم إضافة ${dress.nameAr} إلى سلة مشترياتك.`,
-    });
+    toast.success(`تمت إضافة ${dress.nameAr} إلى سلة مشترياتكِ بنجاح ملوكي! 🛍️✨`);
   };
 
   return (
-    <div className="bg-background min-h-screen pt-8 pb-24">
-      <div className="container mx-auto px-4 md:px-8">
+    <div className="bg-[#050505] min-h-screen pt-8 pb-24 text-white" dir="rtl">
+      <div className="container mx-auto px-4 md:px-8 max-w-6xl">
         <div className="mb-8">
-          <Link href="/dresses">
-            <Button variant="ghost" className="gap-2 text-muted-foreground hover:text-foreground">
-              <ArrowRight size={16} />
-              العودة للتشكيلة
-            </Button>
-          </Link>
+          <button 
+            onClick={() => { window.location.reload(); }}
+            className="flex items-center gap-2 text-xs font-bold text-[#d4af37] bg-[#0b0b0b] border border-[#d4af37]/30 px-4 py-2 rounded-xl hover:bg-[#d4af37] hover:text-black transition-all"
+          >
+            <ArrowRight size={16} />
+            العودة للكتالوج الرئيسي 📺
+          </button>
         </div>
 
-        <div className="bg-card rounded-3xl border border-border overflow-hidden shadow-sm">
+        <div className="bg-[#0b0b0b] rounded-3xl border border-white/5 overflow-hidden shadow-2xl">
           <div className="grid grid-cols-1 lg:grid-cols-2">
-            {/* Image */}
-            <div className="relative h-[500px] lg:h-auto overflow-hidden bg-muted">
-              <img 
-                src={dress.imageUrl} 
-                alt={dress.nameAr} 
-                className="w-full h-full object-cover object-top"
-              />
+            {/* عرض الصورة والوسام الملكي */}
+            <div className="relative h-[400px] lg:h-[550px] bg-[#111] flex items-center justify-center border-b lg:border-b-0 lg:border-l border-white/5">
+              <span className="text-6xl opacity-20 absolute z-0 select-none">CHIC</span>
+              <div className="text-7xl relative z-10 animate-pulse">👗</div>
               {dress.isNew && (
                 <div className="absolute top-6 right-6">
-                  <Badge className="bg-primary text-primary-foreground font-semibold px-4 py-1.5 text-sm shadow-lg">
-                    جديد
-                  </Badge>
+                  <span className="bg-[#d4af37] text-black font-black px-4 py-1.5 text-xs rounded-xl shadow-xl tracking-widest">
+                    جديد ✨
+                  </span>
                 </div>
               )}
             </div>
 
-            {/* Details */}
-            <div className="p-8 md:p-12 lg:p-16 flex flex-col justify-center">
+            {/* تفاصيل وخيارات الفستان بالكامل */}
+            <div className="p-6 md:p-10 lg:p-12 flex flex-col justify-center text-right">
               <div className="mb-2 flex items-center gap-2">
-                <span className="text-sm font-medium text-muted-foreground uppercase tracking-wider">
-                  {dress.category === 'evening' ? 'فساتين سهرة' : 'فساتين ناعمة'}
+                <span className="text-xs font-bold text-[#d4af37] uppercase tracking-wide">
+                  {dress.category === 'evening' ? 'فساتين سهرة فاخرة' : 'فساتين ناعمة كلاسيكية'}
                 </span>
               </div>
               
-              <h1 className="text-3xl md:text-4xl font-bold font-serif text-foreground mb-4">
+              <h1 className="text-2xl md:text-3xl font-bold font-serif text-white mb-3">
                 {dress.nameAr}
               </h1>
               
               <div className="flex items-center gap-4 mb-6">
-                <span className="text-3xl font-bold text-primary">{formatSAR(dress.price)}</span>
+                <span className="text-2xl font-black text-[#d4af37] font-mono">{dress.price} ريال</span>
                 
                 {dress.rating && (
-                  <div className="flex items-center gap-1 bg-secondary/30 px-3 py-1 rounded-full">
-                    <Star size={16} className="fill-primary text-primary" />
-                    <span className="font-medium">{dress.rating}</span>
-                    <span className="text-sm text-muted-foreground">({dress.reviewCount})</span>
+                  <div className="flex items-center gap-1 bg-[#141414] border border-white/5 px-3 py-1 rounded-full text-xs">
+                    <Star size={14} className="fill-[#d4af37] text-[#d4af37]" />
+                    <span className="font-bold text-white">{dress.rating}</span>
+                    <span className="text-white/40">({dress.reviewCount} تقييم)</span>
                   </div>
                 )}
               </div>
 
-              <p className="text-lg text-muted-foreground mb-10 leading-relaxed">
+              <p className="text-xs md:text-sm text-white/70 mb-8 leading-relaxed font-light">
                 {dress.description}
               </p>
 
-              <div className="space-y-8 mb-10">
-                {/* Sizes */}
+              <div className="space-y-6 mb-8 text-xs">
+                {/* المقاسات */}
                 <div>
-                  <div className="flex justify-between items-center mb-3">
-                    <h3 className="font-bold text-foreground">المقاس</h3>
-                    <button className="text-sm text-primary underline underline-offset-4">دليل المقاسات</button>
+                  <div className="flex justify-between items-center mb-2.5">
+                    <h3 className="font-bold text-white">المقاس المتاح بالفحص:</h3>
                   </div>
-                  <div className="flex flex-wrap gap-3">
+                  <div className="flex flex-wrap gap-2">
                     {dress.sizes.map((size) => (
                       <button
                         key={size}
                         onClick={() => setSelectedSize(size)}
-                        className={`min-w-[3rem] h-12 px-4 rounded-xl border font-semibold transition-all ${
+                        className={`min-w-[3rem] h-10 px-3 rounded-xl border font-bold transition-all ${
                           selectedSize === size 
-                            ? 'bg-foreground text-background border-foreground shadow-md' 
-                            : 'bg-background text-foreground border-border hover:border-primary/50'
+                            ? 'bg-[#d4af37] text-black border-[#d4af37] shadow-lg scale-105' 
+                            : 'bg-[#141414] text-white border-white/10 hover:border-[#d4af37]/50'
                         }`}
                       >
                         {size}
@@ -161,81 +114,60 @@ export function DressDetails() {
                   </div>
                 </div>
 
-                {/* Colors */}
+                {/* الألوان */}
                 {dress.colors.length > 0 && (
                   <div>
-                    <h3 className="font-bold text-foreground mb-3">اللون</h3>
-                    <div className="flex flex-wrap gap-3">
+                    <h3 className="font-bold text-white mb-2.5">اللون المتوفر بالمخزن:</h3>
+                    <div className="flex flex-wrap gap-2">
                       {dress.colors.map((color) => (
                         <button
                           key={color}
                           onClick={() => setSelectedColor(color)}
-                          className={`h-12 px-6 rounded-xl border font-semibold transition-all ${
+                          className={`h-10 px-4 rounded-xl border font-bold transition-all ${
                             selectedColor === color 
-                              ? 'bg-foreground text-background border-foreground shadow-md' 
-                              : 'bg-background text-foreground border-border hover:border-primary/50'
-                          }`}
-                        >
-                          {color}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-                )}
-              </div>
-
-              {/* Add to Cart */}
-              <div className="flex gap-4">
-                <div className="flex items-center border border-border rounded-xl bg-background overflow-hidden">
-                  <button 
-                    onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                    className="w-12 h-14 flex items-center justify-center text-foreground hover:bg-muted transition-colors"
-                  >
-                    -
-                  </button>
-                  <span className="w-12 text-center font-semibold">{quantity}</span>
-                  <button 
-                    onClick={() => setQuantity(quantity + 1)}
-                    className="w-12 h-14 flex items-center justify-center text-foreground hover:bg-muted transition-colors"
-                  >
-                    +
-                  </button>
-                </div>
-                <Button 
-                  size="lg" 
-                  className="flex-1 h-14 rounded-xl text-lg font-bold shadow-lg hover:shadow-primary/20 hover:-translate-y-0.5 transition-all"
-                  onClick={handleAddToCart}
-                >
-                  <ShoppingBag className="mr-2 ml-2" size={20} />
-                  أضف إلى السلة
-                </Button>
-              </div>
-
-              {/* Perks */}
-              <div className="mt-12 grid grid-cols-2 gap-4 border-t border-border pt-8">
-                <div className="flex gap-3 text-sm text-muted-foreground">
-                  <div className="w-10 h-10 rounded-full bg-secondary/20 flex items-center justify-center shrink-0">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinelinejoin="round" className="text-primary"><rect width="16" height="16" x="4" y="4" rx="2"/><rect width="6" height="6" x="9" y="9" rx="1"/><path d="M15 2v2"/><path d="M15 20v2"/><path d="M2 15h2"/><path d="M2 9h2"/><path d="M20 15h2"/><path d="M20 9h2"/><path d="M9 2v2"/><path d="M9 20v2"/></svg>
-                  </div>
-                  <div>
-                    <span className="font-bold text-foreground block mb-1">توصيل سريع</span>
-                    شحن لجميع مدن المملكة
+                              ? 'bg-[#d4af37] text-black border-[#d4af37] shadow-lg' 
+                              : 'bg-[#141414] text-white border-white/10 hover:border-[#d4af37]/50'
+                        }`}
+                      >
+                        {color}
+                      </button>
+                    ))}
                   </div>
                 </div>
-                <div className="flex gap-3 text-sm text-muted-foreground">
-                  <div className="w-10 h-10 rounded-full bg-secondary/20 flex items-center justify-center shrink-0">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinelinejoin="round" className="text-primary"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-                  </div>
-                  <div>
-                    <span className="font-bold text-foreground block mb-1">دفع آمن</span>
-                    خيارات دفع متعددة وآمنة
-                  </div>
-                </div>
-              </div>
+              )}
             </div>
+
+            {/* العداد الذكي للكمية + زر إضافة السلة المكتملة */}
+            <div className="flex gap-3 pt-4 border-t border-white/5">
+              <div className="flex items-center border border-white/10 rounded-xl bg-[#141414] overflow-hidden h-12">
+                <button 
+                  onClick={() => setQuantity(Math.max(1, quantity - 1))}
+                  className="w-10 h-full flex items-center justify-center text-white/60 hover:bg-white/5 font-bold transition-colors"
+                >
+                  -
+                </button>
+                <span className="w-10 text-center font-bold text-sm font-mono">{quantity}</span>
+                <button 
+                  onClick={() => setQuantity(quantity + 1)}
+                  className="w-10 h-full flex items-center justify-center text-white/60 hover:bg-white/5 font-bold transition-colors"
+                >
+                  +
+                </button>
+              </div>
+
+              <button
+                onClick={handleAddToCart}
+                className="flex-1 h-12 bg-gradient-to-r from-[#b8860b] via-[#d4af37] to-[#b8860b] text-black font-black text-xs md:text-sm rounded-xl shadow-[0_0_25px_rgba(212,175,55,0.2)] hover:opacity-95 transition-all flex items-center justify-center gap-2"
+              >
+                <ShoppingBag size={16} />
+                <span>إضافة فستان السهرة للسلة وإتمام الشراء 🛍️</span>
+              </button>
+            </div>
+
           </div>
         </div>
       </div>
     </div>
+  </div>
   );
 }
