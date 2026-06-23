@@ -3,7 +3,7 @@ import { useCart } from "@/contexts/CartContext";
 import { formatSAR } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Link, useLocation } from "wouter";
-import { useCreateOrder, OrderInputPaymentMethod } from "@workspace/api-client-react";
+type OrderInputPaymentMethod = "mada" | "visa";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
