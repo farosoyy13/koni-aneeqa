@@ -29,7 +29,7 @@ export function Checkout() {
   isPending: false,
 };
   
-  const [paymentMethod, setPaymentMethod] = useState<OrderInputPaymentMethod>(OrderInputPaymentMethod.mada);
+  const [paymentMethod, setPaymentMethod] = useState<OrderInputPaymentMethod>("mada");
   const [successOrder, setSuccessOrder] = useState<{id: number, number: string} | null>(null);
 
   const form = useForm<CheckoutValues>({
