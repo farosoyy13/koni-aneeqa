@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Dress } from "@workspace/api-client-react";
+import type { Dress } from "@/contexts/CartContext";
 import { Link } from "wouter";
 import { formatSAR } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
