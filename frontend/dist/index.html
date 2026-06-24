@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>متجر أناقة CHIC الملكي VIP - الواجهة الإمبراطورية</title>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&family=Amiri:wght@700&display=swap" rel="stylesheet">
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      background: #000;
+      font-family: 'Tajawal', sans-serif;
+      overflow-x: hidden;
+    }
+    .full-screen-cinema {
+      position: relative;
+      width: 100%;
+      min-height: 100vh;
+      background-image: url("https://via.placeholder.com/1500");
+      background-size: cover;
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+    .full-screen-cinema::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.4);
+      pointer-events: none;
+      z-index: 1;
+    }
+    .cinema-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      max-width: 800px;
+      width: 100%;
+      padding: 40px 20px;
+      box-sizing: border-box;
+    }
+    .royal-badge {
+      font-family: 'Amiri', serif;
+      color: #d4af37;
+      font-size: 45px;
+      font-weight: bold;
+      margin-bottom: 15px;
+      text-shadow: 0 4px 15px rgba(212,175,55,0.6);
+    }
+    .royal-title {
+      color: #fff;
+      font-size: 26px;
+      font-weight: 900;
+      margin-bottom: 10px;
+      letter-spacing: 1px;
+    }
+    .royal-desc {
+      color: #e0e0e0;
+      font-size: 15px;
+      line-height: 1.8;
+      margin: 0 auto 40px auto;
+      max-width: 600px;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+    }
+    .button-grid {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+      margin-bottom: 30px;
+    }
+    .btn-cinema {
+      background: rgba(0, 0, 0, 0.75);
+      color: #fff;
+      border: 1px solid rgba(212,175,55,0.6);
+      padding: 14px 32px;
+      font-size: 14px;
+      font-weight: bold;
+      border-radius: 50px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+      white-space: nowrap;
+    }
+    .btn-cinema.active {
+      background: linear-gradient(135deg, #d4af37 0%, #bfa15f 100%);
+      color: #000;
+      border: 1px solid #d4af37;
+      box-shadow: 0 0 25px rgba(212,175,55,0.5);
+    }
+    .btn-cinema:hover {
+      transform: translateY(-3px) scale(1.02);
+      border-color: #d4af37;
+      box-shadow: 0 6px 20px rgba(212,175,55,0.4);
+    }
+    .bank-container {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+      margin-top: 35px;
+    }
+    .bank-card {
+      background: rgba(10,10,10,0.85);
+      border: 1px solid #222;
+      padding: 15px 20px;
+      border-radius: 12px;
+      border-top: 2px solid #d4af37;
+      max-width: 320px;
+      width: 100%;
+      text-align: right;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+    }
+  </style>
+  <script type="module" crossorigin src="./assets/js/index-ChfbsL6v.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/css/index-C8sHoe18.css">
+</head>
+<body>
+  <div id="timer-title">المزاد الملكي القادم بعد</div>
+  <div id="timer">60</div>
+  <div id="root"></div>
+  <div class="full-screen-cinema">
+    <div class="cinema-content">
+      <div class="royal-badge">الْوَاجِهَةُ الْمَلَكِيَّةُ الشَّامِلَةُ</div>
+      <div class="royal-title">مرحباً بك في عالم الفخامة الكاملة</div>
+      <div class="royal-desc">
+        مرحباً بك في عالم الفخامة الإلكترونية الحية في التداول. ويعمل الجو في قنوات التأصيل والتحصيل والفخامة الكاملة للأستاذ فهد الشمري.
+      </div>
+      <div class="button-grid">
+        <a href="https://wa.me/966536667222?text=أستاذ+فهد+دخلت+من+خلال+الواجهة+السينمائية+الممددة+وأود+التعامل+معك" target="_blank" class="btn-cinema active">الشاشة الرئيسية (واتساب 1)</a>
+        <a href="https://wa.me/966507882771?text=أستاذ+فهد+أريد+الاستفسار+عن+الخدمات+والحراج" target="_blank" class="btn-cinema">الخدمات الملكية (واتساب 2)</a>
+        <a href="https://snapchat.com/t/ek0TQEpu" target="_blank" class="btn-cinema">قنوات التواصل (سناب شات)</a>
+        <a href="https://t.me/FA7A0" target="_blank" class="btn-cinema">تابعنا على تيليجرام</a>
+      </div>
+      <div class="bank-container">
+        <div class="bank-card">
+          <h4 style="color:#d4af37; margin: 0 0 5px 0; font-size: 14px;">💳 مصرف الراجحي الدولي</h4>
+          <p style="margin: 0; font-size: 12px; color: #ccc;">آيبان: SA0980000509608010069017</p>
+        </div>
+        <div class="bank-card">
+          <h4 style="color:#d4af37; margin: 0 0 5px 0; font-size: 14px;">💳 البنك العربي الوطني (ANB)</h4>
+          <p style="margin: 0; font-size: 12px; color: #ccc;">آيبان: SA9830400108088851870011</p>
+        </div>
+      </div>
+      <p style="font-size:11px; color:#666; margin-top: 50px; margin-bottom: 0;">جميع الحقوق محفوظة © براند أناقة CHIC الملكي 2026</p>
+    </div>
+  </div>
+</body>
+</html>
