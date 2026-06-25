@@ -4,13 +4,13 @@ export default function Home() {
   return (
     <>
       <div style={{ padding: '20px', maxWidth: '1250px', margin: '0 auto' }}>
-        {/* هيدر ترحيبي فخم يتناسق مع الواجهة الملكية */}
+        {/* هيدر ترحيبي فخم يتناسق مع الواجهة الملكية الفاخرة */}
         <div style={{ textAlign: 'center', marginBottom: '40px', padding: '20px', background: 'rgba(15,15,15,0.8)', border: '1px solid #d4af37', borderRadius: '12px' }}>
           <h1 style={{ fontFamily: 'Amiri, serif', color: '#d4af37', fontSize: '36px', marginBottom: '10px' }}>
-            منصة أناقة REVE الملكية الفاخرة
+            منصة أناقة CHIC الملكية الفاخرة
           </h1>
           <p style={{ color: '#ccc', fontSize: '15px' }}>
-            بوابة التجارة والحراج الحي الشاملة للأستاذ فهد الشمري - أهلاً بكم في عالم الفخامة الرقمية
+            بوابة التجارة والحراج الحي الشاملة — أهلاً بكم في عالم الفخامة الرقمية
           </p>
         </div>
 
@@ -18,7 +18,7 @@ export default function Home() {
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '25px' }}>
           
           {/* المنتج 1: التمور الملكية */}
-          <div style={{ background: 'rgba(20,20,20,0.6)', border: '1px solid rgba(212,175,55,0.2)', padding: '25px', borderRadius: '8px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+          <div style={{ background: 'rgba(20,20,20,0.6)', border: '1px solid rgba(212,175,55,0.2)', padding: '25px', borderRadius: '8px', display: 'flex', flexDirection: 'column', justifycontent: 'space-between' }}>
             <div>
               <span style={{ background: '#ff3333', color: '#fff', padding: '2px 8px', fontSize: '11px', fontWeight: 'bold', borderRadius: '3px' }}>🔥 إعلان نشط</span>
               <h3 style={{ color: '#d4af37', margin: '15px 0 10px 0', fontSize: '18px' }}>تمور خلاص ملكي فاخر ونادر جداً</h3>
@@ -33,7 +33,7 @@ export default function Home() {
           </div>
 
           {/* المنتج 2: سيارات مرسيدس */}
-          <div style={{ background: 'rgba(20,20,20,0.6)', border: '1px solid rgba(212,175,55,0.2)', padding: '25px', borderRadius: '8px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+          <div style={{ background: 'rgba(20,20,20,0.6)', border: '1px solid rgba(212,175,55,0.2)', padding: '25px', borderRadius: '8px', display: 'flex', flexDirection: 'column', justifycontent: 'space-between' }}>
             <div>
               <span style={{ background: '#ff3333', color: '#fff', padding: '2px 8px', fontSize: '11px', fontWeight: 'bold', borderRadius: '3px' }}>🔥 تفاعل عالي</span>
               <h3 style={{ color: '#d4af37', margin: '15px 0 10px 0', fontSize: '18px' }}>سيارة مرسيدس مايباخ الملكية الفخمة S-Class</h3>
@@ -48,7 +48,7 @@ export default function Home() {
           </div>
 
           {/* المنتج 3: خدمات المغسلة */}
-          <div style={{ background: 'rgba(20,20,20,0.6)', border: '1px solid rgba(212,175,55,0.2)', padding: '25px', borderRadius: '8px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+          <div style={{ background: 'rgba(20,20,20,0.6)', border: '1px solid rgba(212,175,55,0.2)', padding: '25px', borderRadius: '8px', display: 'flex', flexDirection: 'column', justifycontent: 'space-between' }}>
             <div>
               <span style={{ background: '#d4af37', color: '#000', padding: '2px 8px', fontSize: '11px', fontWeight: 'bold', borderRadius: '3px' }}>🟢 خدمة موثقة</span>
               <h3 style={{ color: '#d4af37', margin: '15px 0 10px 0', fontSize: '18px' }}>خدمات المغسلة الذكية والـ Dry Clean الملكي</h3>
