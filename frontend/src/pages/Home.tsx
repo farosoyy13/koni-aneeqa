@@ -12,7 +12,7 @@ export default function Home({ onNavigate, onSelectCategory }: HomeProps) {
   const [showOwnerMarquee, setShowOwnerMarquee] = useState(false);
   const [userComment, setUserComment] = useState('');
 
-  // بروتوكول النغمة والرسالة الرسمية الصارمة لصاحب الموقع
+  // نغمة تحذيرية ورسالة شريط متحرك لصاحب موقع أناقة CHIC
   useEffect(() => {
     if (isLoggedIn && loginRole === 'owner') {
       setShowOwnerMarquee(true);
@@ -88,11 +88,11 @@ export default function Home({ onNavigate, onSelectCategory }: HomeProps) {
   return (
     <div style={{ padding: '2px', width: '100%', maxWidth: '100%', margin: '0 auto', fontFamily: officialFont, direction: 'rtl', color: '#ffffff', boxSizing: 'border-box' }}>
       
-      {/* شريط الإعلان الأمني الحاسم والتحذيري المخصص لصاحب موقع أناقة CHIC */}
+      {/* شريط التحذير والأمان الخاص بصاحب الموقع عند دخوله ببوابته السرية */}
       {showOwnerMarquee && (
-        <div style={{ background: '#ff3333', color: '#ffffff', padding: '8px 0', fontSize: '11px', fontWeight: 'bold', overflow: 'hidden', whiteSpace: 'nowrap', borderRadius: '4px', marginBottom: '12px', border: '1px solid #ffffff' }}>
-          <div style={{ display: 'inline-block', paddingLeft: '100%', animation: 'marquee 16s linear infinite' }}>
-            ⚠️ إعلان إداري رسمي: تم تسجيل دخول صاحب موقع (أناقة CHIC) بنجاح • نود التنبيه بأنه من لديه استفسار أو شكوى ضد أي موظف في المنصة، أو تعرض لمحاولة نصب أو احتيال من أي شخص، فليتوجه فوراً إلى غرفة صاحب موقع (أناقة CHIC)، وبإذن الله تعالى سوف يتم محاسبة المتسبب ورد المظالم كلياً ⚠️
+        <div style={{ background: '#ff3333', color: '#ffffff', padding: '6px 0', fontSize: '11px', fontWeight: 'bold', overflow: 'hidden', whiteSpace: 'nowrap', borderRadius: '4px', marginBottom: '10px' }}>
+          <div style={{ display: 'inline-block', paddingLeft: '100%', animation: 'marquee 12s linear infinite' }}>
+            ⚠️ تنبيه أمني سيادي مشفر: تم تسجيل دخول صاحب موقع أناقة CHIC إلى النظام بنجاح • جاري فتح بروتوكولات التحكم الممتدة وتأمين الحلال بالكامل ⚠️
           </div>
         </div>
       )}
@@ -109,7 +109,7 @@ export default function Home({ onNavigate, onSelectCategory }: HomeProps) {
         </div>
       </div>
 
-      {/* 👑 الزاوية الملكية الثابتة والكاملة (صور الملوك وأسمائهم واللافته) */}
+      {/* 👑 الزاوية الملكية الثابتة والكاملة (صور ولاة الأمر وأسمائهم واللافتة بالملي) */}
       <div style={{ background: 'linear-gradient(135deg, #0f0f0f 0%, #151515 100%)', border: '1px solid #d4af37', borderRadius: '12px', padding: '12px', textAlign: 'center', marginBottom: '15px' }}>
         <h2 style={{ color: '#d4af37', fontSize: '15px', fontWeight: 'bold', marginBottom: '12px' }}>ركن الولاء والانتماء لقادة المجد</h2>
         <div style={{ display: 'flex', justifyContent: 'center', gap: '15px', marginBottom: '12px' }}>
@@ -127,13 +127,14 @@ export default function Home({ onNavigate, onSelectCategory }: HomeProps) {
         </p>
       </div>
 
-      {/* 🔒 الغرفة السرية الخاصة بصاحب الموقع (تفتح فقط وحصرياً لصاحب موقع أناقة CHIC) */}
+      {/* 🔒 الغرفة الخاصة بصاحب الموقع (تفتح فقط وحصرياً عند إدخال الباسورد الموحد) */}
       {loginRole === 'owner' && (
         <div style={{ background: 'linear-gradient(135deg, #1f0000 0%, #050505 100%)', border: '1px dashed #ff3333', borderRadius: '10px', padding: '12px', marginBottom: '15px', textAlign: 'center' }}>
           <h4 style={{ color: '#ff3333', fontSize: '13px', fontWeight: 'bold', margin: '0 0 5px' }}>🔒 الغرفة السرية والخاصة بصاحب الحلال</h4>
-          <p style={{ color: '#aaa', fontSize: '11px', margin: '0 0 8px' }}>مرحباً بك يا غالي. لوحة التحصين ومراقبة الخزنة السيادية نشطة ومحمية بالكامل.</p>
+          <p style={{ color: '#aaa', fontSize: '11px', margin: '0 0 8px' }}>مرحباً بك. لوحة التحصين ومراقبة الخزنة السيادية نشطة ومحمية بالكامل.</p>
           <button onClick={() => alert('الخزنة السيادية مؤمنة 100% والمبيعات سليمة.')} style={{ background: '#ff3333', color: '#fff', border: 'none', padding: '4px 10px', borderRadius: '4px', fontSize: '10px', fontWeight: 'bold' }}>📂 الخزنة السيادية</button>
         </div>
       )}
 
       {/* 📺 مربع الإعلانات التلفزيونية المتحركة التلقائية */}
+      <div style={{ background: '#000000', border: '1px solid rgba(212,175,55,0.2)', borderRadius: '10px', padding: '10px', textAlign: 'center', marginBottom: '15px' }}>
